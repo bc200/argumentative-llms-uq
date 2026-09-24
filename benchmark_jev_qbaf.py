@@ -475,7 +475,35 @@ def summarize(rows):
     return summary
 
 
-def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None):
+def direct_prompt_fallbacks(events):
+    counts = {
+        name: {"direct_llm": 0, "original_qbaf": 0}
+        for name in DATASETS
+    }
+    for event in events:
+        if event["request"].get("kwargs", {}).get("constraint_prefix") != "Likelihood:":
+            continue
+        output = event["response"]
+        value = output.replace("Likelihood:", "").strip()
+        value = value.replace("is", "").strip()
+        value = value.replace("%", "").strip()
+        value = value.replace(".", "").strip()
+        value = value.split("\n")[0]
+        try:
+            int(value)
+        except ValueError:
+            path = event["_cache_path"].replace("\\", "/")
+            for name in DATASETS:
+                if "/" + name + "/" in path:
+                    method = ("direct_llm" if "/direct_constrained_v1/" in path
+                              else "original_qbaf")
+                    counts[name][method] += 1
+                    break
+    return counts
+
+
+def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
+                   parse_fallbacks=None):
     lines = [
         "# Jev 在 QBAF 论点置信度任务上的实验报告",
         "",
@@ -494,8 +522,8 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None):
         + str(args.breadth) + "。",
         "- 三种 QBAF 的根节点基础分均为 0.5，且复用同一深度、同一样本的缓存图。",
         "- D=2 在 D=1 图上继续生成，共有的第一层论点、基础分和边权均直接复用。",
-        "- API 模型按照上游 Direct Prompting 的限定输出格式返回百分比，"
-        "并继续使用上游估计器及其解析规则。",
+        "- API 模型额外接收与上游 Direct Prompting 一致的百分比格式要求，"
+        "估计器、提示正文及解析规则保持原样。",
         "- original_qbaf 的论点基础分来自上游 Direct Prompting 估计器；"
         "jev_qbaf 使用 Jev Noul 论点真确性概率；jev_ew_qbaf "
         "进一步使用每条既有边的 Jev Noul 关系有效性概率。",
@@ -532,6 +560,16 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None):
                 latency=item["mean_latency_seconds"],
             )
         )
+    if parse_fallbacks is not None:
+        lines += ["", "## 格式回退", "", "缓存中的 Direct Prompting 百分比回复经上游解析器检查，回退次数如下："]
+        for name in DATASETS:
+            counts = parse_fallbacks[name]
+            lines.append(
+                name + "：根论点直评 %d 次，生成论点评分 %d 次。" % (
+                    counts["direct_llm"], counts["original_qbaf"]
+                )
+            )
+        lines += ["", "解析失败的回复按上游原规则赋值为 0.5；这些样本保留在指标中。"]
     lines += [
         "",
         "## 成本说明",
@@ -665,12 +703,14 @@ def main():
         event["response"]["model"] for event in unique_events.values()
         if "payload" in event["request"] and "model" in event["response"]
     })
+    parse_fallbacks = direct_prompt_fallbacks(unique_events.values())
     write_json(args.output_dir / "metrics.json", {
         "summary": summary,
         "unique_api_cost_usd": total_unique_cost["usd"],
         "unique_api_cost_cny": total_unique_cost["cny"],
         "unique_api_calls": len(unique_events),
         "jev_response_models": jev_versions,
+        "direct_prompt_fallbacks": parse_fallbacks,
         "settings": {
             "generator_model": args.generator_model,
             "llm_base_url": args.llm_base_url,
@@ -683,7 +723,7 @@ def main():
         },
     })
     report = chinese_report(
-        args, summary, total_unique_cost, rows, jev_versions
+        args, summary, total_unique_cost, rows, jev_versions, parse_fallbacks
     )
     report_path = args.output_dir / "实验报告.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)

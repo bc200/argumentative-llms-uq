@@ -4,7 +4,7 @@ import json
 import os
 import time
 from pathlib import Path
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
@@ -141,6 +141,10 @@ class CachedJev:
                     return data, data.get("usage"), time.perf_counter() - start
                 except HTTPError as error:
                     if error.code not in (429, 529) or attempt == 3:
+                        raise
+                    time.sleep(2 ** attempt)
+                except URLError:
+                    if attempt == 3:
                         raise
                     time.sleep(2 ** attempt)
             raise RuntimeError("Jev request failed")

@@ -18,6 +18,7 @@ TruthfulClaim、StrategyClaim、MedClaim；若使用另行整理的 Claim 数据
 - direct_llm 是上游 UncertaintyEstimator 对根论点的 Direct Prompting 概率；
   original_qbaf 用同一估计器给生成论点打分。API 模型通过系统格式要求遵循
   上游的“Likelihood: N%”约束，估计器、提示正文与解析规则保持不变。
+  模型偶有未遵循百分比格式的回复；实验沿用上游解析器的 0.5 回退，中文报告记录回退次数。
 - direct_jev 用 Jev Noul 对根论点真假打分。jev_qbaf 用 Jev Noul
   估计生成论点本身的真确性，与它和父论点的关系分开。
   jev_ew_qbaf 进一步对每条已有 support/attack 边询问该指定关系是否有效；
@@ -76,3 +77,7 @@ experiment_results/。完成后会生成中文 experiment_results/实验报告.m
 运行测试：
 
     python -m unittest discover -s tests -v
+
+## 本次全量结果
+
+三个数据集各 500 条、D=1 与 D=2 的五方法结果见 [中文报告](reports/2026-09-24_jev_qbaf_实验报告.md)。报告包含中文实验设置、指标、结果解读、格式回退及成本说明。逐样本输出和原始 API 响应缓存保存在本地已忽略的 experiment_results/ 与 experiment_cache/。

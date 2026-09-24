@@ -130,12 +130,20 @@ class OpenAiLlmManager(LlmManager):
     def __init__(
         self,
         model_name,
+        base_url=None,
+        api_key_env=None,
+        thinking_mode=None,
     ):
         self.model_name = model_name.split("openai/")[1]
         from openai import OpenAI
 
         self.last_usage = None
-        self.client = OpenAI(api_key=os.environ.get("OPENAI_KEY") or os.environ["OPENAI_API_KEY"])
+        self.thinking_mode = thinking_mode
+        if api_key_env:
+            api_key = os.environ[api_key_env]
+        else:
+            api_key = os.environ.get("OPENAI_KEY") or os.environ["OPENAI_API_KEY"]
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
 
     def chat_completion(
         self,
@@ -155,16 +163,33 @@ class OpenAiLlmManager(LlmManager):
     ):
         prompt = message
 
-        completion = self.client.chat.completions.create(
-            model=self.model_name,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            max_tokens=max_new_tokens,
-            top_p=top_p,
-            presence_penalty=repetition_penalty,
-            # stop=["\n"],  # stops after generating a new line
-            # logit_bias={"2435":20"2431":20},  # gives a better chance for these tokens to appear in the output
-        )
+        messages = [{"role": "user", "content": prompt}]
+        if constraint_prefix and constraint_options:
+            if (constraint_prefix == "Likelihood:" and
+                    constraint_options == [f" {value}%" for value in range(101)]):
+                format_instruction = (
+                    'Respond with exactly one line in the format "Likelihood: N%", '
+                    'where N is an integer from 0 to 100. Do not add explanations.'
+                )
+            else:
+                format_instruction = (
+                    "Respond with exactly " + constraint_prefix + " followed by one of: "
+                    + ", ".join(constraint_options) + "."
+                )
+                if constraint_end_after_options:
+                    format_instruction += " Do not add any other text."
+            messages.insert(0, {"role": "system", "content": format_instruction})
+        request = {
+            "model": self.model_name,
+            "messages": messages,
+            "temperature": temperature,
+            "max_tokens": max_new_tokens,
+            "top_p": top_p,
+            "presence_penalty": repetition_penalty,
+        }
+        if self.thinking_mode is not None:
+            request["extra_body"] = {"thinking": {"type": self.thinking_mode}}
+        completion = self.client.chat.completions.create(**request)
 
         self.last_usage = {
             "input_tokens": completion.usage.prompt_tokens,

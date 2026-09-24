@@ -238,6 +238,28 @@ class ArgumentMiner:
         )
         return graph
 
+    def extend_graph(self, graph_dict):
+        """Continue the original mining loop from a cached D=1 graph."""
+        self.argument_tree = grad.BAG.from_dict(graph_dict)
+        previous_layer = [
+            self.argument_tree.arguments[name]
+            for name, data in graph_dict["arguments"].items()
+            if name != "db0" and data["argument"] != "N/A"
+        ]
+        neutral_score = lambda argument, **_: 0.0 if argument == "N/A" else 0.5
+        for depth in range(2, self.depth + 1):
+            for breadth in range(1, self.breadth + 1):
+                next_layer = []
+                for parent in previous_layer:
+                    support, attack = self.generate_args_for_parent(
+                        parent,
+                        f"{parent.name}←d{depth}b{breadth}",
+                        neutral_score,
+                    )
+                    next_layer.extend((support, attack))
+                previous_layer = next_layer
+        return self.argument_tree
+
     """If argument is similar to other arguments in same branch then we cut of that argument."""
 
     def cut_arguments(self, arguments):

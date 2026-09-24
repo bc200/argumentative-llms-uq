@@ -47,6 +47,7 @@ class CachedLlmManager:
     def __init__(
         self, delegate, model_name, directory, input_price=None, output_price=None,
         cache_config=None,
+        currency="USD",
     ):
         self.delegate = delegate
         self.model_name = model_name
@@ -54,6 +55,7 @@ class CachedLlmManager:
         self.input_price = input_price
         self.output_price = output_price
         self.cache_config = cache_config or {}
+        self.currency = currency
         self.records = []
         self.call_number = 0
 
@@ -69,21 +71,25 @@ class CachedLlmManager:
 
         def perform():
             start = time.perf_counter()
-            response = self.delegate.chat_completion(message, **kwargs)
+            quiet_kwargs = dict(kwargs)
+            quiet_kwargs["print_result"] = False
+            response = self.delegate.chat_completion(message, **quiet_kwargs)
             elapsed = time.perf_counter() - start
             return response, getattr(self.delegate, "last_usage", None), elapsed
 
         record = cached_call(path, request, perform)
         usage = record["usage"]
         if not self.model_name.startswith("openai/"):
-            record["cost_usd"] = 0.0
+            cost = 0.0
         elif usage is None or self.input_price is None or self.output_price is None:
-            record["cost_usd"] = None
+            cost = None
         else:
-            record["cost_usd"] = (
+            cost = (
                 usage["input_tokens"] * self.input_price
                 + usage["output_tokens"] * self.output_price
             ) / 1000000
+        record["cost_usd"] = cost if self.currency == "USD" else 0.0
+        record["cost_cny"] = cost if self.currency == "CNY" else 0.0
         record["_cache_path"] = str(path)
         self.records.append(record)
         return record["response"]
@@ -145,6 +151,7 @@ class CachedJev:
             usage["input_tokens"] * self.input_price / 1000000
             if usage is not None and "input_tokens" in usage else None
         )
+        record["cost_cny"] = 0.0
         record["_cache_path"] = str(path)
         answer = record["response"]["answers"]["answer"]
         if answer["type"] != "noul" or not 0.0 <= answer["noul"] <= 1.0:

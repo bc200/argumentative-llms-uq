@@ -1,21 +1,7 @@
 from copy import deepcopy
 
 import Uncertainpy.src.uncertainpy.gradual as grad
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from lm_polygraph.utils.model import WhiteboxModel
-from lm_polygraph.estimators import *
-from lm_polygraph.estimators import SemanticEntropy
-from lm_polygraph.utils import estimate_uncertainty
-import torch
-import transformers
-from transformers import AutoTokenizer, BitsAndBytesConfig
-from transformers.generation import GenerationConfig
 
-from utils import construct_constraint_fun
-
-from openai import OpenAI
-import time
-from csv import writer
 class ArgumentMiner:
     def __init__(
         self, generate_prompt_am, generate_prompt_ue, llm_manager, depth=1, breadth=1, generation_args={}, ue_method="semantic_entropy"
@@ -30,6 +16,9 @@ class ArgumentMiner:
 
     def generate_args_for_parent_lm_polygraph(self, parent, name, model, ue_method, run_phase = "first", accumulated_scores = None, idx = None, depth = 1, s_or_a = "s"):
         """ Generates supporting and attacking arguments and computes the desired uncertainty measures using LM-Polygraph """
+        import torch
+        from lm_polygraph.utils import estimate_uncertainty
+
         torch.cuda.empty_cache()
         if run_phase == "first":
             s_prompt, s_constraints, s_format_args = self.generate_prompt(
@@ -240,6 +229,14 @@ class ArgumentMiner:
         )
 
         return self.argument_tree, topic_base_score_bag
+
+    def generate_graph(self, statement):
+        """Use the original mining pipeline to produce an unscored, reusable graph."""
+        graph, _ = self.generate_arguments(
+            statement,
+            lambda argument, **_: 0.0 if argument == "N/A" else 0.5,
+        )
+        return graph
 
     """If argument is similar to other arguments in same branch then we cut of that argument."""
 

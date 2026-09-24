@@ -1,14 +1,8 @@
 from abc import ABC, abstractmethod
 
-import torch
-import transformers
-from transformers import AutoTokenizer, BitsAndBytesConfig
-from transformers.generation import GenerationConfig
+import os
 
 from utils import construct_constraint_fun
-
-from openai import OpenAI
-import os
 
 
 class LlmManager(ABC):
@@ -41,6 +35,11 @@ class HuggingFaceLlmManager(LlmManager):
         quantization="4bit",
     ):
         super().__init__()
+        import torch
+        import transformers
+        from transformers import BitsAndBytesConfig
+
+        self.last_usage = None
         if quantization == "4bit":
             quantization_config = BitsAndBytesConfig(
                 load_in_4bit=True,
@@ -86,6 +85,9 @@ class HuggingFaceLlmManager(LlmManager):
         trim_response=True,
         apply_template=True,
     ):
+        import transformers
+
+        self.last_usage = None
         transformers.set_seed(seed)
         messages = [{"role": "user", "content": message}]
         if apply_template:
@@ -130,7 +132,10 @@ class OpenAiLlmManager(LlmManager):
         model_name,
     ):
         self.model_name = model_name.split("openai/")[1]
-        self.client = OpenAI(api_key=os.environ["OPENAI_KEY"])
+        from openai import OpenAI
+
+        self.last_usage = None
+        self.client = OpenAI(api_key=os.environ.get("OPENAI_KEY") or os.environ["OPENAI_API_KEY"])
 
     def chat_completion(
         self,
@@ -161,6 +166,10 @@ class OpenAiLlmManager(LlmManager):
             # logit_bias={"2435":20"2431":20},  # gives a better chance for these tokens to appear in the output
         )
 
+        self.last_usage = {
+            "input_tokens": completion.usage.prompt_tokens,
+            "output_tokens": completion.usage.completion_tokens,
+        } if completion.usage else None
         response = completion.choices[0].message.content
 
         if print_result:

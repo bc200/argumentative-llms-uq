@@ -1,0 +1,583 @@
+"""Run five confidence methods on shared, cached argument graphs."""
+
+import argparse
+from collections import defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+import Uncertainpy.src.uncertainpy.gradual as grad
+
+from argument_miner import ArgumentMiner
+from ew_dfquad import compute_ew_dfquad, existing_edges
+from experiment_io import CachedJev, CachedLlmManager, read_json, write_json
+from llm_managers import HuggingFaceLlmManager, OpenAiLlmManager
+from prompt import ArgumentMiningPrompts, UncertaintyEvaluatorPrompts
+from uncertainty_estimator import UncertaintyEstimator
+
+
+DATASETS = {
+    "TruthfulClaim": "Datasets/TruthfulQA/Experiment",
+    "StrategyClaim": "Datasets/StrategyQA/Experiment",
+    "MedClaim": "Datasets/MedQA/Experiment",
+}
+METHODS = (
+    "direct_llm",
+    "direct_jev",
+    "original_qbaf",
+    "jev_qbaf",
+    "jev_ew_qbaf",
+)
+
+
+def dataset_rows(path, max_samples=None):
+    """Read the bundled Hugging Face dataset, with a small Arrow-only fallback."""
+    try:
+        from datasets import load_from_disk
+    except ImportError:
+        try:
+            import pyarrow.ipc as ipc
+        except ImportError as error:
+            raise RuntimeError(
+                "Dataset loading requires 'datasets' or 'pyarrow'"
+            ) from error
+        files = sorted(Path(path).glob("data-*.arrow"))
+        if len(files) != 1:
+            raise ValueError("Expected one Arrow data file in " + str(path))
+        with ipc.open_stream(str(files[0])) as reader:
+            dataset = reader.read_all().select(["claim", "valid"]).to_pylist()
+    else:
+        dataset = load_from_disk(str(path))
+    length = len(dataset) if max_samples is None else min(len(dataset), max_samples)
+    for index in range(length):
+        row = dataset[index]
+        yield index, str(row["claim"]), int(row["valid"])
+
+
+class LazyModelManager:
+    """Load the generator only when a response is missing from the cache."""
+
+    def __init__(self, args):
+        self.args = args
+        self.delegate = None
+        self.last_usage = None
+
+    def chat_completion(self, message, **kwargs):
+        if self.delegate is None:
+            if self.args.generator_model.startswith("openai/"):
+                self.delegate = OpenAiLlmManager(self.args.generator_model)
+            else:
+                self.delegate = HuggingFaceLlmManager(
+                    model_name=self.args.generator_model,
+                    quantization=self.args.quantization,
+                    cache_dir=self.args.model_cache_dir,
+                    input_device=self.args.input_device,
+                )
+        response = self.delegate.chat_completion(message, **kwargs)
+        self.last_usage = self.delegate.last_usage
+        return response
+
+
+def model_manager(args):
+    return LazyModelManager(args)
+
+
+def llm_cache(delegate, args, directory):
+    return CachedLlmManager(
+        delegate,
+        args.generator_model,
+        directory,
+        input_price=args.llm_input_price,
+        output_price=args.llm_output_price,
+        cache_config={
+            "quantization": getattr(args, "quantization", None)
+            if not args.generator_model.startswith("openai/") else None,
+        },
+    )
+
+
+def graph_request(args, dataset_name, index, claim, depth):
+    return {
+        "dataset": dataset_name,
+        "sample_index": index,
+        "claim": claim,
+        "depth": depth,
+        "breadth": args.breadth,
+        "generator_model": args.generator_model,
+        "quantization": getattr(args, "quantization", None),
+        "generation_args": args.generation_args,
+        "argument_prompt": "ArgumentMiningPrompts.new_sup_att",
+        "pipeline_version": 1,
+    }
+
+
+def reprice_graph_calls(calls, args):
+    for event in calls:
+        usage = event.get("usage")
+        if not args.generator_model.startswith("openai/"):
+            event["cost_usd"] = 0.0
+        elif usage is None or args.llm_input_price is None or args.llm_output_price is None:
+            event["cost_usd"] = None
+        else:
+            event["cost_usd"] = (
+                usage["input_tokens"] * args.llm_input_price
+                + usage["output_tokens"] * args.llm_output_price
+            ) / 1000000
+    return calls
+
+
+def load_or_generate_graph(args, dataset_name, index, claim, depth, delegate):
+    path = args.cache_dir / "graphs" / dataset_name / ("D%d" % depth) / (
+        "sample_%05d.json" % index
+    )
+    request = graph_request(args, dataset_name, index, claim, depth)
+    if path.exists():
+        record = read_json(path)
+        if record["request"] != request:
+            raise ValueError("Cached graph was generated under different settings: " + str(path))
+        return record["graph"], reprice_graph_calls(record["calls"], args), path
+
+    call_dir = args.cache_dir / "llm" / "graph" / dataset_name / (
+        "D%d" % depth
+    ) / ("sample_%05d" % index)
+    recorder = llm_cache(delegate, args, call_dir)
+    miner = ArgumentMiner(
+        generate_prompt_am=ArgumentMiningPrompts.new_sup_att,
+        generate_prompt_ue=UncertaintyEvaluatorPrompts.analyst,
+        llm_manager=recorder,
+        depth=depth,
+        breadth=args.breadth,
+        generation_args=args.generation_args,
+    )
+    graph = miner.generate_graph(claim).to_dict()
+    if graph["arguments"]["db0"]["initial_weight"] != 0.5:
+        raise ValueError("Root base score must be 0.5")
+    write_json(path, {"request": request, "graph": graph, "calls": recorder.records})
+    return graph, recorder.records, path
+
+
+def parent_relations(graph):
+    relations = {}
+    for kind, pairs in (("support", graph["supports"]), ("attack", graph["attacks"])):
+        for source, target in pairs:
+            if source in relations:
+                raise ValueError("Generated argument has multiple parent edges: " + source)
+            relations[source] = (kind, target)
+    if set(relations) != set(graph["arguments"]) - {"db0"}:
+        raise ValueError("Generated graph does not match the expected argument tree")
+    return relations
+
+
+def direct_llm_score(args, dataset_name, index, claim, delegate):
+    directory = args.cache_dir / "llm" / "direct" / dataset_name / (
+        "sample_%05d" % index
+    )
+    recorder = llm_cache(delegate, args, directory)
+    estimator = UncertaintyEstimator(
+        llm_manager=recorder,
+        generate_prompt=UncertaintyEvaluatorPrompts.analyst,
+        verbal=False,
+        generation_args=args.generation_args,
+    )
+    return float(estimator(claim, topic=True)), recorder.records
+
+
+def original_argument_scores(args, dataset_name, index, depth, graph, delegate):
+    directory = args.cache_dir / "llm" / "original" / dataset_name / (
+        "D%d" % depth
+    ) / ("sample_%05d" % index)
+    recorder = llm_cache(delegate, args, directory)
+    estimator = UncertaintyEstimator(
+        llm_manager=recorder,
+        generate_prompt=UncertaintyEvaluatorPrompts.analyst,
+        verbal=False,
+        generation_args=args.generation_args,
+    )
+    relations = parent_relations(graph)
+    scores = {}
+    for name, argument in graph["arguments"].items():
+        if name == "db0":
+            continue
+        if argument["argument"] == "N/A":
+            scores[name] = 0.0
+            continue
+        kind, target = relations[name]
+        scores[name] = float(estimator(
+            argument["argument"],
+            claim=graph["arguments"][target]["argument"],
+            support=(kind == "support"),
+        ))
+    return scores, recorder.records
+
+
+def direct_jev_score(jev, dataset_name, index, claim):
+    return jev.ask(
+        Path("jev") / dataset_name / ("sample_%05d" % index) / "direct.json",
+        {"claim": claim},
+        "Is the claim correct, accurate, and truthful?",
+        {"true": "The claim is true.", "false": "The claim is false."},
+    )
+
+
+def jev_argument_scores(jev, dataset_name, index, depth, graph):
+    relations = parent_relations(graph)
+    scores = {}
+    calls = []
+    for number, (name, argument) in enumerate(graph["arguments"].items()):
+        if name == "db0":
+            continue
+        if argument["argument"] == "N/A":
+            scores[name] = 0.0
+            continue
+        _, target = relations[name]
+        score, record = jev.ask(
+            Path("jev") / dataset_name / ("D%d" % depth)
+            / ("sample_%05d" % index) / ("node_%03d.json" % number),
+            {
+                "parent_claim": graph["arguments"][target]["argument"],
+                "argument": argument["argument"],
+            },
+            "Is the argument factually correct, accurate, and truthful in this context? "
+            "Judge the argument itself, independently of whether it supports or attacks "
+            "the parent claim.",
+            {"true": "The argument is factually valid.",
+             "false": "The argument is factually invalid."},
+        )
+        scores[name] = score
+        calls.append(record)
+    return scores, calls
+
+
+def jev_edge_weights(jev, dataset_name, index, depth, graph):
+    weights = {}
+    calls = []
+    for number, (kind, source, target) in enumerate(
+        list(existing_edges(grad.BAG.from_dict(graph))), start=1
+    ):
+        relation = "support" if kind == "support" else "attack"
+        score, record = jev.ask(
+            Path("jev") / dataset_name / ("D%d" % depth)
+            / ("sample_%05d" % index) / ("edge_%03d.json" % number),
+            {
+                "parent_claim": graph["arguments"][target]["argument"],
+                "argument": graph["arguments"][source]["argument"],
+                "specified_relation": relation,
+            },
+            (
+                "Does the specified argument form a valid %s relation to the parent "
+                "claim? Assess only whether this specified relation holds. "
+                "Do not change its relation type."
+            ) % relation,
+            {
+                "true": "The specified %s relation is valid." % relation,
+                "false": "The specified %s relation is invalid." % relation,
+            },
+        )
+        weights[(kind, source, target)] = score
+        calls.append(record)
+    return weights, calls
+
+
+def qbaf_prediction(graph, argument_scores, edge_weights=None):
+    bag = grad.BAG.from_dict(graph)
+    for name, argument in bag.arguments.items():
+        argument.reset_initial_weight(
+            0.5 if name == "db0" else argument_scores[name]
+        )
+    if edge_weights is None:
+        grad.algorithms.computeStrengthValues(
+            bag,
+            grad.semantics.modular.ProductAggregation(),
+            grad.semantics.modular.LinearInfluence(conservativeness=1),
+        )
+    else:
+        compute_ew_dfquad(bag, edge_weights)
+    return float(bag.arguments["db0"].strength)
+
+
+def event_summary(events):
+    costs = [event.get("cost_usd") for event in events]
+    return {
+        "api_cost_usd": None if any(cost is None for cost in costs) else sum(costs),
+        "latency_seconds": sum(event["elapsed_seconds"] for event in events),
+        "calls": len(events),
+    }
+
+
+def evaluate_sample(args, dataset_name, index, claim, label, depth, delegate, jev):
+    graph, graph_calls, graph_path = load_or_generate_graph(
+        args, dataset_name, index, claim, depth, delegate
+    )
+    llm_probability, direct_llm_calls = direct_llm_score(
+        args, dataset_name, index, claim, delegate
+    )
+    jev_probability, direct_jev_call = direct_jev_score(
+        jev, dataset_name, index, claim
+    )
+    original_scores, original_calls = original_argument_scores(
+        args, dataset_name, index, depth, graph, delegate
+    )
+    jev_scores, jev_node_calls = jev_argument_scores(
+        jev, dataset_name, index, depth, graph
+    )
+    edge_weights, jev_edge_calls = jev_edge_weights(
+        jev, dataset_name, index, depth, graph
+    )
+
+    predictions = {
+        "direct_llm": llm_probability,
+        "direct_jev": jev_probability,
+        "original_qbaf": qbaf_prediction(graph, original_scores),
+        "jev_qbaf": qbaf_prediction(graph, jev_scores),
+        "jev_ew_qbaf": qbaf_prediction(graph, jev_scores, edge_weights),
+    }
+    events = {
+        "direct_llm": direct_llm_calls,
+        "direct_jev": [direct_jev_call],
+        "original_qbaf": graph_calls + original_calls,
+        "jev_qbaf": graph_calls + jev_node_calls,
+        "jev_ew_qbaf": graph_calls + jev_node_calls + jev_edge_calls,
+    }
+    return {
+        "dataset": dataset_name,
+        "depth": depth,
+        "index": index,
+        "claim": claim,
+        "valid": label,
+        "graph_cache": str(graph_path),
+        "argument_count": len(graph["arguments"]),
+        "edge_count": len(graph["supports"]) + len(graph["attacks"]),
+        "predictions": predictions,
+        "argument_base_scores": {
+            "original_qbaf": original_scores,
+            "jev_qbaf": jev_scores,
+        },
+        "edge_weights": [
+            {"type": kind, "source": source, "target": target, "weight": weight}
+            for (kind, source, target), weight in edge_weights.items()
+        ],
+        "usage": {method: event_summary(calls) for method, calls in events.items()},
+        "_events": events,
+    }
+
+
+def metrics(labels, probabilities, bins=10):
+    length = len(labels)
+    accuracy = sum((probability > 0.5) == bool(label)
+                   for label, probability in zip(labels, probabilities)) / length
+    brier = sum((probability - label) ** 2
+                for label, probability in zip(labels, probabilities)) / length
+    groups = defaultdict(list)
+    for label, probability in zip(labels, probabilities):
+        groups[min(int(probability * bins), bins - 1)].append((label, probability))
+    ece = sum(
+        len(group) / length * abs(
+            sum(probability for _, probability in group) / len(group)
+            - sum(label for label, _ in group) / len(group)
+        )
+        for group in groups.values()
+    )
+    return {"accuracy": accuracy, "brier": brier, "ece": ece}
+
+
+def summarize(rows):
+    summary = []
+    for dataset_name in DATASETS:
+        for depth in (1, 2):
+            subset = [row for row in rows
+                      if row["dataset"] == dataset_name and row["depth"] == depth]
+            if not subset:
+                continue
+            labels = [row["valid"] for row in subset]
+            for method in METHODS:
+                probabilities = [row["predictions"][method] for row in subset]
+                quality = metrics(labels, probabilities)
+                costs = [row["usage"][method]["api_cost_usd"] for row in subset]
+                summary.append({
+                    "dataset": dataset_name,
+                    "depth": depth,
+                    "method": method,
+                    "n": len(subset),
+                    **quality,
+                    "api_cost_usd": (
+                        None if any(cost is None for cost in costs) else sum(costs)
+                    ),
+                    "mean_latency_seconds": sum(
+                        row["usage"][method]["latency_seconds"] for row in subset
+                    ) / len(subset),
+                })
+    return summary
+
+
+def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None):
+    lines = [
+        "# Jev 在 QBAF 论点置信度任务上的实验报告",
+        "",
+        "生成时间：" + datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "",
+        "## 实验设置",
+        "",
+        "- 论点生成模型：" + args.generator_model,
+        "- Jev 请求模型：" + args.jev_model,
+        "- Jev 实际响应版本：" + (
+            "、".join(jev_versions) if jev_versions else "未记录"
+        ),
+        "- 数据：上游仓库三个 Experiment 数据集；D=1、D=2；breadth="
+        + str(args.breadth) + "。",
+        "- 三种 QBAF 的根节点基础分均为 0.5，且复用同一深度、同一样本的缓存图。",
+        "- original_qbaf 的论点基础分来自上游 Direct Prompting 估计器；"
+        "jev_qbaf 使用 Jev Noul 论点真确性概率；jev_ew_qbaf "
+        "进一步使用每条既有边的 Jev Noul 关系有效性概率。",
+        "- EW-DF-QuAD 对每条边先计算 σ(父论点) × 边权，"
+        "再使用原有乘积聚合及线性影响函数。",
+        "- Accuracy 以概率 > 0.5 为真；Brier 为平均平方误差；"
+        "ECE 为 10 个等宽概率区间的平均置信度与正例率差的加权和。",
+        "- API 成本单位为美元；表中各 QBAF 方法都计入相同的共享论点生成成本，"
+        "因此方法行的成本不可相加。延迟是每样本顺序执行相应方法调用的平均耗时，"
+        "缓存命中仍使用原始调用的记录耗时。",
+        "",
+        "## 结果",
+        "",
+        "| 数据集 | 深度 | 方法 | 样本数 | Accuracy | Brier | ECE | API 成本 (USD) | 平均延迟 (秒/样本) |",
+        "|---|---:|---|---:|---:|---:|---:|---:|---:|",
+    ]
+    for item in summary:
+        cost = "未配置 LLM 价格" if item["api_cost_usd"] is None else (
+            "%.6f" % item["api_cost_usd"]
+        )
+        lines.append(
+            "| {dataset} | {depth} | {method} | {n} | {accuracy:.4f} | "
+            "{brier:.4f} | {ece:.4f} | {cost} | {latency:.3f} |".format(
+                dataset=item["dataset"], depth=item["depth"],
+                method=item["method"], n=item["n"],
+                accuracy=item["accuracy"], brier=item["brier"],
+                ece=item["ece"], cost=cost,
+                latency=item["mean_latency_seconds"],
+            )
+        )
+    lines += [
+        "",
+        "## 成本说明",
+        "",
+        "本次缓存记录中去重后的 API 成本：" + (
+            "未配置 LLM 价格" if total_unique_cost is None else
+            "$%.6f" % total_unique_cost
+        ) + "。本地生成模型的 API 成本按 $0 计；其运行时间仍计入延迟。",
+        "Jev 成本以返回的输入 token 数乘所配置单价估算。"
+        "若服务商账单包含其他费用，以实际账单为准。",
+        "",
+        "共完成 %d 个数据集—深度—样本组合。逐样本概率和调用记录存于输出目录。" % len(rows),
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--generator-model", default="mistralai/Mistral-7B-Instruct-v0.2")
+    parser.add_argument("--quantization", choices=["4bit", "8bit", "none"], default="8bit")
+    parser.add_argument("--input-device", default="cuda:0")
+    parser.add_argument("--model-cache-dir", default=None)
+    parser.add_argument("--cache-dir", type=Path, default=Path("experiment_cache"))
+    parser.add_argument("--output-dir", type=Path, default=Path("experiment_results"))
+    parser.add_argument("--breadth", type=int, default=1)
+    parser.add_argument("--max-samples", type=int, default=None)
+    parser.add_argument("--temperature", type=float, default=0.7)
+    parser.add_argument("--max-new-tokens", type=int, default=128)
+    parser.add_argument("--top-p", type=float, default=0.95)
+    parser.add_argument("--llm-input-price", type=float, default=None,
+                        help="USD per million input tokens for openai/ generators")
+    parser.add_argument("--llm-output-price", type=float, default=None,
+                        help="USD per million output tokens for openai/ generators")
+    parser.add_argument("--jev-model", default="jev-latest")
+    parser.add_argument("--jev-endpoint", default="https://api.typesafe.ai/v1/systemone")
+    parser.add_argument("--jev-key-env", default="TYPESAFE_API_KEY")
+    parser.add_argument("--jev-input-price", type=float, default=0.042)
+    for name, path in DATASETS.items():
+        parser.add_argument("--" + name.lower() + "-path", type=Path, default=Path(path))
+    args = parser.parse_args()
+    if args.breadth < 1 or args.max_samples is not None and args.max_samples < 1:
+        parser.error("breadth and max-samples must be positive")
+    args.generation_args = {
+        "temperature": args.temperature,
+        "max_new_tokens": args.max_new_tokens,
+        "top_p": args.top_p,
+    }
+    return args
+
+
+def load_local_keys(path, names):
+    import os
+
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        if "=" not in line or line.lstrip().startswith("#"):
+            continue
+        name, value = line.split("=", 1)
+        name = name.strip()
+        if name in names and not os.environ.get(name):
+            os.environ[name] = value.strip().strip('"').strip("'")
+
+
+def main():
+    args = parse_args()
+    load_local_keys(
+        Path(".env"),
+        {args.jev_key_env, "OPENAI_KEY", "OPENAI_API_KEY"},
+    )
+    delegate = model_manager(args)
+    jev = CachedJev(
+        args.cache_dir, args.jev_model, args.jev_endpoint,
+        args.jev_input_price, args.jev_key_env,
+    )
+    rows = []
+    unique_events = {}
+    for dataset_name in DATASETS:
+        path = getattr(args, dataset_name.lower() + "_path")
+        dataset = list(dataset_rows(path, args.max_samples))
+        for depth in (1, 2):
+            for index, claim, label in dataset:
+                row = evaluate_sample(
+                    args, dataset_name, index, claim, label, depth, delegate, jev
+                )
+                for event_list in row.pop("_events").values():
+                    for event in event_list:
+                        unique_events[event["_cache_path"]] = event
+                result_path = args.output_dir / "data" / dataset_name / (
+                    "D%d" % depth
+                ) / ("sample_%05d.json" % index)
+                write_json(result_path, row)
+                rows.append(row)
+                print("%s D%d %d/%d 完成" % (
+                    dataset_name, depth, index + 1, len(dataset)
+                ), flush=True)
+    summary = summarize(rows)
+    costs = [event.get("cost_usd") for event in unique_events.values()]
+    total_unique_cost = None if any(cost is None for cost in costs) else sum(costs)
+    jev_versions = sorted({
+        event["response"]["model"] for event in unique_events.values()
+        if "payload" in event["request"] and "model" in event["response"]
+    })
+    write_json(args.output_dir / "metrics.json", {
+        "summary": summary,
+        "unique_api_cost_usd": total_unique_cost,
+        "unique_api_calls": len(unique_events),
+        "jev_response_models": jev_versions,
+        "settings": {
+            "generator_model": args.generator_model,
+            "jev_model": args.jev_model,
+            "breadth": args.breadth,
+            "max_samples": args.max_samples,
+        },
+    })
+    report = chinese_report(
+        args, summary, total_unique_cost, rows, jev_versions
+    )
+    report_path = args.output_dir / "实验报告.md"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(report, encoding="utf-8")
+    print("中文报告：" + str(report_path))
+
+
+if __name__ == "__main__":
+    main()

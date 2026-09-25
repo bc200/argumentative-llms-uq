@@ -81,3 +81,5 @@ experiment_results/。完成后会生成中文 experiment_results/实验报告.m
 ## 本次全量结果
 
 三个数据集各 500 条、D=1 与 D=2 的五方法结果见 [中文报告](reports/2026-09-24_jev_qbaf_实验报告.md)。报告包含中文实验设置、指标、结果解读、格式回退及成本说明。逐样本输出和原始 API 响应缓存保存在本地已忽略的 experiment_results/ 与 experiment_cache/。
+
+[original_qbaf 与上游代码及论文的一致性复核](reports/2026-09-25_original_qbaf_一致性复核.md)。

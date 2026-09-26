@@ -63,6 +63,15 @@ class JevCacheTests(unittest.TestCase):
             self.assertEqual(call.call_count, 2)
             pause.assert_called_once_with(1)
 
+    def test_cache_only_rejects_a_miss_without_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            client = CachedJev(Path(directory), cache_only=True)
+            with patch("experiment_io.urlopen") as call:
+                with self.assertRaises(FileNotFoundError):
+                    client.ask("missing/direct.json", {"claim": "example"},
+                               "Is the claim true?")
+                call.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

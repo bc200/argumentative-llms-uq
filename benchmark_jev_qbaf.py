@@ -4,6 +4,7 @@ import argparse
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+import random
 
 import Uncertainpy.src.uncertainpy.gradual as grad
 
@@ -26,7 +27,10 @@ METHODS = (
     "original_qbaf",
     "jev_qbaf",
     "jev_ew_qbaf",
+    "jev_prior_qbaf",
+    "jev_prior_ew_qbaf",
 )
+PRIOR_METHODS = ("jev_prior_qbaf", "jev_prior_ew_qbaf")
 
 
 def dataset_rows(path, max_samples=None):
@@ -106,6 +110,7 @@ def llm_cache(delegate, args, directory):
             "thinking_mode": args.llm_thinking,
             "api_constraint_format": "v1" if args.generator_model.startswith("openai/") else None,
         },
+        cache_only=getattr(args, "cache_only", False),
     )
 
 
@@ -331,11 +336,11 @@ def jev_edge_weights(jev, dataset_name, index, depth, graph,
     return weights, prior_calls + calls
 
 
-def qbaf_prediction(graph, argument_scores, edge_weights=None):
+def qbaf_prediction(graph, argument_scores, edge_weights=None, root_score=0.5):
     bag = grad.BAG.from_dict(graph)
     for name, argument in bag.arguments.items():
         argument.reset_initial_weight(
-            0.5 if name == "db0" else argument_scores[name]
+            root_score if name == "db0" else argument_scores[name]
         )
     if edge_weights is None:
         grad.algorithms.computeStrengthValues(
@@ -346,6 +351,19 @@ def qbaf_prediction(graph, argument_scores, edge_weights=None):
     else:
         compute_ew_dfquad(bag, edge_weights)
     return float(bag.arguments["db0"].strength)
+
+
+def has_conflicting_root_evidence(graph, argument_scores):
+    """Both sides must contain a non-N/A root argument with positive Jev score."""
+    def active(kind):
+        return any(
+            target == "db0"
+            and graph["arguments"][source]["argument"] != "N/A"
+            and argument_scores[source] > 0
+            for source, target in graph[kind]
+        )
+
+    return active("supports") and active("attacks")
 
 
 def event_summary(events):
@@ -392,6 +410,12 @@ def evaluate_sample(args, dataset_name, index, claim, label, depth, delegate, je
         "original_qbaf": qbaf_prediction(graph, original_scores),
         "jev_qbaf": qbaf_prediction(graph, jev_scores),
         "jev_ew_qbaf": qbaf_prediction(graph, jev_scores, edge_weights),
+        "jev_prior_qbaf": qbaf_prediction(
+            graph, jev_scores, root_score=jev_probability
+        ),
+        "jev_prior_ew_qbaf": qbaf_prediction(
+            graph, jev_scores, edge_weights, root_score=jev_probability
+        ),
     }
     events = {
         "direct_llm": direct_llm_calls,
@@ -399,6 +423,10 @@ def evaluate_sample(args, dataset_name, index, claim, label, depth, delegate, je
         "original_qbaf": graph_calls + original_calls,
         "jev_qbaf": graph_calls + jev_node_calls,
         "jev_ew_qbaf": graph_calls + jev_node_calls + jev_edge_calls,
+        "jev_prior_qbaf": graph_calls + [direct_jev_call] + jev_node_calls,
+        "jev_prior_ew_qbaf": (
+            graph_calls + [direct_jev_call] + jev_node_calls + jev_edge_calls
+        ),
     }
     return {
         "dataset": dataset_name,
@@ -409,7 +437,16 @@ def evaluate_sample(args, dataset_name, index, claim, label, depth, delegate, je
         "graph_cache": str(graph_path),
         "argument_count": len(graph["arguments"]),
         "edge_count": len(graph["supports"]) + len(graph["attacks"]),
+        "root_conflicting_evidence": has_conflicting_root_evidence(
+            graph, jev_scores
+        ),
         "predictions": predictions,
+        "root_counterevidence": (
+            abs(jev_probability - 0.5) > 1e-12
+            and abs(predictions["jev_qbaf"] - 0.5) > 1e-12
+            and ((jev_probability > 0.5) !=
+                 (predictions["jev_qbaf"] > 0.5))
+        ),
         "argument_base_scores": {
             "original_qbaf": original_scores,
             "jev_qbaf": jev_scores,
@@ -475,6 +512,86 @@ def summarize(rows):
     return summary
 
 
+def paired_interval(differences, rounds=2000):
+    """Paired percentile bootstrap interval for the mean post-minus-prior change."""
+    rng = random.Random(42)
+    n = len(differences)
+    samples = sorted(
+        sum(differences[rng.randrange(n)] for _ in range(n)) / n
+        for _ in range(rounds)
+    )
+    return [samples[int(0.025 * (rounds - 1))],
+            samples[int(0.975 * (rounds - 1))]]
+
+
+def prior_comparisons(rows):
+    """Measure how QBAF revises Jev's root belief on paired samples."""
+    comparisons = []
+    for dataset_name in DATASETS:
+        for depth in (1, 2):
+            group = [row for row in rows
+                     if row["dataset"] == dataset_name and row["depth"] == depth]
+            for subset_name, subset in (
+                ("全部", group),
+                ("根节点双向证据", [row for row in group
+                              if row["root_conflicting_evidence"]]),
+                ("先验反向证据", [row for row in group
+                             if row["root_counterevidence"]]),
+            ):
+                if not subset:
+                    continue
+                labels = [row["valid"] for row in subset]
+                prior = [row["predictions"]["direct_jev"] for row in subset]
+                prior_quality = metrics(labels, prior)
+                for method in PRIOR_METHODS:
+                    posterior = [row["predictions"][method] for row in subset]
+                    posterior_quality = metrics(labels, posterior)
+                    prior_right = [(p > 0.5) == bool(y)
+                                   for p, y in zip(prior, labels)]
+                    posterior_right = [(p > 0.5) == bool(y)
+                                       for p, y in zip(posterior, labels)]
+                    accuracy_changes = [int(after) - int(before)
+                                        for before, after in zip(
+                                            prior_right, posterior_right)]
+                    brier_changes = [(after - y) ** 2 - (before - y) ** 2
+                                     for before, after, y in zip(
+                                         prior, posterior, labels)]
+                    comparisons.append({
+                        "dataset": dataset_name,
+                        "depth": depth,
+                        "subset": subset_name,
+                        "method": method,
+                        "n": len(subset),
+                        "prior_accuracy": prior_quality["accuracy"],
+                        "posterior_accuracy": posterior_quality["accuracy"],
+                        "accuracy_change": (posterior_quality["accuracy"]
+                                            - prior_quality["accuracy"]),
+                        "accuracy_change_ci95": paired_interval(accuracy_changes),
+                        "prior_brier": prior_quality["brier"],
+                        "posterior_brier": posterior_quality["brier"],
+                        "brier_change": (posterior_quality["brier"]
+                                         - prior_quality["brier"]),
+                        "brier_change_ci95": paired_interval(brier_changes),
+                        "prior_ece": prior_quality["ece"],
+                        "posterior_ece": posterior_quality["ece"],
+                        "changed_probability": sum(
+                            abs(after - before) > 1e-12
+                            for before, after in zip(prior, posterior)
+                        ),
+                        "mean_absolute_revision": sum(
+                            abs(after - before)
+                            for before, after in zip(prior, posterior)
+                        ) / len(subset),
+                        "decision_flips": sum(
+                            (before > 0.5) != (after > 0.5)
+                            for before, after in zip(prior, posterior)
+                        ),
+                        "corrected": accuracy_changes.count(1),
+                        "spoiled": accuracy_changes.count(-1),
+                    })
+    return comparisons
+
+
 def direct_prompt_fallbacks(events):
     counts = {
         name: {"direct_llm": 0, "original_qbaf": 0}
@@ -503,9 +620,9 @@ def direct_prompt_fallbacks(events):
 
 
 def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
-                   parse_fallbacks=None):
+                   parse_fallbacks=None, prior_stats=None):
     lines = [
-        "# Jev 在 QBAF 论点置信度任务上的实验报告",
+        "# Jev 根先验与 QBAF 的七方法对比实验报告",
         "",
         "生成时间：" + datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M:%S %Z"),
         "",
@@ -518,15 +635,24 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
         "- Jev 实际响应版本：" + (
             "、".join(jev_versions) if jev_versions else "未记录"
         ),
+        "- 本次运行方式：" + (
+            "仅读取既有响应缓存，不发起 API 请求。"
+            if getattr(args, "cache_only", False) else "缓存优先，缺失时请求 API。"
+        ),
         "- 数据：上游仓库三个 Experiment 数据集；D=1、D=2；breadth="
         + str(args.breadth) + "。",
-        "- 三种 QBAF 的根节点基础分均为 0.5，且复用同一深度、同一样本的缓存图。",
+        "- original_qbaf、jev_qbaf、jev_ew_qbaf 的根节点基础分为 0.5；"
+        "两种 jev_prior 方法将 direct_jev 的根概率作为基础分。"
+        "所有 QBAF 方法复用同一深度、同一样本的缓存图。",
         "- D=2 在 D=1 图上继续生成，共有的第一层论点、基础分和边权均直接复用。",
         "- API 模型额外接收与上游 Direct Prompting 一致的百分比格式要求，"
         "估计器、提示正文及解析规则保持原样。",
         "- original_qbaf 的论点基础分来自上游 Direct Prompting 估计器；"
         "jev_qbaf 使用 Jev Noul 论点真确性概率；jev_ew_qbaf "
         "进一步使用每条既有边的 Jev Noul 关系有效性概率。",
+        "- jev_prior_qbaf 使用 Jev 根先验、Jev 论点分数和单位边权；"
+        "jev_prior_ew_qbaf 再使用已缓存的 Jev 关系边权。"
+        "两者均复用 direct_jev 的根概率，没有新增根打分请求。",
         "- EW-DF-QuAD 对每条边先计算 σ(父论点) × 边权，"
         "再使用原有乘积聚合及线性影响函数。",
         "- Accuracy 以概率 > 0.5 为真；Brier 为平均平方误差；"
@@ -534,6 +660,7 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
         "- 生成模型按配置币种 " + args.llm_currency +
         " 计价，Jev 按美元计价；报告分别列示美元和人民币，不进行汇率换算。"
         "表中各 QBAF 方法都计入相同的共享论点生成成本，因此方法行的成本不可相加。"
+        "两种 jev_prior 方法还计入同一条已缓存的根论点 Jev 请求。"
         "延迟是每样本顺序执行相应方法调用的平均耗时；"
         "缓存命中仍使用原始调用的记录耗时。",
         "",
@@ -560,6 +687,40 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
                 latency=item["mean_latency_seconds"],
             )
         )
+    if prior_stats is not None:
+        lines += [
+            "", "## Jev 根先验修正分析", "",
+            "每个后验均与同一样本的 direct_jev 根先验配对比较。"
+            "差值 = 后验指标 − direct_jev 指标；Accuracy 差值为正、"
+            "Brier 差值为负表示改善。95% 区间采用 2000 次样本内配对重抽样。",
+            "“根节点双向证据”指根论点同时有非 N/A 的支持和攻击论点，"
+            "且两者的 Jev 论点分数均大于 0。"
+            "“先验反向证据”指将根基础分临时置为 0.5 时，标准 DF-QuAD "
+            "从同一图与 Jev 论点分数得到的方向，与非中性的 direct_jev 判断相反。"
+            "“纠错”是先验判断错误、后验判断正确；“误改”方向相反。",
+            "", "| 数据集 | 深度 | 子集 | 方法 | n | ΔAccuracy [95%区间] | "
+            "ΔBrier [95%区间] | 翻转 | 纠错 | 误改 | 平均绝对概率修正 |",
+            "|---|---:|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        ]
+        for item in prior_stats:
+            accuracy_ci = item["accuracy_change_ci95"]
+            brier_ci = item["brier_change_ci95"]
+            lines.append(
+                "| {dataset} | {depth} | {subset} | {method} | {n} | "
+                "{accuracy:+.4f} [{accuracy_low:+.4f}, {accuracy_high:+.4f}] | "
+                "{brier:+.4f} [{brier_low:+.4f}, {brier_high:+.4f}] | "
+                "{flips} | {corrected} | {spoiled} | {shift:.4f} |".format(
+                    dataset=item["dataset"], depth=item["depth"],
+                    subset=item["subset"], method=item["method"], n=item["n"],
+                    accuracy=item["accuracy_change"],
+                    accuracy_low=accuracy_ci[0], accuracy_high=accuracy_ci[1],
+                    brier=item["brier_change"],
+                    brier_low=brier_ci[0], brier_high=brier_ci[1],
+                    flips=item["decision_flips"],
+                    corrected=item["corrected"], spoiled=item["spoiled"],
+                    shift=item["mean_absolute_revision"],
+                )
+            )
     if parse_fallbacks is not None:
         lines += ["", "## 格式回退", "", "缓存中的 Direct Prompting 百分比回复经上游解析器检查，回退次数如下："]
         for name in DATASETS:
@@ -597,6 +758,8 @@ def parse_args():
     parser.add_argument("--input-device", default="cuda:0")
     parser.add_argument("--model-cache-dir", default=None)
     parser.add_argument("--cache-dir", type=Path, default=Path("experiment_cache"))
+    parser.add_argument("--cache-only", action="store_true",
+                        help="Read responses from cache without making API calls")
     parser.add_argument("--output-dir", type=Path, default=Path("experiment_results"))
     parser.add_argument("--breadth", type=int, default=1)
     parser.add_argument("--max-samples", type=int, default=None)
@@ -656,7 +819,7 @@ def main():
     delegate = model_manager(args)
     jev = CachedJev(
         args.cache_dir, args.jev_model, args.jev_endpoint,
-        args.jev_input_price, args.jev_key_env,
+        args.jev_input_price, args.jev_key_env, cache_only=args.cache_only,
     )
     from concurrent.futures import ThreadPoolExecutor
 
@@ -687,6 +850,7 @@ def main():
                             dataset_name, depth, count, len(dataset)
                         ), flush=True)
     summary = summarize(rows)
+    prior_stats = prior_comparisons(rows)
 
     def unique_cost(currency):
         costs = [
@@ -706,6 +870,7 @@ def main():
     parse_fallbacks = direct_prompt_fallbacks(unique_events.values())
     write_json(args.output_dir / "metrics.json", {
         "summary": summary,
+        "prior_comparisons": prior_stats,
         "unique_api_cost_usd": total_unique_cost["usd"],
         "unique_api_cost_cny": total_unique_cost["cny"],
         "unique_api_calls": len(unique_events),
@@ -720,10 +885,12 @@ def main():
             "breadth": args.breadth,
             "max_samples": args.max_samples,
             "workers": args.workers,
+            "cache_only": args.cache_only,
         },
     })
     report = chinese_report(
-        args, summary, total_unique_cost, rows, jev_versions, parse_fallbacks
+        args, summary, total_unique_cost, rows, jev_versions, parse_fallbacks,
+        prior_stats,
     )
     report_path = args.output_dir / "实验报告.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)

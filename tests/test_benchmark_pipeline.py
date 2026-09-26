@@ -3,7 +3,9 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
-from benchmark_jev_qbaf import chinese_report, evaluate_sample, metrics, summarize
+from benchmark_jev_qbaf import (
+    chinese_report, evaluate_sample, metrics, prior_comparisons, summarize,
+)
 from experiment_io import CachedLlmManager, read_json
 
 
@@ -92,19 +94,63 @@ class BenchmarkPipelineTests(unittest.TestCase):
             self.assertNotEqual(first["graph_cache"], second_depth["graph_cache"])
             self.assertEqual(set(first["predictions"]), {
                 "direct_llm", "direct_jev", "original_qbaf",
-                "jev_qbaf", "jev_ew_qbaf",
+                "jev_qbaf", "jev_ew_qbaf", "jev_prior_qbaf",
+                "jev_prior_ew_qbaf",
             })
+            self.assertTrue(first["root_conflicting_evidence"])
+            self.assertFalse(first["root_counterevidence"])
+            self.assertEqual(first["usage"]["jev_prior_qbaf"]["calls"], 5)
+            self.assertEqual(first["usage"]["jev_prior_ew_qbaf"]["calls"], 7)
+            comparisons = prior_comparisons([first, second_depth])
+            self.assertEqual(len(comparisons), 8)
+            self.assertTrue(all(item["n"] == 1 for item in comparisons))
             report = chinese_report(args, summarize([first, second_depth]),
                                     {"usd": 0.0, "cny": 0.0},
-                                    [first, second_depth])
+                                    [first, second_depth], prior_stats=comparisons)
             self.assertIn("实验报告", report)
             self.assertIn("TruthfulClaim", report)
+            self.assertIn("Jev 根先验修正分析", report)
 
     def test_probability_metrics(self):
         result = metrics([1, 0], [0.8, 0.2])
         self.assertEqual(result["accuracy"], 1.0)
         self.assertAlmostEqual(result["brier"], 0.04)
         self.assertAlmostEqual(result["ece"], 0.2)
+
+    def test_prior_revision_counts_corrections_and_harm(self):
+        rows = [
+            {
+                "dataset": "TruthfulClaim", "depth": 1, "valid": 1,
+                "root_conflicting_evidence": True,
+                "root_counterevidence": False,
+                "predictions": {
+                    "direct_jev": 0.4,
+                    "jev_prior_qbaf": 0.7,
+                    "jev_prior_ew_qbaf": 0.7,
+                },
+            },
+            {
+                "dataset": "TruthfulClaim", "depth": 1, "valid": 0,
+                "root_conflicting_evidence": False,
+                "root_counterevidence": True,
+                "predictions": {
+                    "direct_jev": 0.1,
+                    "jev_prior_qbaf": 0.8,
+                    "jev_prior_ew_qbaf": 0.8,
+                },
+            },
+        ]
+        comparisons = prior_comparisons(rows)
+        full = next(item for item in comparisons
+                    if item["subset"] == "全部"
+                    and item["method"] == "jev_prior_qbaf")
+        self.assertEqual(full["n"], 2)
+        self.assertEqual(full["decision_flips"], 2)
+        self.assertEqual(full["corrected"], 1)
+        self.assertEqual(full["spoiled"], 1)
+        self.assertEqual(full["accuracy_change"], 0.0)
+        self.assertAlmostEqual(full["brier_change"], 0.18)
+        self.assertAlmostEqual(full["mean_absolute_revision"], 0.5)
 
     def test_cny_llm_cost_is_separate_from_jev_usd(self):
         class ChargedLlm:
@@ -122,6 +168,16 @@ class BenchmarkPipelineTests(unittest.TestCase):
             row = recorder.records[0]
             self.assertEqual(row["cost_usd"], 0.0)
             self.assertAlmostEqual(row["cost_cny"], (100 * 1.9 + 20 * 7.6) / 1000000)
+
+    def test_cache_only_llm_rejects_a_miss_without_calling_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            llm = FakeLlm()
+            recorder = CachedLlmManager(
+                llm, "fake-local", Path(directory), cache_only=True
+            )
+            with self.assertRaises(FileNotFoundError):
+                recorder.chat_completion("missing prompt")
+            self.assertEqual(llm.calls, 0)
 
 
 if __name__ == "__main__":

@@ -23,13 +23,15 @@ def write_json(path, value):
     temporary.replace(path)
 
 
-def cached_call(path, request, perform):
+def cached_call(path, request, perform, cache_only=False):
     path = Path(path)
     if path.exists():
         record = read_json(path)
         if record["request"] != request:
             raise ValueError("Cached request differs from current experiment: " + str(path))
         return record
+    if cache_only:
+        raise FileNotFoundError("Missing cached response: " + str(path))
     response, usage, elapsed = perform()
     record = {
         "request": request,
@@ -48,6 +50,7 @@ class CachedLlmManager:
         self, delegate, model_name, directory, input_price=None, output_price=None,
         cache_config=None,
         currency="USD",
+        cache_only=False,
     ):
         self.delegate = delegate
         self.model_name = model_name
@@ -56,6 +59,7 @@ class CachedLlmManager:
         self.output_price = output_price
         self.cache_config = cache_config or {}
         self.currency = currency
+        self.cache_only = cache_only
         self.records = []
         self.call_number = 0
 
@@ -77,7 +81,7 @@ class CachedLlmManager:
             elapsed = time.perf_counter() - start
             return response, getattr(self.delegate, "last_usage", None), elapsed
 
-        record = cached_call(path, request, perform)
+        record = cached_call(path, request, perform, self.cache_only)
         usage = record["usage"]
         if not self.model_name.startswith("openai/"):
             cost = 0.0
@@ -98,12 +102,14 @@ class CachedLlmManager:
 class CachedJev:
     def __init__(self, cache_root, model="jev-latest",
                  endpoint="https://api.typesafe.ai/v1/systemone",
-                 input_price=0.042, api_key_env="TYPESAFE_API_KEY"):
+                 input_price=0.042, api_key_env="TYPESAFE_API_KEY",
+                 cache_only=False):
         self.cache_root = Path(cache_root)
         self.model = model
         self.endpoint = endpoint
         self.input_price = input_price
         self.api_key_env = api_key_env
+        self.cache_only = cache_only
 
     def ask(self, relative_path, state, instructions, criteria=None):
         question = {"type": "noul", "instructions": instructions}
@@ -149,7 +155,7 @@ class CachedJev:
                     time.sleep(2 ** attempt)
             raise RuntimeError("Jev request failed")
 
-        record = cached_call(path, request, perform)
+        record = cached_call(path, request, perform, self.cache_only)
         usage = record["usage"]
         record["cost_usd"] = (
             usage["input_tokens"] * self.input_price / 1000000

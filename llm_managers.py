@@ -188,7 +188,10 @@ class OpenAiLlmManager(LlmManager):
             "presence_penalty": repetition_penalty,
         }
         if self.thinking_mode is not None:
-            if self.model_name.lower().startswith("qwen"):
+            if (self.model_name.lower() == "qwen3.8-27b"
+                    and self.thinking_mode == "disabled"):
+                request["reasoning_effort"] = "none"
+            elif self.model_name.lower().startswith("qwen"):
                 request["extra_body"] = {
                     "enable_thinking": self.thinking_mode == "enabled"
                 }
@@ -201,6 +204,8 @@ class OpenAiLlmManager(LlmManager):
             "output_tokens": completion.usage.completion_tokens,
         } if completion.usage else None
         response = completion.choices[0].message.content
+        if response is None:
+            raise RuntimeError(self.model_name + " returned no answer text")
 
         if print_result:
             print(response, flush=True)

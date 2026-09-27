@@ -152,3 +152,39 @@ Qwen 成本按 2026-09-27 DMX 公布的折后价输入 ¥9.48、输出 ¥28.44�
 Qwen 的 Jev 置信度分桶分析命令：
 
     python analyze_jev_confidence_bins.py --input-dir experiment_results/qwen38_max_full/data --report reports/2026-09-27_qwen38max_置信度分桶分析.md --metrics reports/2026-09-27_qwen38max_置信度分桶指标.json --plot reports/2026-09-27_qwen38max_置信度分桶图.png
+
+## Qwen 3.8 27B 复现实验
+
+新一轮仅将论点生成和 Direct Prompting 模型改为 `qwen3.8-27b`，其余三个
+500 条 Experiment 全集、D=1/D=2、七方法、图生成提示、Jev 和 QBAF 设置
+保持一致。每个模型使用独立图与图相关响应缓存；Direct Jev 根响应沿用此前的
+同一批 1500 条缓存，使模型间逐样本配对比较使用相同根概率。
+
+DMX 此模型用 `reasoning_effort=none` 关闭思考，参数依据
+[Qwen OpenAI 兼容接口说明](https://help.aliyun.com/en/model-studio/qwen-api-via-openai-chat-completions)。
+试跑中通用的
+`enable_thinking=false` 仍耗尽 128-token 输出额度；因此适配器针对这一
+模型发送 `reasoning_effort=none`，仍保留原有输出限额。请求的模型名为
+`qwen3.8-27b`。人民币成本按
+[DMX 公开价格](https://rmb.dmxapi.cn/?api=model_prices)的输入 ¥3、输出 ¥12／百万 token 估算，
+未扣除可能的输入缓存优惠。
+
+    python benchmark_jev_qbaf.py --generator-model openai/qwen3.8-27b --llm-base-url https://www.dmxapi.cn/v1 --llm-key-env DMX_API_KEY --llm-thinking disabled --llm-currency CNY --llm-input-price 3 --llm-output-price 12 --cache-dir experiment_cache/qwen38_27b --output-dir experiment_results/qwen38_27b_full --workers 16 --record-provider-rejections
+
+    python analyze_jev_confidence_bins.py --input-dir experiment_results/qwen38_27b_full/data --report reports/2026-09-27_qwen38_27b_置信度分桶分析.md --metrics reports/2026-09-27_qwen38_27b_置信度分桶指标.json --plot reports/2026-09-27_qwen38_27b_置信度分桶图.png
+
+    python compare_four_generators.py
+
+本轮 3000/3000 条样本深度结果全部完成，无服务商拒绝或百分比解析回退。
+七方法的 Accuracy、Brier、ECE、API 成本和延迟见
+[27B 中文全量报告](reports/2026-09-27_qwen38_27b_七方法全量实验.md)；
+与 Flash、Pro 0813、Qwen Max 在共同 2998 条结果上的配对比较见
+[四模型中文对比报告](reports/2026-09-27_qwen38_27b_与三模型对比.md)；
+Jev 决策置信度、Rescue−Harm 与翻转率见
+[27B 中文分桶报告](reports/2026-09-27_qwen38_27b_置信度分桶分析.md)。
+在共同样本上，27B 的 direct_llm 比 Max 低 7.47 个百分点；
+Jev-Prior-EW-QBAF 相对 Max 在 D=1/D=2 分别高 0.40/1.13 个百分点，
+配对区间均跨 0。27B 的这两种深度下 Jev-Prior-EW-QBAF Brier 均高于
+Direct Jev；接近 0.5 的 Jev 样本没有稳定的净纠错收益。
+生成模型估算成本为 ￥15.31，Jev 估算成本为 $0.265897，分别计价。
+使用 `--cache-only` 在独立输出目录复算后，全部指标与在线运行相同。

@@ -33,6 +33,17 @@ METHODS = (
 PRIOR_METHODS = ("jev_prior_qbaf", "jev_prior_ew_qbaf")
 
 
+def is_provider_content_rejection(error):
+    """Recognize the two DMX content-refusal responses seen in Qwen runs."""
+    message = str(error)
+    return (
+        error.__class__.__name__ == "BadRequestError"
+        and getattr(error, "status_code", None) == 400
+        and ("data_inspection_failed" in message
+             or "Input text data may contain inappropriate content" in message)
+    )
+
+
 def dataset_rows(path, max_samples=None):
     """Read the bundled Hugging Face dataset, with a small Arrow-only fallback."""
     try:
@@ -877,13 +888,8 @@ def main():
                             args, dataset_name, index, claim, label, depth, delegate, jev
                         )
                     except Exception as error:
-                        rejected = (
-                            args.record_provider_rejections
-                            and error.__class__.__name__ == "BadRequestError"
-                            and getattr(error, "status_code", None) == 400
-                            and "Input text data may contain inappropriate content"
-                            in str(error)
-                        )
+                        rejected = (args.record_provider_rejections
+                                    and is_provider_content_rejection(error))
                         if not rejected:
                             raise
                         reason = "Qwen/DMX 输入内容拒绝 (HTTP 400)"

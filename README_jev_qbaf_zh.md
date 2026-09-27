@@ -188,3 +188,39 @@ Jev-Prior-EW-QBAF 相对 Max 在 D=1/D=2 分别高 0.40/1.13 个百分点，
 Direct Jev；接近 0.5 的 Jev 样本没有稳定的净纠错收益。
 生成模型估算成本为 ￥15.31，Jev 估算成本为 $0.265897，分别计价。
 使用 `--cache-only` 在独立输出目录复算后，全部指标与在线运行相同。
+
+## Qwen3 8B 复现实验
+
+这轮只替换论点生成与 Direct Prompting 模型为 `qwen3-8b`，其余三个
+500 条上游 Experiment 全集、D=1/D=2、七方法、提示、Jev 和 QBAF
+设置沿用前四轮。8B 的图与图相关评分单独缓存，逐样本 Direct Jev 根概率
+继续复用同一批 1500 条回答。通过 `enable_thinking=false` 关闭思考，
+保持原有 128-token 输出限额。人民币成本按
+[DMX 公开价格](https://rmb.dmxapi.cn/?api=model_prices)的输入 ¥0.5、
+输出 ¥2／百万 token 估算；实际账单可能包含账户优惠。
+2026-09-27 查询 DMX 模型列表时，`qwen3-8b` 标注“将于 10 月 1 日下架”；
+下架后可使用本轮保留的响应缓存离线复算。
+
+    python benchmark_jev_qbaf.py --generator-model openai/qwen3-8b --llm-base-url https://www.dmxapi.cn/v1 --llm-key-env DMX_API_KEY --llm-thinking disabled --llm-currency CNY --llm-input-price 0.5 --llm-output-price 2 --cache-dir experiment_cache/qwen3_8b --output-dir experiment_results/qwen3_8b_full --workers 16 --record-provider-rejections
+
+    python analyze_jev_confidence_bins.py --input-dir experiment_results/qwen3_8b_full/data --report reports/2026-09-27_qwen3_8b_置信度分桶分析.md --metrics reports/2026-09-27_qwen3_8b_置信度分桶指标.json --plot reports/2026-09-27_qwen3_8b_置信度分桶图.png
+
+    python compare_five_generators.py
+
+全量共 2998/3000 条有效样本深度结果；仅 TruthfulClaim 样本 442
+被 DMX 在两个深度拒绝，未更换原始样本或提示。所有 Direct Prompting
+百分比回复均可解析。七方法的 Accuracy、Brier、ECE、成本与延迟见
+[8B 中文全量报告](reports/2026-09-27_qwen3_8b_七方法全量实验.md)；
+与 Flash、Pro 0813、Qwen 3.8 Max、Qwen 3.8 27B 在共同 2998 条结果上
+的配对差异见[五模型中文对比报告](reports/2026-09-27_qwen3_8b_与四模型对比.md)；
+Jev 先验修正的 Rescue−Harm 与置信度分桶见
+[8B 中文分桶报告](reports/2026-09-27_qwen3_8b_置信度分桶分析.md)。
+
+在五模型共同样本上，8B 的 direct_llm 准确率为 0.6785，27B 为
+0.7919，Max 为 0.8666；8B 的 jev_prior_ew_qbaf 在 D=1/D=2 为
+0.8199/0.8212，与共享 Direct Jev 的 0.8225 接近，但 Brier
+分别高 0.0017/0.0023。8B 的 D=2 图平均含 6.03 个论点，
+27B 为 5.62；根节点双向证据率为 64.6% 与 36.5%，
+这表明生成的证据结构也受模型影响。8B 生成模型的估算成本为
+￥2.716466，Jev 逻辑成本为 $0.295404，两种币种分别列示。
+独立的 `--cache-only` 复算与在线运行的全部指标一致。

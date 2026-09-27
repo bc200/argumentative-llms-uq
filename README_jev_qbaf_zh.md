@@ -92,3 +92,12 @@ experiment_results/。完成后会生成中文 experiment_results/实验报告.m
 
 两种 Jev 根先验方法的全量结果、与 direct_jev 的配对修正分析，见
 [Jev 根先验实验中文报告](reports/2026-09-26_jev_prior_qbaf_实验报告.md)。
+
+按 Direct Jev 决策置信度 `max(p, 1-p)` 对现有逐样本结果分桶，
+比较 Jev-Prior-EW-QBAF 的 Rescue、Harm、Brier 和判断翻转率，见
+[置信度分桶中文报告](reports/2026-09-27_jev_prior_ew_置信度分桶分析.md)。
+离线复算命令：
+
+    python analyze_jev_confidence_bins.py --plot reports/2026-09-27_jev_prior_ew_置信度分桶图.png
+
+不需要图片时省略 `--plot`；生成图片需安装 Matplotlib。

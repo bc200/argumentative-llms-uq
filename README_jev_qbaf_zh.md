@@ -63,6 +63,28 @@ DMX_API_KEY 可放在已忽略的 .env 文件中。DeepSeek 的思考模式默�
 保持上游的论点生成提示和 token 限额。
 相关参数见 https://api-docs.deepseek.com/api/create-chat-completion/。
 
+为比较生成模型的影响，Pro 0813 实验仅更换论点生成和 Direct Prompting 模型，
+请求名为 `deepseek-v4-pro-0813`，保持 thinking 关闭及其余实验口径不变。
+使用单独的图与响应缓存：
+
+    python benchmark_jev_qbaf.py --generator-model openai/deepseek-v4-pro-0813 --llm-base-url https://www.dmxapi.cn/v1 --llm-key-env DMX_API_KEY --llm-thinking disabled --llm-currency CNY --cache-dir experiment_cache/pro_0813 --output-dir experiment_results/pro_0813_full --workers 16
+
+为让两次实验的 Direct Jev 基线逐样本相同，Pro 缓存中的
+`jev/<数据集>/sample_<序号>/direct.json` 从 Flash 缓存复制；生成论点、
+其 Jev 分数及边权在 Pro 缓存中重新生成和请求。若 DMX 单价稍后确定，
+使用相同参数并补充 `--llm-input-price`、`--llm-output-price` 与
+`--cache-only`，可不发出新请求而补算人民币成本。
+
+两次全量实验完成后，可生成逐样本配对比较与 Pro 置信度分桶报告：
+
+    python compare_generator_models.py
+    python analyze_jev_confidence_bins.py --input-dir experiment_results/pro_0813_full/data --report reports/2026-09-27_pro0813_置信度分桶分析.md --metrics reports/2026-09-27_pro0813_置信度分桶指标.json --plot reports/2026-09-27_pro0813_置信度分桶图.png
+
+配对脚本核对每条论点、标签与 Direct Jev 根概率一致，再分别计算两个深度的
+Accuracy、Brier、ECE 差异及 Rescue、Harm。生成模型每次只采样一次且 API
+没有固定随机种子，因此两模型差值同时包含生成随机性；并发数不同也会影响
+跨模型延迟的可比性。
+
 使用本地模型：
 
     python benchmark_jev_qbaf.py --quantization 4bit --input-device cuda:0
@@ -101,3 +123,12 @@ experiment_results/。完成后会生成中文 experiment_results/实验报告.m
     python analyze_jev_confidence_bins.py --plot reports/2026-09-27_jev_prior_ew_置信度分桶图.png
 
 不需要图片时省略 `--plot`；生成图片需安装 Matplotlib。
+
+DeepSeek V4 Pro 0813 的七方法全量结果见
+[Pro 0813 中文实验报告](reports/2026-09-27_pro0813_七方法全量实验.md)，
+与 V4.1 Flash 的逐样本配对结果见
+[生成模型影响中文报告](reports/2026-09-27_生成模型Flash与Pro0813对比.md)。
+新模型下的根先验置信度分桶结果见
+[Pro 0813 分桶中文报告](reports/2026-09-27_pro0813_置信度分桶分析.md)。
+本次 DMX Pro 折后单价尚未确认，报告先保存实际 token 用量；
+人民币成本栏在确认单价前标为“未计价”。

@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
 
 from experiment_io import CachedJev
 
@@ -57,6 +57,23 @@ class JevCacheTests(unittest.TestCase):
                 ]) as call, patch("experiment_io.time.sleep") as pause:
                     probability, _ = client.ask(
                         "sample/retry.json", {"claim": "example"},
+                        "Is the claim true?"
+                    )
+            self.assertEqual(probability, 0.73)
+            self.assertEqual(call.call_count, 2)
+            pause.assert_called_once_with(1)
+
+    def test_service_unavailable_is_retried(self):
+        with tempfile.TemporaryDirectory() as directory:
+            client = CachedJev(Path(directory))
+            temporary_error = HTTPError("https://api.typesafe.ai/v1/systemone",
+                                        503, "Service Unavailable", {}, None)
+            with patch.dict(os.environ, {"TYPESAFE_API_KEY": "test-only"}):
+                with patch("experiment_io.urlopen", side_effect=[
+                    temporary_error, FakeHttpResponse()
+                ]) as call, patch("experiment_io.time.sleep") as pause:
+                    probability, _ = client.ask(
+                        "sample/retry503.json", {"claim": "example"},
                         "Is the claim true?"
                     )
             self.assertEqual(probability, 0.73)

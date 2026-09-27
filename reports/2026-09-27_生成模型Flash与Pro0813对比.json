@@ -1,0 +1,5039 @@
+{
+  "flash_dir": "experiment_results\\prior_full",
+  "pro_dir": "experiment_results\\pro_0813_full",
+  "paired_sample_depth_rows": 3000,
+  "comparisons": [
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.786,
+        "brier": 0.1670081333333332,
+        "ece": 0.11505333333333287
+      },
+      "pro": {
+        "accuracy": 0.7853333333333333,
+        "brier": 0.1732822666666673,
+        "ece": 0.11475999999999907
+      },
+      "accuracy_change": -0.0006666666666667043,
+      "accuracy_change_ci95": [
+        -0.02,
+        0.018
+      ],
+      "brier_change": 0.006274133333334098,
+      "brier_change_ci95": [
+        -0.00772706666666668,
+        0.020181200000000038
+      ],
+      "ece_change": -0.00029333333333379785,
+      "corrected": 112,
+      "spoiled": 113,
+      "prediction_flips": 225,
+      "mean_absolute_probability_change": 0.1587333333333338
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.8226666666666667,
+        "brier": 0.1234962000000002,
+        "ece": 0.0921666666666666
+      },
+      "pro": {
+        "accuracy": 0.8226666666666667,
+        "brier": 0.1234962000000002,
+        "ece": 0.0921666666666666
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.732,
+        "brier": 0.18870131666666848,
+        "ece": 0.18402333333333332
+      },
+      "pro": {
+        "accuracy": 0.7873333333333333,
+        "brier": 0.17040663333333356,
+        "ece": 0.13245333333333317
+      },
+      "accuracy_change": 0.055333333333333345,
+      "accuracy_change_ci95": [
+        0.03266666666666666,
+        0.07733333333333334
+      ],
+      "brier_change": -0.01829468333333492,
+      "brier_change_ci95": [
+        -0.029528333333333302,
+        -0.006968116666666654
+      ],
+      "ece_change": -0.051570000000000144,
+      "corrected": 189,
+      "spoiled": 106,
+      "prediction_flips": 295,
+      "mean_absolute_probability_change": 0.16949666666666635
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7753333333333333,
+        "brier": 0.16637970000000027,
+        "ece": 0.1504666666666666
+      },
+      "pro": {
+        "accuracy": 0.7673333333333333,
+        "brier": 0.16749621666666653,
+        "ece": 0.12012999999999992
+      },
+      "accuracy_change": -0.008000000000000007,
+      "accuracy_change_ci95": [
+        -0.02666666666666667,
+        0.012666666666666666
+      ],
+      "brier_change": 0.0011165166666662618,
+      "brier_change_ci95": [
+        -0.007807866666666668,
+        0.009923133333333332
+      ],
+      "ece_change": -0.030336666666666692,
+      "corrected": 109,
+      "spoiled": 121,
+      "prediction_flips": 230,
+      "mean_absolute_probability_change": 0.14535666666666636
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7786666666666666,
+        "brier": 0.15476998466333328,
+        "ece": 0.1336633333333334
+      },
+      "pro": {
+        "accuracy": 0.7853333333333333,
+        "brier": 0.15179291006333318,
+        "ece": 0.12660086666666664
+      },
+      "accuracy_change": 0.00666666666666671,
+      "accuracy_change_ci95": [
+        -0.01,
+        0.025333333333333333
+      ],
+      "brier_change": -0.0029770746000001014,
+      "brier_change_ci95": [
+        -0.00941437279999999,
+        0.0035578398483333247
+      ],
+      "ece_change": -0.007062466666666767,
+      "corrected": 96,
+      "spoiled": 86,
+      "prediction_flips": 182,
+      "mean_absolute_probability_change": 0.10586986666666663
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.8113333333333334,
+        "brier": 0.14028148946666658,
+        "ece": 0.1378745333333333
+      },
+      "pro": {
+        "accuracy": 0.828,
+        "brier": 0.1268304838733335,
+        "ece": 0.11429100000000005
+      },
+      "accuracy_change": 0.016666666666666607,
+      "accuracy_change_ci95": [
+        0.0026666666666666666,
+        0.030666666666666665
+      ],
+      "brier_change": -0.013451005593333065,
+      "brier_change_ci95": [
+        -0.020033642666666657,
+        -0.006783978320000006
+      ],
+      "ece_change": -0.023583533333333254,
+      "corrected": 72,
+      "spoiled": 47,
+      "prediction_flips": 119,
+      "mean_absolute_probability_change": 0.07864113333333334
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.8093333333333333,
+        "brier": 0.13487720455552932,
+        "ece": 0.13086708666666666
+      },
+      "pro": {
+        "accuracy": 0.8246666666666667,
+        "brier": 0.1258374548678462,
+        "ece": 0.12164002599999998
+      },
+      "accuracy_change": 0.01533333333333331,
+      "accuracy_change_ci95": [
+        0.0026666666666666666,
+        0.028666666666666667
+      ],
+      "brier_change": -0.009039749687683118,
+      "brier_change_ci95": [
+        -0.014522197422959342,
+        -0.0038667602643973364
+      ],
+      "ece_change": -0.009227060666666675,
+      "corrected": 64,
+      "spoiled": 41,
+      "prediction_flips": 105,
+      "mean_absolute_probability_change": 0.06121869533333333
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.786,
+        "brier": 0.1670081333333332,
+        "ece": 0.11505333333333287
+      },
+      "pro": {
+        "accuracy": 0.7853333333333333,
+        "brier": 0.1732822666666673,
+        "ece": 0.11475999999999907
+      },
+      "accuracy_change": -0.0006666666666667043,
+      "accuracy_change_ci95": [
+        -0.02,
+        0.018
+      ],
+      "brier_change": 0.006274133333334098,
+      "brier_change_ci95": [
+        -0.00772706666666668,
+        0.020181200000000038
+      ],
+      "ece_change": -0.00029333333333379785,
+      "corrected": 112,
+      "spoiled": 113,
+      "prediction_flips": 225,
+      "mean_absolute_probability_change": 0.1587333333333338
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.8226666666666667,
+        "brier": 0.1234962000000002,
+        "ece": 0.0921666666666666
+      },
+      "pro": {
+        "accuracy": 0.8226666666666667,
+        "brier": 0.1234962000000002,
+        "ece": 0.0921666666666666
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7306666666666667,
+        "brier": 0.19196893381000044,
+        "ece": 0.16002073333333341
+      },
+      "pro": {
+        "accuracy": 0.79,
+        "brier": 0.17297082770000002,
+        "ece": 0.11093273333333341
+      },
+      "accuracy_change": 0.05933333333333335,
+      "accuracy_change_ci95": [
+        0.034666666666666665,
+        0.08333333333333333
+      ],
+      "brier_change": -0.018998106110000412,
+      "brier_change_ci95": [
+        -0.03364661048833337,
+        -0.00591787507999998
+      ],
+      "ece_change": -0.04908800000000001,
+      "corrected": 222,
+      "spoiled": 133,
+      "prediction_flips": 355,
+      "mean_absolute_probability_change": 0.21398299999999998
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7493333333333333,
+        "brier": 0.17332718305666647,
+        "ece": 0.1374485333333334
+      },
+      "pro": {
+        "accuracy": 0.7366666666666667,
+        "brier": 0.17846367495499987,
+        "ece": 0.09860423333333329
+      },
+      "accuracy_change": -0.012666666666666604,
+      "accuracy_change_ci95": [
+        -0.035333333333333335,
+        0.014
+      ],
+      "brier_change": 0.005136491898333401,
+      "brier_change_ci95": [
+        -0.005637005989999997,
+        0.015418030578333332
+      ],
+      "ece_change": -0.03884430000000011,
+      "corrected": 158,
+      "spoiled": 177,
+      "prediction_flips": 335,
+      "mean_absolute_probability_change": 0.17675209999999988
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7593333333333333,
+        "brier": 0.16152825548203784,
+        "ece": 0.1193767484966667
+      },
+      "pro": {
+        "accuracy": 0.7666666666666667,
+        "brier": 0.1615595333369256,
+        "ece": 0.11207817811333337
+      },
+      "accuracy_change": 0.007333333333333414,
+      "accuracy_change_ci95": [
+        -0.011333333333333334,
+        0.029333333333333333
+      ],
+      "brier_change": 3.127785488776791e-05,
+      "brier_change_ci95": [
+        -0.008063866096336782,
+        0.007484879653103191
+      ],
+      "ece_change": -0.007298570383333328,
+      "corrected": 129,
+      "spoiled": 118,
+      "prediction_flips": 247,
+      "mean_absolute_probability_change": 0.13110810658999986
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.7986666666666666,
+        "brier": 0.14401000851796383,
+        "ece": 0.13618792799999999
+      },
+      "pro": {
+        "accuracy": 0.806,
+        "brier": 0.1331598563130867,
+        "ece": 0.11048302533333337
+      },
+      "accuracy_change": 0.007333333333333414,
+      "accuracy_change_ci95": [
+        -0.008666666666666666,
+        0.024666666666666667
+      ],
+      "brier_change": -0.010850152204877145,
+      "brier_change_ci95": [
+        -0.019492098625754708,
+        -0.002705797311401336
+      ],
+      "ece_change": -0.025704902666666612,
+      "corrected": 90,
+      "spoiled": 79,
+      "prediction_flips": 169,
+      "mean_absolute_probability_change": 0.10211596399999981
+    },
+    {
+      "dataset": "三数据集合计",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 1500,
+      "flash": {
+        "accuracy": 0.8026666666666666,
+        "brier": 0.13826901442797332,
+        "ece": 0.13118074877533337
+      },
+      "pro": {
+        "accuracy": 0.816,
+        "brier": 0.13075430614237302,
+        "ece": 0.12187097610746661
+      },
+      "accuracy_change": 0.013333333333333308,
+      "accuracy_change_ci95": [
+        -0.0013333333333333333,
+        0.028666666666666667
+      ],
+      "brier_change": -0.007514708285600302,
+      "brier_change_ci95": [
+        -0.013966211721937254,
+        -0.001462152640141551
+      ],
+      "ece_change": -0.009309772667866756,
+      "corrected": 74,
+      "spoiled": 54,
+      "prediction_flips": 128,
+      "mean_absolute_probability_change": 0.07445988397679985
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.85,
+        "brier": 0.11986799999999999,
+        "ece": 0.05872000000000014
+      },
+      "pro": {
+        "accuracy": 0.846,
+        "brier": 0.12954759999999996,
+        "ece": 0.0761600000000001
+      },
+      "accuracy_change": -0.0040000000000000036,
+      "accuracy_change_ci95": [
+        -0.034,
+        0.028
+      ],
+      "brier_change": 0.009679599999999969,
+      "brier_change_ci95": [
+        -0.013750000000000007,
+        0.031126800000000017
+      ],
+      "ece_change": 0.017439999999999962,
+      "corrected": 29,
+      "spoiled": 31,
+      "prediction_flips": 60,
+      "mean_absolute_probability_change": 0.12768
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.87,
+        "brier": 0.09709319999999987,
+        "ece": 0.07288000000000001
+      },
+      "pro": {
+        "accuracy": 0.87,
+        "brier": 0.09709319999999987,
+        "ece": 0.07288000000000001
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.786,
+        "brier": 0.15935459999999987,
+        "ece": 0.1717799999999999
+      },
+      "pro": {
+        "accuracy": 0.826,
+        "brier": 0.1426931500000001,
+        "ece": 0.13399000000000014
+      },
+      "accuracy_change": 0.039999999999999925,
+      "accuracy_change_ci95": [
+        0.006,
+        0.074
+      ],
+      "brier_change": -0.016661449999999772,
+      "brier_change_ci95": [
+        -0.034938199999999975,
+        0.0011958999999999978
+      ],
+      "ece_change": -0.03778999999999977,
+      "corrected": 51,
+      "spoiled": 31,
+      "prediction_flips": 82,
+      "mean_absolute_probability_change": 0.16334999999999994
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.81,
+        "brier": 0.14702625000000002,
+        "ece": 0.16372999999999996
+      },
+      "pro": {
+        "accuracy": 0.788,
+        "brier": 0.1558456,
+        "ece": 0.14282
+      },
+      "accuracy_change": -0.02200000000000002,
+      "accuracy_change_ci95": [
+        -0.056,
+        0.014
+      ],
+      "brier_change": 0.008819349999999976,
+      "brier_change_ci95": [
+        -0.006302099999999996,
+        0.02373824999999999
+      ],
+      "ece_change": -0.020909999999999956,
+      "corrected": 33,
+      "spoiled": 44,
+      "prediction_flips": 77,
+      "mean_absolute_probability_change": 0.14493000000000003
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.822,
+        "brier": 0.13592715718499987,
+        "ece": 0.14365109999999998
+      },
+      "pro": {
+        "accuracy": 0.824,
+        "brier": 0.13924575589999988,
+        "ece": 0.150748
+      },
+      "accuracy_change": 0.0020000000000000018,
+      "accuracy_change_ci95": [
+        -0.028,
+        0.034
+      ],
+      "brier_change": 0.0033185987150000096,
+      "brier_change_ci95": [
+        -0.007950606864999992,
+        0.014749397620000009
+      ],
+      "ece_change": 0.007096900000000017,
+      "corrected": 30,
+      "spoiled": 29,
+      "prediction_flips": 59,
+      "mean_absolute_probability_change": 0.10400950000000013
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.854,
+        "brier": 0.11004540594,
+        "ece": 0.12080500000000008
+      },
+      "pro": {
+        "accuracy": 0.87,
+        "brier": 0.0983449768,
+        "ece": 0.09361240000000004
+      },
+      "accuracy_change": 0.016000000000000014,
+      "accuracy_change_ci95": [
+        -0.008,
+        0.042
+      ],
+      "brier_change": -0.011700429139999996,
+      "brier_change_ci95": [
+        -0.023474980719999976,
+        -0.0006147416399999945
+      ],
+      "ece_change": -0.02719260000000004,
+      "corrected": 22,
+      "spoiled": 14,
+      "prediction_flips": 36,
+      "mean_absolute_probability_change": 0.07166620000000004
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.854,
+        "brier": 0.10413843874507608,
+        "ece": 0.11042381599999995
+      },
+      "pro": {
+        "accuracy": 0.87,
+        "brier": 0.09635307886423602,
+        "ece": 0.10134074399999993
+      },
+      "accuracy_change": 0.016000000000000014,
+      "accuracy_change_ci95": [
+        -0.006,
+        0.038
+      ],
+      "brier_change": -0.007785359880840059,
+      "brier_change_ci95": [
+        -0.016305411000712006,
+        0.0011501674917239995
+      ],
+      "ece_change": -0.009083072000000025,
+      "corrected": 19,
+      "spoiled": 11,
+      "prediction_flips": 30,
+      "mean_absolute_probability_change": 0.056101740000000004
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.85,
+        "brier": 0.11986799999999999,
+        "ece": 0.05872000000000014
+      },
+      "pro": {
+        "accuracy": 0.846,
+        "brier": 0.12954759999999996,
+        "ece": 0.0761600000000001
+      },
+      "accuracy_change": -0.0040000000000000036,
+      "accuracy_change_ci95": [
+        -0.034,
+        0.028
+      ],
+      "brier_change": 0.009679599999999969,
+      "brier_change_ci95": [
+        -0.013750000000000007,
+        0.031126800000000017
+      ],
+      "ece_change": 0.017439999999999962,
+      "corrected": 29,
+      "spoiled": 31,
+      "prediction_flips": 60,
+      "mean_absolute_probability_change": 0.12768
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.87,
+        "brier": 0.09709319999999987,
+        "ece": 0.07288000000000001
+      },
+      "pro": {
+        "accuracy": 0.87,
+        "brier": 0.09709319999999987,
+        "ece": 0.07288000000000001
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.786,
+        "brier": 0.17131929773500015,
+        "ece": 0.16242949999999998
+      },
+      "pro": {
+        "accuracy": 0.814,
+        "brier": 0.15368248415500002,
+        "ece": 0.09572470000000002
+      },
+      "accuracy_change": 0.027999999999999914,
+      "accuracy_change_ci95": [
+        -0.014,
+        0.074
+      ],
+      "brier_change": -0.017636813580000132,
+      "brier_change_ci95": [
+        -0.03965763039499998,
+        0.004704900795000002
+      ],
+      "ece_change": -0.06670479999999995,
+      "corrected": 66,
+      "spoiled": 52,
+      "prediction_flips": 118,
+      "mean_absolute_probability_change": 0.21159800000000004
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.794,
+        "brier": 0.15368397346500012,
+        "ece": 0.15152290000000002
+      },
+      "pro": {
+        "accuracy": 0.766,
+        "brier": 0.1668191479249999,
+        "ece": 0.11757009999999997
+      },
+      "accuracy_change": -0.028000000000000025,
+      "accuracy_change_ci95": [
+        -0.066,
+        0.016
+      ],
+      "brier_change": 0.013135174459999788,
+      "brier_change_ci95": [
+        -0.003459291720000005,
+        0.028456094855000023
+      ],
+      "ece_change": -0.03395280000000005,
+      "corrected": 48,
+      "spoiled": 62,
+      "prediction_flips": 110,
+      "mean_absolute_probability_change": 0.1758864
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.806,
+        "brier": 0.14170123066195978,
+        "ece": 0.13651745284999997
+      },
+      "pro": {
+        "accuracy": 0.802,
+        "brier": 0.14914139866767775,
+        "ece": 0.11062496349999995
+      },
+      "accuracy_change": -0.0040000000000000036,
+      "accuracy_change_ci95": [
+        -0.038,
+        0.032
+      ],
+      "brier_change": 0.007440168005717979,
+      "brier_change_ci95": [
+        -0.006271444328113179,
+        0.019826175851621778
+      ],
+      "ece_change": -0.02589248935000002,
+      "corrected": 41,
+      "spoiled": 43,
+      "prediction_flips": 84,
+      "mean_absolute_probability_change": 0.13236283434999985
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.852,
+        "brier": 0.11104681768873,
+        "ece": 0.12298509400000003
+      },
+      "pro": {
+        "accuracy": 0.862,
+        "brier": 0.10471240531922194,
+        "ece": 0.09195920600000003
+      },
+      "accuracy_change": 0.010000000000000009,
+      "accuracy_change_ci95": [
+        -0.016,
+        0.038
+      ],
+      "brier_change": -0.006334412369508061,
+      "brier_change_ci95": [
+        -0.02044117260601,
+        0.006739835662575998
+      ],
+      "ece_change": -0.031025888,
+      "corrected": 27,
+      "spoiled": 22,
+      "prediction_flips": 49,
+      "mean_absolute_probability_change": 0.09349509600000001
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.856,
+        "brier": 0.10537003977767863,
+        "ece": 0.11317965802459998
+      },
+      "pro": {
+        "accuracy": 0.864,
+        "brier": 0.10191831037249945,
+        "ece": 0.1022841332510001
+      },
+      "accuracy_change": 0.008000000000000007,
+      "accuracy_change_ci95": [
+        -0.014,
+        0.032
+      ],
+      "brier_change": -0.0034517294051791825,
+      "brier_change_ci95": [
+        -0.01394508815368213,
+        0.006103727908769192
+      ],
+      "ece_change": -0.010895524773599882,
+      "corrected": 22,
+      "spoiled": 18,
+      "prediction_flips": 40,
+      "mean_absolute_probability_change": 0.07039460977600001
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.754,
+        "brier": 0.18690579999999984,
+        "ece": 0.15782000000000013
+      },
+      "pro": {
+        "accuracy": 0.742,
+        "brier": 0.21911059999999963,
+        "ece": 0.19526000000000038
+      },
+      "accuracy_change": -0.01200000000000001,
+      "accuracy_change_ci95": [
+        -0.044,
+        0.02
+      ],
+      "brier_change": 0.032204799999999784,
+      "brier_change_ci95": [
+        0.004967999999999977,
+        0.060940000000000036
+      ],
+      "ece_change": 0.03744000000000025,
+      "corrected": 33,
+      "spoiled": 39,
+      "prediction_flips": 72,
+      "mean_absolute_probability_change": 0.17187999999999992
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.784,
+        "brier": 0.14083960000000004,
+        "ece": 0.11823999999999998
+      },
+      "pro": {
+        "accuracy": 0.784,
+        "brier": 0.14083960000000004,
+        "ece": 0.11823999999999998
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.714,
+        "brier": 0.19915999999999992,
+        "ece": 0.16656
+      },
+      "pro": {
+        "accuracy": 0.748,
+        "brier": 0.18737465000000006,
+        "ece": 0.14999000000000012
+      },
+      "accuracy_change": 0.03400000000000003,
+      "accuracy_change_ci95": [
+        -0.004,
+        0.068
+      ],
+      "brier_change": -0.011785349999999861,
+      "brier_change_ci95": [
+        -0.03353885,
+        0.007817299999999989
+      ],
+      "ece_change": -0.01656999999999989,
+      "corrected": 53,
+      "spoiled": 36,
+      "prediction_flips": 89,
+      "mean_absolute_probability_change": 0.17481000000000002
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.736,
+        "brier": 0.18706649999999994,
+        "ece": 0.13395999999999997
+      },
+      "pro": {
+        "accuracy": 0.71,
+        "brier": 0.18831210000000007,
+        "ece": 0.11744
+      },
+      "accuracy_change": -0.026000000000000023,
+      "accuracy_change_ci95": [
+        -0.064,
+        0.01
+      ],
+      "brier_change": 0.0012456000000001244,
+      "brier_change_ci95": [
+        -0.0162358,
+        0.01655699999999998
+      ],
+      "ece_change": -0.016519999999999965,
+      "corrected": 39,
+      "spoiled": 52,
+      "prediction_flips": 91,
+      "mean_absolute_probability_change": 0.1579200000000001
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.738,
+        "brier": 0.17422532897000007,
+        "ece": 0.12234279999999997
+      },
+      "pro": {
+        "accuracy": 0.728,
+        "brier": 0.174760827195,
+        "ece": 0.13260110000000003
+      },
+      "accuracy_change": -0.010000000000000009,
+      "accuracy_change_ci95": [
+        -0.044,
+        0.026
+      ],
+      "brier_change": 0.0005354982249999307,
+      "brier_change_ci95": [
+        -0.013303532234999995,
+        0.01266697517499999
+      ],
+      "ece_change": 0.010258300000000053,
+      "corrected": 35,
+      "spoiled": 40,
+      "prediction_flips": 75,
+      "mean_absolute_probability_change": 0.12142029999999997
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.774,
+        "brier": 0.16106220882000008,
+        "ece": 0.1560946
+      },
+      "pro": {
+        "accuracy": 0.782,
+        "brier": 0.15096425143999992,
+        "ece": 0.14022760000000006
+      },
+      "accuracy_change": 0.008000000000000007,
+      "accuracy_change_ci95": [
+        -0.018,
+        0.036
+      ],
+      "brier_change": -0.010097957380000161,
+      "brier_change_ci95": [
+        -0.024265558600000004,
+        0.003256342019999993
+      ],
+      "ece_change": -0.015866999999999937,
+      "corrected": 24,
+      "spoiled": 20,
+      "prediction_flips": 44,
+      "mean_absolute_probability_change": 0.09255580000000005
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.77,
+        "brier": 0.15357609271548003,
+        "ece": 0.14978554400000005
+      },
+      "pro": {
+        "accuracy": 0.778,
+        "brier": 0.15112510855111994,
+        "ece": 0.149181032
+      },
+      "accuracy_change": 0.008000000000000007,
+      "accuracy_change_ci95": [
+        -0.016,
+        0.036
+      ],
+      "brier_change": -0.0024509841643600982,
+      "brier_change_ci95": [
+        -0.013840421806394002,
+        0.007440691911745998
+      ],
+      "ece_change": -0.000604512000000057,
+      "corrected": 23,
+      "spoiled": 19,
+      "prediction_flips": 42,
+      "mean_absolute_probability_change": 0.07315362399999994
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.754,
+        "brier": 0.18690579999999984,
+        "ece": 0.15782000000000013
+      },
+      "pro": {
+        "accuracy": 0.742,
+        "brier": 0.21911059999999963,
+        "ece": 0.19526000000000038
+      },
+      "accuracy_change": -0.01200000000000001,
+      "accuracy_change_ci95": [
+        -0.044,
+        0.02
+      ],
+      "brier_change": 0.032204799999999784,
+      "brier_change_ci95": [
+        0.004967999999999977,
+        0.060940000000000036
+      ],
+      "ece_change": 0.03744000000000025,
+      "corrected": 33,
+      "spoiled": 39,
+      "prediction_flips": 72,
+      "mean_absolute_probability_change": 0.17187999999999992
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.784,
+        "brier": 0.14083960000000004,
+        "ece": 0.11823999999999998
+      },
+      "pro": {
+        "accuracy": 0.784,
+        "brier": 0.14083960000000004,
+        "ece": 0.11823999999999998
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.706,
+        "brier": 0.19816795187500008,
+        "ece": 0.1474604999999999
+      },
+      "pro": {
+        "accuracy": 0.762,
+        "brier": 0.1889785595300001,
+        "ece": 0.11813540000000011
+      },
+      "accuracy_change": 0.05600000000000005,
+      "accuracy_change_ci95": [
+        0.014,
+        0.096
+      ],
+      "brier_change": -0.009189392344999991,
+      "brier_change_ci95": [
+        -0.03141758198,
+        0.014420669345000012
+      ],
+      "ece_change": -0.0293250999999998,
+      "corrected": 68,
+      "spoiled": 40,
+      "prediction_flips": 108,
+      "mean_absolute_probability_change": 0.21880589999999978
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.702,
+        "brier": 0.19291133378000003,
+        "ece": 0.1183398
+      },
+      "pro": {
+        "accuracy": 0.692,
+        "brier": 0.1999739090049999,
+        "ece": 0.0805157
+      },
+      "accuracy_change": -0.010000000000000009,
+      "accuracy_change_ci95": [
+        -0.054,
+        0.03
+      ],
+      "brier_change": 0.0070625752249998675,
+      "brier_change_ci95": [
+        -0.011910152904999994,
+        0.02510965552500003
+      ],
+      "ece_change": -0.0378241,
+      "corrected": 59,
+      "spoiled": 64,
+      "prediction_flips": 123,
+      "mean_absolute_probability_change": 0.19061010000000012
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.718,
+        "brier": 0.18134805041273905,
+        "ece": 0.10700739564999998
+      },
+      "pro": {
+        "accuracy": 0.716,
+        "brier": 0.18514993975528474,
+        "ece": 0.11486322390000002
+      },
+      "accuracy_change": -0.0020000000000000018,
+      "accuracy_change_ci95": [
+        -0.04,
+        0.034
+      ],
+      "brier_change": 0.003801889342545689,
+      "brier_change_ci95": [
+        -0.011046979112773319,
+        0.017603772360589784
+      ],
+      "ece_change": 0.007855828250000044,
+      "corrected": 49,
+      "spoiled": 50,
+      "prediction_flips": 99,
+      "mean_absolute_probability_change": 0.14547765282999991
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.742,
+        "brier": 0.16520468775164004,
+        "ece": 0.149077444
+      },
+      "pro": {
+        "accuracy": 0.754,
+        "brier": 0.15685074255374584,
+        "ece": 0.12429817400000001
+      },
+      "accuracy_change": 0.01200000000000001,
+      "accuracy_change_ci95": [
+        -0.018,
+        0.046
+      ],
+      "brier_change": -0.008353945197894203,
+      "brier_change_ci95": [
+        -0.023799045523646006,
+        0.007032220653077996
+      ],
+      "ece_change": -0.024779269999999992,
+      "corrected": 39,
+      "spoiled": 33,
+      "prediction_flips": 72,
+      "mean_absolute_probability_change": 0.11853796200000015
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.756,
+        "brier": 0.1587110596833516,
+        "ece": 0.1484722882442
+      },
+      "pro": {
+        "accuracy": 0.768,
+        "brier": 0.15595801386543898,
+        "ece": 0.14110289337500004
+      },
+      "accuracy_change": 0.01200000000000001,
+      "accuracy_change_ci95": [
+        -0.014,
+        0.038
+      ],
+      "brier_change": -0.002753045817912636,
+      "brier_change_ci95": [
+        -0.01472721556695002,
+        0.008633214694613816
+      ],
+      "ece_change": -0.007369394869199963,
+      "corrected": 27,
+      "spoiled": 21,
+      "prediction_flips": 48,
+      "mean_absolute_probability_change": 0.08761026865080004
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.754,
+        "brier": 0.1942505999999997,
+        "ece": 0.15382000000000057
+      },
+      "pro": {
+        "accuracy": 0.768,
+        "brier": 0.1711885999999996,
+        "ece": 0.10202000000000042
+      },
+      "accuracy_change": 0.014000000000000012,
+      "accuracy_change_ci95": [
+        -0.022,
+        0.052
+      ],
+      "brier_change": -0.023062000000000082,
+      "brier_change_ci95": [
+        -0.049892599999999995,
+        0.002054999999999982
+      ],
+      "ece_change": -0.05180000000000015,
+      "corrected": 50,
+      "spoiled": 43,
+      "prediction_flips": 93,
+      "mean_absolute_probability_change": 0.17663999999999974
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.814,
+        "brier": 0.1325558,
+        "ece": 0.08650000000000001
+      },
+      "pro": {
+        "accuracy": 0.814,
+        "brier": 0.1325558,
+        "ece": 0.08650000000000001
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.696,
+        "brier": 0.20758935,
+        "ece": 0.21383000000000016
+      },
+      "pro": {
+        "accuracy": 0.788,
+        "brier": 0.18115209999999995,
+        "ece": 0.14840000000000023
+      },
+      "accuracy_change": 0.09200000000000008,
+      "accuracy_change_ci95": [
+        0.048,
+        0.136
+      ],
+      "brier_change": -0.02643725000000005,
+      "brier_change_ci95": [
+        -0.04653570000000003,
+        -0.007428399999999996
+      ],
+      "ece_change": -0.06542999999999993,
+      "corrected": 85,
+      "spoiled": 39,
+      "prediction_flips": 124,
+      "mean_absolute_probability_change": 0.17032999999999993
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.78,
+        "brier": 0.16504635000000015,
+        "ece": 0.15371000000000004
+      },
+      "pro": {
+        "accuracy": 0.804,
+        "brier": 0.15833094999999991,
+        "ece": 0.12230999999999999
+      },
+      "accuracy_change": 0.02400000000000002,
+      "accuracy_change_ci95": [
+        -0.006,
+        0.054
+      ],
+      "brier_change": -0.006715400000000232,
+      "brier_change_ci95": [
+        -0.020515199999999994,
+        0.009004549999999991
+      ],
+      "ece_change": -0.03140000000000005,
+      "corrected": 37,
+      "spoiled": 25,
+      "prediction_flips": 62,
+      "mean_absolute_probability_change": 0.13321999999999998
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.776,
+        "brier": 0.15415746783500006,
+        "ece": 0.1349961
+      },
+      "pro": {
+        "accuracy": 0.804,
+        "brier": 0.1413721470949999,
+        "ece": 0.12816449999999996
+      },
+      "accuracy_change": 0.028000000000000025,
+      "accuracy_change_ci95": [
+        0.0,
+        0.054
+      ],
+      "brier_change": -0.012785320740000161,
+      "brier_change_ci95": [
+        -0.023138920014999977,
+        -0.0011624058850000045
+      ],
+      "ece_change": -0.006831600000000049,
+      "corrected": 31,
+      "spoiled": 17,
+      "prediction_flips": 48,
+      "mean_absolute_probability_change": 0.09217980000000009
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.806,
+        "brier": 0.1497368536399998,
+        "ece": 0.136724
+      },
+      "pro": {
+        "accuracy": 0.832,
+        "brier": 0.13118222337999993,
+        "ece": 0.10903299999999996
+      },
+      "accuracy_change": 0.025999999999999912,
+      "accuracy_change_ci95": [
+        0.002,
+        0.048
+      ],
+      "brier_change": -0.01855463025999987,
+      "brier_change_ci95": [
+        -0.029491985420000054,
+        -0.007094269959999993
+      ],
+      "ece_change": -0.02769100000000005,
+      "corrected": 26,
+      "spoiled": 13,
+      "prediction_flips": 39,
+      "mean_absolute_probability_change": 0.0717014
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.804,
+        "brier": 0.14691708220603186,
+        "ece": 0.1323919
+      },
+      "pro": {
+        "accuracy": 0.826,
+        "brier": 0.13003417718818203,
+        "ece": 0.11439830199999997
+      },
+      "accuracy_change": 0.02199999999999991,
+      "accuracy_change_ci95": [
+        0.0,
+        0.042
+      ],
+      "brier_change": -0.016882905017849836,
+      "brier_change_ci95": [
+        -0.025210157322466006,
+        -0.007571650911130006
+      ],
+      "ece_change": -0.01799359800000004,
+      "corrected": 22,
+      "spoiled": 11,
+      "prediction_flips": 33,
+      "mean_absolute_probability_change": 0.05440072199999998
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.754,
+        "brier": 0.1942505999999997,
+        "ece": 0.15382000000000057
+      },
+      "pro": {
+        "accuracy": 0.768,
+        "brier": 0.1711885999999996,
+        "ece": 0.10202000000000042
+      },
+      "accuracy_change": 0.014000000000000012,
+      "accuracy_change_ci95": [
+        -0.022,
+        0.052
+      ],
+      "brier_change": -0.023062000000000082,
+      "brier_change_ci95": [
+        -0.049892599999999995,
+        0.002054999999999982
+      ],
+      "ece_change": -0.05180000000000015,
+      "corrected": 50,
+      "spoiled": 43,
+      "prediction_flips": 93,
+      "mean_absolute_probability_change": 0.17663999999999974
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.814,
+        "brier": 0.1325558,
+        "ece": 0.08650000000000001
+      },
+      "pro": {
+        "accuracy": 0.814,
+        "brier": 0.1325558,
+        "ece": 0.08650000000000001
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "brier_change": 0.0,
+      "brier_change_ci95": [
+        0.0,
+        0.0
+      ],
+      "ece_change": 0.0,
+      "corrected": 0,
+      "spoiled": 0,
+      "prediction_flips": 0,
+      "mean_absolute_probability_change": 0.0
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.7,
+        "brier": 0.20641955182000024,
+        "ece": 0.18795320000000001
+      },
+      "pro": {
+        "accuracy": 0.794,
+        "brier": 0.1762514394149999,
+        "ece": 0.13505130000000004
+      },
+      "accuracy_change": 0.09400000000000008,
+      "accuracy_change_ci95": [
+        0.05,
+        0.138
+      ],
+      "brier_change": -0.030168112405000336,
+      "brier_change_ci95": [
+        -0.054707018225000056,
+        -0.006341386874999991
+      ],
+      "ece_change": -0.052901899999999974,
+      "corrected": 88,
+      "spoiled": 41,
+      "prediction_flips": 129,
+      "mean_absolute_probability_change": 0.21154509999999982
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.752,
+        "brier": 0.17338624192499982,
+        "ece": 0.14492690000000005
+      },
+      "pro": {
+        "accuracy": 0.752,
+        "brier": 0.16859796793499982,
+        "ece": 0.12319589999999996
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        -0.04,
+        0.038
+      ],
+      "brier_change": -0.004788273990000008,
+      "brier_change_ci95": [
+        -0.022226331955,
+        0.012401526594999998
+      ],
+      "ece_change": -0.021731000000000097,
+      "corrected": 51,
+      "spoiled": 51,
+      "prediction_flips": 102,
+      "mean_absolute_probability_change": 0.16375979999999998
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.754,
+        "brier": 0.16153548537141518,
+        "ece": 0.12690589599000002
+      },
+      "pro": {
+        "accuracy": 0.782,
+        "brier": 0.1503872615878138,
+        "ece": 0.12724235174000006
+      },
+      "accuracy_change": 0.028000000000000025,
+      "accuracy_change_ci95": [
+        -0.002,
+        0.058
+      ],
+      "brier_change": -0.011148223783601391,
+      "brier_change_ci95": [
+        -0.023891282035671344,
+        0.0012152438608728604
+      ],
+      "ece_change": 0.00033645575000004757,
+      "corrected": 39,
+      "spoiled": 25,
+      "prediction_flips": 64,
+      "mean_absolute_probability_change": 0.11548383258999992
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.802,
+        "brier": 0.155778520113522,
+        "ece": 0.14334766200000001
+      },
+      "pro": {
+        "accuracy": 0.802,
+        "brier": 0.1379164210662921,
+        "ece": 0.11519169600000001
+      },
+      "accuracy_change": 0.0,
+      "accuracy_change_ci95": [
+        -0.026,
+        0.026
+      ],
+      "brier_change": -0.017862099047229907,
+      "brier_change_ci95": [
+        -0.032678935366049995,
+        -0.0030395648181679924
+      ],
+      "ece_change": -0.028155966000000004,
+      "corrected": 24,
+      "spoiled": 24,
+      "prediction_flips": 48,
+      "mean_absolute_probability_change": 0.09431483399999992
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "flash": {
+        "accuracy": 0.796,
+        "brier": 0.1507259438228893,
+        "ece": 0.13189030005719993
+      },
+      "pro": {
+        "accuracy": 0.816,
+        "brier": 0.13438659418917967,
+        "ece": 0.12222590169640002
+      },
+      "accuracy_change": 0.019999999999999907,
+      "accuracy_change_ci95": [
+        -0.006,
+        0.044
+      ],
+      "brier_change": -0.016339349633709643,
+      "brier_change_ci95": [
+        -0.026937591147862018,
+        -0.00527762920176608
+      ],
+      "ece_change": -0.009664398360799908,
+      "corrected": 25,
+      "spoiled": 15,
+      "prediction_flips": 40,
+      "mean_absolute_probability_change": 0.06537477350359996
+    }
+  ],
+  "graph_summary": {
+    "flash": [
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "n": 1500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.498
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "n": 1500,
+        "mean_arguments": 5.945333333333333,
+        "mean_edges": 4.945333333333333,
+        "root_conflict_rate": 0.498
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.472
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 5.924,
+        "mean_edges": 4.924,
+        "root_conflict_rate": 0.472
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.488
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 5.86,
+        "mean_edges": 4.86,
+        "root_conflict_rate": 0.488
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.534
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 6.052,
+        "mean_edges": 5.052,
+        "root_conflict_rate": 0.534
+      }
+    ],
+    "pro": [
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "n": 1500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.7706666666666667
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "n": 1500,
+        "mean_arguments": 6.530666666666667,
+        "mean_edges": 5.530666666666667,
+        "root_conflict_rate": 0.7706666666666667
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.786
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 6.56,
+        "mean_edges": 5.56,
+        "root_conflict_rate": 0.786
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.76
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 6.504,
+        "mean_edges": 5.504,
+        "root_conflict_rate": 0.76
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "n": 500,
+        "mean_arguments": 3.0,
+        "mean_edges": 2.0,
+        "root_conflict_rate": 0.766
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "n": 500,
+        "mean_arguments": 6.528,
+        "mean_edges": 5.528,
+        "root_conflict_rate": 0.766
+      }
+    ]
+  },
+  "confidence_bins": {
+    "flash": [
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 186,
+        "direct_accuracy": 0.5376344086021505,
+        "prior_ew_accuracy": 0.532258064516129,
+        "rescue": 31,
+        "harm": 32,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.005376344086021506,
+        "accuracy_change_ci95": [
+          -0.0913978494623656,
+          0.08064516129032258
+        ],
+        "direct_brier": 0.2480360215053767,
+        "prior_ew_brier": 0.28035260876483875,
+        "brier_change": 0.03231658725946236,
+        "brier_change_ci95": [
+          0.0032646235821021485,
+          0.06193779529925807
+        ],
+        "prediction_flips": 63,
+        "flip_rate": 0.3387096774193548
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 171,
+        "direct_accuracy": 0.6608187134502924,
+        "prior_ew_accuracy": 0.6081871345029239,
+        "rescue": 12,
+        "harm": 21,
+        "rescue_minus_harm": -9,
+        "accuracy_change": -0.05263157894736842,
+        "accuracy_change_ci95": [
+          -0.11695906432748537,
+          0.011695906432748537
+        ],
+        "direct_brier": 0.2245736842105261,
+        "prior_ew_brier": 0.24939627313636856,
+        "brier_change": 0.024822588925842107,
+        "brier_change_ci95": [
+          -0.0038103675502280557,
+          0.05388202181288304
+        ],
+        "prediction_flips": 33,
+        "flip_rate": 0.19298245614035087
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 256,
+        "direct_accuracy": 0.7578125,
+        "prior_ew_accuracy": 0.734375,
+        "rescue": 2,
+        "harm": 8,
+        "rescue_minus_harm": -6,
+        "accuracy_change": -0.0234375,
+        "accuracy_change_ci95": [
+          -0.046875,
+          0.0
+        ],
+        "direct_brier": 0.1813332031250001,
+        "prior_ew_brier": 0.20293107994259388,
+        "brier_change": 0.021597876817593765,
+        "brier_change_ci95": [
+          0.006133593857671878,
+          0.03700452340674608
+        ],
+        "prediction_flips": 10,
+        "flip_rate": 0.0390625
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 326,
+        "direct_accuracy": 0.8773006134969326,
+        "prior_ew_accuracy": 0.8680981595092024,
+        "rescue": 1,
+        "harm": 4,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.009202453987730062,
+        "accuracy_change_ci95": [
+          -0.024539877300613498,
+          0.003067484662576687
+        ],
+        "direct_brier": 0.10672147239263798,
+        "prior_ew_brier": 0.10900199604791713,
+        "brier_change": 0.00228052365527914,
+        "brier_change_ci95": [
+          -0.006174523053352758,
+          0.010803166859199374
+        ],
+        "prediction_flips": 5,
+        "flip_rate": 0.015337423312883436
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 561,
+        "direct_accuracy": 0.964349376114082,
+        "prior_ew_accuracy": 0.9625668449197861,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.0017825311942959,
+        "accuracy_change_ci95": [
+          -0.0053475935828877,
+          0.0
+        ],
+        "direct_brier": 0.03475044563279853,
+        "prior_ew_brier": 0.035719165275918015,
+        "brier_change": 0.0009687196431194305,
+        "brier_change_ci95": [
+          -0.0008247951026399295,
+          0.002838597377525846
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.0017825311942959
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 38,
+        "direct_accuracy": 0.5526315789473685,
+        "prior_ew_accuracy": 0.5263157894736842,
+        "rescue": 4,
+        "harm": 5,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.02631578947368421,
+        "accuracy_change_ci95": [
+          -0.18421052631578946,
+          0.13157894736842105
+        ],
+        "direct_brier": 0.25397894736842114,
+        "prior_ew_brier": 0.29445996042813155,
+        "brier_change": 0.04048101305971051,
+        "brier_change_ci95": [
+          -0.013246584191710537,
+          0.10121370713610525
+        ],
+        "prediction_flips": 9,
+        "flip_rate": 0.23684210526315788
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 52,
+        "direct_accuracy": 0.6346153846153846,
+        "prior_ew_accuracy": 0.5769230769230769,
+        "rescue": 2,
+        "harm": 5,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.057692307692307696,
+        "accuracy_change_ci95": [
+          -0.15384615384615385,
+          0.038461538461538464
+        ],
+        "direct_brier": 0.22903461538461536,
+        "prior_ew_brier": 0.25759287060725006,
+        "brier_change": 0.02855825522263464,
+        "brier_change_ci95": [
+          -0.017725879646692318,
+          0.07535076128846153
+        ],
+        "prediction_flips": 7,
+        "flip_rate": 0.1346153846153846
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 68,
+        "direct_accuracy": 0.8088235294117647,
+        "prior_ew_accuracy": 0.8088235294117647,
+        "rescue": 2,
+        "harm": 2,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          -0.058823529411764705,
+          0.058823529411764705
+        ],
+        "direct_brier": 0.1566529411764706,
+        "prior_ew_brier": 0.15487832932408824,
+        "brier_change": -0.0017746118523823493,
+        "brier_change_ci95": [
+          -0.03027074605661766,
+          0.02747805509238236
+        ],
+        "prediction_flips": 4,
+        "flip_rate": 0.058823529411764705
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 120,
+        "direct_accuracy": 0.9416666666666667,
+        "prior_ew_accuracy": 0.9166666666666666,
+        "rescue": 0,
+        "harm": 3,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.025,
+        "accuracy_change_ci95": [
+          -0.058333333333333334,
+          0.0
+        ],
+        "direct_brier": 0.06377666666666669,
+        "prior_ew_brier": 0.06296362142147502,
+        "brier_change": -0.0008130452451916605,
+        "brier_change_ci95": [
+          -0.015369562475683333,
+          0.015082626380241672
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.025
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 222,
+        "direct_accuracy": 0.9594594594594594,
+        "prior_ew_accuracy": 0.954954954954955,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.0045045045045045045,
+        "accuracy_change_ci95": [
+          -0.013513513513513514,
+          0.0
+        ],
+        "direct_brier": 0.039099099099099074,
+        "prior_ew_brier": 0.04233130918953604,
+        "brier_change": 0.003232210090436937,
+        "brier_change_ci95": [
+          -3.5785561049550145e-05,
+          0.007299567088216212
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.0045045045045045045
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 84,
+        "direct_accuracy": 0.47619047619047616,
+        "prior_ew_accuracy": 0.4642857142857143,
+        "rescue": 15,
+        "harm": 16,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.011904761904761904,
+        "accuracy_change_ci95": [
+          -0.13095238095238096,
+          0.11904761904761904
+        ],
+        "direct_brier": 0.25286071428571416,
+        "prior_ew_brier": 0.2931098374039285,
+        "brier_change": 0.04024912311821427,
+        "brier_change_ci95": [
+          -0.00102906694808336,
+          0.08444243297865477
+        ],
+        "prediction_flips": 31,
+        "flip_rate": 0.36904761904761907
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 71,
+        "direct_accuracy": 0.704225352112676,
+        "prior_ew_accuracy": 0.647887323943662,
+        "rescue": 5,
+        "harm": 9,
+        "rescue_minus_harm": -4,
+        "accuracy_change": -0.056338028169014086,
+        "accuracy_change_ci95": [
+          -0.15492957746478872,
+          0.04225352112676056
+        ],
+        "direct_brier": 0.2120225352112676,
+        "prior_ew_brier": 0.22953070994815492,
+        "brier_change": 0.01750817473688732,
+        "brier_change_ci95": [
+          -0.027284348343535204,
+          0.06420608743445072
+        ],
+        "prediction_flips": 14,
+        "flip_rate": 0.19718309859154928
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 88,
+        "direct_accuracy": 0.7386363636363636,
+        "prior_ew_accuracy": 0.7159090909090909,
+        "rescue": 0,
+        "harm": 2,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.022727272727272728,
+        "accuracy_change_ci95": [
+          -0.056818181818181816,
+          0.0
+        ],
+        "direct_brier": 0.19185,
+        "prior_ew_brier": 0.2139385200579091,
+        "brier_change": 0.022088520057909095,
+        "brier_change_ci95": [
+          0.000526826163647721,
+          0.04560819608040907
+        ],
+        "prediction_flips": 2,
+        "flip_rate": 0.022727272727272728
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 95,
+        "direct_accuracy": 0.8421052631578947,
+        "prior_ew_accuracy": 0.8421052631578947,
+        "rescue": 1,
+        "harm": 1,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          -0.031578947368421054,
+          0.031578947368421054
+        ],
+        "direct_brier": 0.13080210526315794,
+        "prior_ew_brier": 0.1293616611205579,
+        "brier_change": -0.0014404441425999997,
+        "brier_change_ci95": [
+          -0.01936093092785263,
+          0.016677668551052634
+        ],
+        "prediction_flips": 2,
+        "flip_rate": 0.021052631578947368
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 162,
+        "direct_accuracy": 0.9691358024691358,
+        "prior_ew_accuracy": 0.9691358024691358,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.029733950617283927,
+        "prior_ew_brier": 0.029346864431740734,
+        "brier_change": -0.00038708618554320973,
+        "brier_change_ci95": [
+          -0.002121902225771604,
+          0.0019014551085987646
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 64,
+        "direct_accuracy": 0.609375,
+        "prior_ew_accuracy": 0.625,
+        "rescue": 12,
+        "harm": 11,
+        "rescue_minus_harm": 1,
+        "accuracy_change": 0.015625,
+        "accuracy_change_ci95": [
+          -0.140625,
+          0.15625
+        ],
+        "direct_brier": 0.23817500000000003,
+        "prior_ew_brier": 0.2552325061259531,
+        "brier_change": 0.017057506125953123,
+        "brier_change_ci95": [
+          -0.03708442116389066,
+          0.07224262714993751
+        ],
+        "prediction_flips": 23,
+        "flip_rate": 0.359375
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 48,
+        "direct_accuracy": 0.625,
+        "prior_ew_accuracy": 0.5833333333333334,
+        "rescue": 5,
+        "harm": 7,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.041666666666666664,
+        "accuracy_change_ci95": [
+          -0.1875,
+          0.10416666666666667
+        ],
+        "direct_brier": 0.23830624999999986,
+        "prior_ew_brier": 0.2699011047588125,
+        "brier_change": 0.031594854758812525,
+        "brier_change_ci95": [
+          -0.02170594764924999,
+          0.0892082528420625
+        ],
+        "prediction_flips": 12,
+        "flip_rate": 0.25
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 100,
+        "direct_accuracy": 0.74,
+        "prior_ew_accuracy": 0.7,
+        "rescue": 0,
+        "harm": 4,
+        "rescue_minus_harm": -4,
+        "accuracy_change": -0.04,
+        "accuracy_change_ci95": [
+          -0.08,
+          -0.01
+        ],
+        "direct_brier": 0.18886100000000003,
+        "prior_ew_brier": 0.22592040306170008,
+        "brier_change": 0.037059403061700004,
+        "brier_change_ci95": [
+          0.010756333336800006,
+          0.06375893138951
+        ],
+        "prediction_flips": 4,
+        "flip_rate": 0.04
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 111,
+        "direct_accuracy": 0.8378378378378378,
+        "prior_ew_accuracy": 0.8378378378378378,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.13253873873873884,
+        "prior_ew_brier": 0.14134827328460361,
+        "brier_change": 0.008809534545864858,
+        "brier_change_ci95": [
+          -0.0029085395950991053,
+          0.022350284882477468
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 177,
+        "direct_accuracy": 0.9661016949152542,
+        "prior_ew_accuracy": 0.9661016949152542,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03388757062146891,
+        "prior_ew_brier": 0.033258243173847464,
+        "brier_change": -0.0006293274476214669,
+        "brier_change_ci95": [
+          -0.0029552690039435004,
+          0.0022068065508361622
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 186,
+        "direct_accuracy": 0.5376344086021505,
+        "prior_ew_accuracy": 0.489247311827957,
+        "rescue": 29,
+        "harm": 38,
+        "rescue_minus_harm": -9,
+        "accuracy_change": -0.04838709677419355,
+        "accuracy_change_ci95": [
+          -0.13440860215053763,
+          0.03763440860215054
+        ],
+        "direct_brier": 0.2480360215053767,
+        "prior_ew_brier": 0.29093125786479906,
+        "brier_change": 0.04289523635942267,
+        "brier_change_ci95": [
+          0.012730084361901811,
+          0.07405629409329352
+        ],
+        "prediction_flips": 67,
+        "flip_rate": 0.3602150537634409
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 171,
+        "direct_accuracy": 0.6608187134502924,
+        "prior_ew_accuracy": 0.5964912280701754,
+        "rescue": 13,
+        "harm": 24,
+        "rescue_minus_harm": -11,
+        "accuracy_change": -0.06432748538011696,
+        "accuracy_change_ci95": [
+          -0.13450292397660818,
+          0.005847953216374269
+        ],
+        "direct_brier": 0.2245736842105261,
+        "prior_ew_brier": 0.255293401464468,
+        "brier_change": 0.030719717253941792,
+        "brier_change_ci95": [
+          -0.00039543814935228327,
+          0.06190386907853418
+        ],
+        "prediction_flips": 37,
+        "flip_rate": 0.21637426900584794
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 256,
+        "direct_accuracy": 0.7578125,
+        "prior_ew_accuracy": 0.7421875,
+        "rescue": 2,
+        "harm": 6,
+        "rescue_minus_harm": -4,
+        "accuracy_change": -0.015625,
+        "accuracy_change_ci95": [
+          -0.0390625,
+          0.00390625
+        ],
+        "direct_brier": 0.1813332031250001,
+        "prior_ew_brier": 0.20597637045475364,
+        "brier_change": 0.024643167329753662,
+        "brier_change_ci95": [
+          0.009006344482441028,
+          0.04134588823484865
+        ],
+        "prediction_flips": 8,
+        "flip_rate": 0.03125
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 326,
+        "direct_accuracy": 0.8773006134969326,
+        "prior_ew_accuracy": 0.8619631901840491,
+        "rescue": 0,
+        "harm": 5,
+        "rescue_minus_harm": -5,
+        "accuracy_change": -0.015337423312883436,
+        "accuracy_change_ci95": [
+          -0.03067484662576687,
+          -0.003067484662576687
+        ],
+        "direct_brier": 0.10672147239263798,
+        "prior_ew_brier": 0.11262257393781723,
+        "brier_change": 0.005901101545179177,
+        "brier_change_ci95": [
+          -0.00263899123596675,
+          0.014520481150967034
+        ],
+        "prediction_flips": 5,
+        "flip_rate": 0.015337423312883436
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 561,
+        "direct_accuracy": 0.964349376114082,
+        "prior_ew_accuracy": 0.9625668449197861,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.0017825311942959,
+        "accuracy_change_ci95": [
+          -0.0053475935828877,
+          0.0
+        ],
+        "direct_brier": 0.03475044563279853,
+        "prior_ew_brier": 0.03598970782270544,
+        "brier_change": 0.0012392621899068874,
+        "brier_change_ci95": [
+          -0.0006328109720189714,
+          0.003313483991787899
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.0017825311942959
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 38,
+        "direct_accuracy": 0.5526315789473685,
+        "prior_ew_accuracy": 0.5,
+        "rescue": 5,
+        "harm": 7,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.05263157894736842,
+        "accuracy_change_ci95": [
+          -0.23684210526315788,
+          0.10526315789473684
+        ],
+        "direct_brier": 0.25397894736842114,
+        "prior_ew_brier": 0.30068130922025704,
+        "brier_change": 0.04670236185183588,
+        "brier_change_ci95": [
+          -0.015660408372111988,
+          0.11421452775489274
+        ],
+        "prediction_flips": 12,
+        "flip_rate": 0.3157894736842105
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 52,
+        "direct_accuracy": 0.6346153846153846,
+        "prior_ew_accuracy": 0.5961538461538461,
+        "rescue": 4,
+        "harm": 6,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.038461538461538464,
+        "accuracy_change_ci95": [
+          -0.15384615384615385,
+          0.07692307692307693
+        ],
+        "direct_brier": 0.22903461538461536,
+        "prior_ew_brier": 0.2645770136279046,
+        "brier_change": 0.035542398243289246,
+        "brier_change_ci95": [
+          -0.01650741410021423,
+          0.08966600695179375
+        ],
+        "prediction_flips": 10,
+        "flip_rate": 0.19230769230769232
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 68,
+        "direct_accuracy": 0.8088235294117647,
+        "prior_ew_accuracy": 0.8235294117647058,
+        "rescue": 2,
+        "harm": 1,
+        "rescue_minus_harm": 1,
+        "accuracy_change": 0.014705882352941176,
+        "accuracy_change_ci95": [
+          -0.029411764705882353,
+          0.058823529411764705
+        ],
+        "direct_brier": 0.1566529411764706,
+        "prior_ew_brier": 0.15143820956202594,
+        "brier_change": -0.005214731614444648,
+        "brier_change_ci95": [
+          -0.03331545072520322,
+          0.022975041946804962
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.04411764705882353
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 120,
+        "direct_accuracy": 0.9416666666666667,
+        "prior_ew_accuracy": 0.9166666666666666,
+        "rescue": 0,
+        "harm": 3,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.025,
+        "accuracy_change_ci95": [
+          -0.058333333333333334,
+          0.0
+        ],
+        "direct_brier": 0.06377666666666669,
+        "prior_ew_brier": 0.06440677064650017,
+        "brier_change": 0.0006301039798334804,
+        "brier_change_ci95": [
+          -0.015549705156332484,
+          0.018259616539378222
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.025
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 222,
+        "direct_accuracy": 0.9594594594594594,
+        "prior_ew_accuracy": 0.954954954954955,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.0045045045045045045,
+        "accuracy_change_ci95": [
+          -0.013513513513513514,
+          0.0
+        ],
+        "direct_brier": 0.039099099099099074,
+        "prior_ew_brier": 0.042677994153246496,
+        "brier_change": 0.003578895054147392,
+        "brier_change_ci95": [
+          7.754523444803918e-05,
+          0.008071529576017226
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.0045045045045045045
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 84,
+        "direct_accuracy": 0.47619047619047616,
+        "prior_ew_accuracy": 0.42857142857142855,
+        "rescue": 14,
+        "harm": 18,
+        "rescue_minus_harm": -4,
+        "accuracy_change": -0.047619047619047616,
+        "accuracy_change_ci95": [
+          -0.17857142857142858,
+          0.08333333333333333
+        ],
+        "direct_brier": 0.25286071428571416,
+        "prior_ew_brier": 0.30438577571368663,
+        "brier_change": 0.05152506142797247,
+        "brier_change_ci95": [
+          0.010313141094557984,
+          0.09890793613280711
+        ],
+        "prediction_flips": 32,
+        "flip_rate": 0.38095238095238093
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 71,
+        "direct_accuracy": 0.704225352112676,
+        "prior_ew_accuracy": 0.6197183098591549,
+        "rescue": 5,
+        "harm": 11,
+        "rescue_minus_harm": -6,
+        "accuracy_change": -0.08450704225352113,
+        "accuracy_change_ci95": [
+          -0.19718309859154928,
+          0.028169014084507043
+        ],
+        "direct_brier": 0.2120225352112676,
+        "prior_ew_brier": 0.2364503281452134,
+        "brier_change": 0.0244277929339459,
+        "brier_change_ci95": [
+          -0.022586082827986957,
+          0.07284680523259329
+        ],
+        "prediction_flips": 16,
+        "flip_rate": 0.22535211267605634
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 88,
+        "direct_accuracy": 0.7386363636363636,
+        "prior_ew_accuracy": 0.7159090909090909,
+        "rescue": 0,
+        "harm": 2,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.022727272727272728,
+        "accuracy_change_ci95": [
+          -0.056818181818181816,
+          0.0
+        ],
+        "direct_brier": 0.19185,
+        "prior_ew_brier": 0.21904598827359856,
+        "brier_change": 0.027195988273598603,
+        "brier_change_ci95": [
+          0.004466193416761646,
+          0.05242759192050111
+        ],
+        "prediction_flips": 2,
+        "flip_rate": 0.022727272727272728
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 95,
+        "direct_accuracy": 0.8421052631578947,
+        "prior_ew_accuracy": 0.8210526315789474,
+        "rescue": 0,
+        "harm": 2,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.021052631578947368,
+        "accuracy_change_ci95": [
+          -0.05263157894736842,
+          0.0
+        ],
+        "direct_brier": 0.13080210526315794,
+        "prior_ew_brier": 0.13609994144502222,
+        "brier_change": 0.005297836181864353,
+        "brier_change_ci95": [
+          -0.00998997786269689,
+          0.02181682177333888
+        ],
+        "prediction_flips": 2,
+        "flip_rate": 0.021052631578947368
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 162,
+        "direct_accuracy": 0.9691358024691358,
+        "prior_ew_accuracy": 0.9691358024691358,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.029733950617283927,
+        "prior_ew_brier": 0.029590185049766498,
+        "brier_change": -0.00014376556751746368,
+        "brier_change_ci95": [
+          -0.0018780314271052442,
+          0.0021824772302904915
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 64,
+        "direct_accuracy": 0.609375,
+        "prior_ew_accuracy": 0.5625,
+        "rescue": 10,
+        "harm": 13,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.046875,
+        "accuracy_change_ci95": [
+          -0.1875,
+          0.09375
+        ],
+        "direct_brier": 0.23817500000000003,
+        "prior_ew_brier": 0.26748311019583076,
+        "brier_change": 0.02930811019583065,
+        "brier_change_ci95": [
+          -0.025331299300416395,
+          0.08699244708806114
+        ],
+        "prediction_flips": 23,
+        "flip_rate": 0.359375
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 48,
+        "direct_accuracy": 0.625,
+        "prior_ew_accuracy": 0.5625,
+        "rescue": 4,
+        "harm": 7,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.0625,
+        "accuracy_change_ci95": [
+          -0.1875,
+          0.0625
+        ],
+        "direct_brier": 0.23830624999999986,
+        "prior_ew_brier": 0.2731082009054759,
+        "brier_change": 0.03480195090547592,
+        "brier_change_ci95": [
+          -0.01877659092891733,
+          0.09504623282014153
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.22916666666666666
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 100,
+        "direct_accuracy": 0.74,
+        "prior_ew_accuracy": 0.71,
+        "rescue": 0,
+        "harm": 3,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.03,
+        "accuracy_change_ci95": [
+          -0.07,
+          0.0
+        ],
+        "direct_brier": 0.18886100000000003,
+        "prior_ew_brier": 0.23156105618122488,
+        "brier_change": 0.042700056181224966,
+        "brier_change_ci95": [
+          0.013055957468259627,
+          0.07082644036556031
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.03
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 111,
+        "direct_accuracy": 0.8378378378378378,
+        "prior_ew_accuracy": 0.8378378378378378,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.13253873873873884,
+        "prior_ew_brier": 0.14465452422406558,
+        "brier_change": 0.012115785485326845,
+        "brier_change_ci95": [
+          0.00032189528912031514,
+          0.025163275877922695
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 177,
+        "direct_accuracy": 0.9661016949152542,
+        "prior_ew_accuracy": 0.9661016949152542,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03388757062146891,
+        "prior_ew_brier": 0.03345820004776763,
+        "brier_change": -0.0004293705737012911,
+        "brier_change_ci95": [
+          -0.002713078908887288,
+          0.002381161070233481
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      }
+    ],
+    "pro": [
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 186,
+        "direct_accuracy": 0.5376344086021505,
+        "prior_ew_accuracy": 0.553763440860215,
+        "rescue": 31,
+        "harm": 28,
+        "rescue_minus_harm": 3,
+        "accuracy_change": 0.016129032258064516,
+        "accuracy_change_ci95": [
+          -0.06451612903225806,
+          0.0967741935483871
+        ],
+        "direct_brier": 0.2480360215053767,
+        "prior_ew_brier": 0.2575567863333816,
+        "brier_change": 0.00952076482800536,
+        "brier_change_ci95": [
+          -0.012860257938774199,
+          0.03228357906993548
+        ],
+        "prediction_flips": 59,
+        "flip_rate": 0.3172043010752688
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 171,
+        "direct_accuracy": 0.6608187134502924,
+        "prior_ew_accuracy": 0.672514619883041,
+        "rescue": 14,
+        "harm": 12,
+        "rescue_minus_harm": 2,
+        "accuracy_change": 0.011695906432748537,
+        "accuracy_change_ci95": [
+          -0.04678362573099415,
+          0.07017543859649122
+        ],
+        "direct_brier": 0.2245736842105261,
+        "prior_ew_brier": 0.20921757372039754,
+        "brier_change": -0.015356110490128649,
+        "brier_change_ci95": [
+          -0.03649946006034501,
+          0.006306546385111118
+        ],
+        "prediction_flips": 26,
+        "flip_rate": 0.15204678362573099
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 256,
+        "direct_accuracy": 0.7578125,
+        "prior_ew_accuracy": 0.7578125,
+        "rescue": 4,
+        "harm": 4,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          -0.0234375,
+          0.0234375
+        ],
+        "direct_brier": 0.1813332031250001,
+        "prior_ew_brier": 0.18661881304441405,
+        "brier_change": 0.005285609919414061,
+        "brier_change_ci95": [
+          -0.009897736652472655,
+          0.02062820913056641
+        ],
+        "prediction_flips": 8,
+        "flip_rate": 0.03125
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 326,
+        "direct_accuracy": 0.8773006134969326,
+        "prior_ew_accuracy": 0.8711656441717791,
+        "rescue": 0,
+        "harm": 2,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.006134969325153374,
+        "accuracy_change_ci95": [
+          -0.015337423312883436,
+          0.0
+        ],
+        "direct_brier": 0.10672147239263798,
+        "prior_ew_brier": 0.11476144365857052,
+        "brier_change": 0.008039971265932517,
+        "brier_change_ci95": [
+          0.0009328854231257594,
+          0.01585617011382821
+        ],
+        "prediction_flips": 2,
+        "flip_rate": 0.006134969325153374
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 561,
+        "direct_accuracy": 0.964349376114082,
+        "prior_ew_accuracy": 0.964349376114082,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03475044563279853,
+        "prior_ew_brier": 0.03545056713994297,
+        "brier_change": 0.0007001215071443856,
+        "brier_change_ci95": [
+          -0.0007206528085240626,
+          0.002280449672392156
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 38,
+        "direct_accuracy": 0.5526315789473685,
+        "prior_ew_accuracy": 0.5526315789473685,
+        "rescue": 5,
+        "harm": 5,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          -0.15789473684210525,
+          0.15789473684210525
+        ],
+        "direct_brier": 0.25397894736842114,
+        "prior_ew_brier": 0.25412370805060536,
+        "brier_change": 0.0001447606821841896,
+        "brier_change_ci95": [
+          -0.033098175425947375,
+          0.03814596638076312
+        ],
+        "prediction_flips": 10,
+        "flip_rate": 0.2631578947368421
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 52,
+        "direct_accuracy": 0.6346153846153846,
+        "prior_ew_accuracy": 0.5961538461538461,
+        "rescue": 3,
+        "harm": 5,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.038461538461538464,
+        "accuracy_change_ci95": [
+          -0.15384615384615385,
+          0.07692307692307693
+        ],
+        "direct_brier": 0.22903461538461536,
+        "prior_ew_brier": 0.24048690259892316,
+        "brier_change": 0.011452287214307705,
+        "brier_change_ci95": [
+          -0.030013918143615384,
+          0.058486709156923083
+        ],
+        "prediction_flips": 8,
+        "flip_rate": 0.15384615384615385
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 68,
+        "direct_accuracy": 0.8088235294117647,
+        "prior_ew_accuracy": 0.8529411764705882,
+        "rescue": 4,
+        "harm": 1,
+        "rescue_minus_harm": 3,
+        "accuracy_change": 0.04411764705882353,
+        "accuracy_change_ci95": [
+          -0.014705882352941176,
+          0.11764705882352941
+        ],
+        "direct_brier": 0.1566529411764706,
+        "prior_ew_brier": 0.13995000748251468,
+        "brier_change": -0.016702933693955885,
+        "brier_change_ci95": [
+          -0.05257768522377942,
+          0.017461545855338233
+        ],
+        "prediction_flips": 5,
+        "flip_rate": 0.07352941176470588
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 120,
+        "direct_accuracy": 0.9416666666666667,
+        "prior_ew_accuracy": 0.9333333333333333,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.008333333333333333,
+        "accuracy_change_ci95": [
+          -0.025,
+          0.0
+        ],
+        "direct_brier": 0.06377666666666669,
+        "prior_ew_brier": 0.062009237579525006,
+        "brier_change": -0.0017674290871416694,
+        "brier_change_ci95": [
+          -0.012909210466508333,
+          0.009069596194991664
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.008333333333333333
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 222,
+        "direct_accuracy": 0.9594594594594594,
+        "prior_ew_accuracy": 0.9594594594594594,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.039099099099099074,
+        "prior_ew_brier": 0.040796444021157674,
+        "brier_change": 0.0016973449220585581,
+        "brier_change_ci95": [
+          -0.0003754985826351352,
+          0.004126619189567571
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 84,
+        "direct_accuracy": 0.47619047619047616,
+        "prior_ew_accuracy": 0.47619047619047616,
+        "rescue": 14,
+        "harm": 14,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          -0.11904761904761904,
+          0.11904761904761904
+        ],
+        "direct_brier": 0.25286071428571416,
+        "prior_ew_brier": 0.3000912344488096,
+        "brier_change": 0.047230520163095244,
+        "brier_change_ci95": [
+          0.008765576366654749,
+          0.08644332722294047
+        ],
+        "prediction_flips": 28,
+        "flip_rate": 0.3333333333333333
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 71,
+        "direct_accuracy": 0.704225352112676,
+        "prior_ew_accuracy": 0.676056338028169,
+        "rescue": 3,
+        "harm": 5,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.028169014084507043,
+        "accuracy_change_ci95": [
+          -0.11267605633802817,
+          0.056338028169014086
+        ],
+        "direct_brier": 0.2120225352112676,
+        "prior_ew_brier": 0.19545624013360569,
+        "brier_change": -0.01656629507766199,
+        "brier_change_ci95": [
+          -0.0412535682069859,
+          0.008536057043830975
+        ],
+        "prediction_flips": 8,
+        "flip_rate": 0.11267605633802817
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 88,
+        "direct_accuracy": 0.7386363636363636,
+        "prior_ew_accuracy": 0.7386363636363636,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.19185,
+        "prior_ew_brier": 0.197892799562125,
+        "brier_change": 0.006042799562124998,
+        "brier_change_ci95": [
+          -0.014603274794045457,
+          0.027042238717624987
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 95,
+        "direct_accuracy": 0.8421052631578947,
+        "prior_ew_accuracy": 0.8315789473684211,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.010526315789473684,
+        "accuracy_change_ci95": [
+          -0.031578947368421054,
+          0.0
+        ],
+        "direct_brier": 0.13080210526315794,
+        "prior_ew_brier": 0.14939968368747367,
+        "brier_change": 0.01859757842431579,
+        "brier_change_ci95": [
+          0.004081134142378933,
+          0.03726942492462107
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.010526315789473684
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 162,
+        "direct_accuracy": 0.9691358024691358,
+        "prior_ew_accuracy": 0.9691358024691358,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.029733950617283927,
+        "prior_ew_brier": 0.030061489016030854,
+        "brier_change": 0.00032753839874691574,
+        "brier_change_ci95": [
+          -0.001821715583993826,
+          0.0032480128799074128
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 64,
+        "direct_accuracy": 0.609375,
+        "prior_ew_accuracy": 0.65625,
+        "rescue": 12,
+        "harm": 9,
+        "rescue_minus_harm": 3,
+        "accuracy_change": 0.046875,
+        "accuracy_change_ci95": [
+          -0.09375,
+          0.1875
+        ],
+        "direct_brier": 0.23817500000000003,
+        "prior_ew_brier": 0.20376871341228123,
+        "brier_change": -0.03440628658771876,
+        "brier_change_ci95": [
+          -0.06807686167223437,
+          0.0008635465519531193
+        ],
+        "prediction_flips": 21,
+        "flip_rate": 0.328125
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 48,
+        "direct_accuracy": 0.625,
+        "prior_ew_accuracy": 0.75,
+        "rescue": 8,
+        "harm": 2,
+        "rescue_minus_harm": 6,
+        "accuracy_change": 0.125,
+        "accuracy_change_ci95": [
+          0.0,
+          0.25
+        ],
+        "direct_brier": 0.23830624999999986,
+        "prior_ew_brier": 0.19569777336579167,
+        "brier_change": -0.042608476634208324,
+        "brier_change_ci95": [
+          -0.08680819222914583,
+          -7.682704133332718e-05
+        ],
+        "prediction_flips": 10,
+        "flip_rate": 0.20833333333333334
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 100,
+        "direct_accuracy": 0.74,
+        "prior_ew_accuracy": 0.71,
+        "rescue": 0,
+        "harm": 3,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.03,
+        "accuracy_change_ci95": [
+          -0.07,
+          0.0
+        ],
+        "direct_brier": 0.18886100000000003,
+        "prior_ew_brier": 0.20843249269091998,
+        "brier_change": 0.019571492690920005,
+        "brier_change_ci95": [
+          -0.0047847645452099965,
+          0.04601954250337001
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.03
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 111,
+        "direct_accuracy": 0.8378378378378378,
+        "prior_ew_accuracy": 0.8378378378378378,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.13253873873873884,
+        "prior_ew_brier": 0.1421455150706396,
+        "brier_change": 0.009606776331900895,
+        "brier_change_ci95": [
+          -0.001600739425441443,
+          0.022144389521513503
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 1,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 177,
+        "direct_accuracy": 0.9661016949152542,
+        "prior_ew_accuracy": 0.9661016949152542,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03388757062146891,
+        "prior_ew_brier": 0.033677945605728815,
+        "brier_change": -0.0002096250157401125,
+        "brier_change_ci95": [
+          -0.0026371306873276853,
+          0.0027465347303898316
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 186,
+        "direct_accuracy": 0.5376344086021505,
+        "prior_ew_accuracy": 0.521505376344086,
+        "rescue": 28,
+        "harm": 31,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.016129032258064516,
+        "accuracy_change_ci95": [
+          -0.0967741935483871,
+          0.06451612903225806
+        ],
+        "direct_brier": 0.2480360215053767,
+        "prior_ew_brier": 0.269881611819041,
+        "brier_change": 0.02184559031366465,
+        "brier_change_ci95": [
+          -0.004531482205437604,
+          0.04680393946198778
+        ],
+        "prediction_flips": 59,
+        "flip_rate": 0.3172043010752688
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 171,
+        "direct_accuracy": 0.6608187134502924,
+        "prior_ew_accuracy": 0.6432748538011696,
+        "rescue": 15,
+        "harm": 18,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.017543859649122806,
+        "accuracy_change_ci95": [
+          -0.08187134502923976,
+          0.05263157894736842
+        ],
+        "direct_brier": 0.2245736842105261,
+        "prior_ew_brier": 0.23153394447710782,
+        "brier_change": 0.006960260266581472,
+        "brier_change_ci95": [
+          -0.018043095115518607,
+          0.03356432416899994
+        ],
+        "prediction_flips": 33,
+        "flip_rate": 0.19298245614035087
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 256,
+        "direct_accuracy": 0.7578125,
+        "prior_ew_accuracy": 0.75390625,
+        "rescue": 5,
+        "harm": 6,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.00390625,
+        "accuracy_change_ci95": [
+          -0.03125,
+          0.01953125
+        ],
+        "direct_brier": 0.1813332031250001,
+        "prior_ew_brier": 0.18833082440100687,
+        "brier_change": 0.0069976212760069585,
+        "brier_change_ci95": [
+          -0.008371951057691852,
+          0.023283356650364937
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.04296875
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 326,
+        "direct_accuracy": 0.8773006134969326,
+        "prior_ew_accuracy": 0.8680981595092024,
+        "rescue": 1,
+        "harm": 4,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.009202453987730062,
+        "accuracy_change_ci95": [
+          -0.024539877300613498,
+          0.003067484662576687
+        ],
+        "direct_brier": 0.10672147239263798,
+        "prior_ew_brier": 0.1169313019257072,
+        "brier_change": 0.010209829533069217,
+        "brier_change_ci95": [
+          0.0011580744150551925,
+          0.01985849459304288
+        ],
+        "prediction_flips": 5,
+        "flip_rate": 0.015337423312883436
+      },
+      {
+        "dataset": "三数据集合计",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 561,
+        "direct_accuracy": 0.964349376114082,
+        "prior_ew_accuracy": 0.964349376114082,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03475044563279853,
+        "prior_ew_brier": 0.0356664517561386,
+        "brier_change": 0.0009160061233400472,
+        "brier_change_ci95": [
+          -0.0004732688572321098,
+          0.0026278854099318102
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 38,
+        "direct_accuracy": 0.5526315789473685,
+        "prior_ew_accuracy": 0.5263157894736842,
+        "rescue": 5,
+        "harm": 6,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.02631578947368421,
+        "accuracy_change_ci95": [
+          -0.21052631578947367,
+          0.15789473684210525
+        ],
+        "direct_brier": 0.25397894736842114,
+        "prior_ew_brier": 0.252274607744213,
+        "brier_change": -0.001704339624208013,
+        "brier_change_ci95": [
+          -0.04340637260642377,
+          0.047081040900404145
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.2894736842105263
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 52,
+        "direct_accuracy": 0.6346153846153846,
+        "prior_ew_accuracy": 0.6153846153846154,
+        "rescue": 5,
+        "harm": 6,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.019230769230769232,
+        "accuracy_change_ci95": [
+          -0.15384615384615385,
+          0.11538461538461539
+        ],
+        "direct_brier": 0.22903461538461536,
+        "prior_ew_brier": 0.25551847170864017,
+        "brier_change": 0.02648385632402481,
+        "brier_change_ci95": [
+          -0.024331875811402334,
+          0.08057316379905892
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.21153846153846154
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 68,
+        "direct_accuracy": 0.8088235294117647,
+        "prior_ew_accuracy": 0.8382352941176471,
+        "rescue": 4,
+        "harm": 2,
+        "rescue_minus_harm": 2,
+        "accuracy_change": 0.029411764705882353,
+        "accuracy_change_ci95": [
+          -0.04411764705882353,
+          0.10294117647058823
+        ],
+        "direct_brier": 0.1566529411764706,
+        "prior_ew_brier": 0.14775969708013373,
+        "brier_change": -0.008893244096336845,
+        "brier_change_ci95": [
+          -0.04334163409477108,
+          0.026042093906427356
+        ],
+        "prediction_flips": 6,
+        "flip_rate": 0.08823529411764706
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 120,
+        "direct_accuracy": 0.9416666666666667,
+        "prior_ew_accuracy": 0.9166666666666666,
+        "rescue": 0,
+        "harm": 3,
+        "rescue_minus_harm": -3,
+        "accuracy_change": -0.025,
+        "accuracy_change_ci95": [
+          -0.058333333333333334,
+          0.0
+        ],
+        "direct_brier": 0.06377666666666669,
+        "prior_ew_brier": 0.07274399286470995,
+        "brier_change": 0.008967326198043257,
+        "brier_change_ci95": [
+          -0.0043174851913565645,
+          0.023905940068065738
+        ],
+        "prediction_flips": 3,
+        "flip_rate": 0.025
+      },
+      {
+        "dataset": "TruthfulClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 222,
+        "direct_accuracy": 0.9594594594594594,
+        "prior_ew_accuracy": 0.9594594594594594,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.039099099099099074,
+        "prior_ew_brier": 0.04193162620678411,
+        "brier_change": 0.0028325271076850363,
+        "brier_change_ci95": [
+          0.0001689549522084704,
+          0.005923315635805031
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 84,
+        "direct_accuracy": 0.47619047619047616,
+        "prior_ew_accuracy": 0.4642857142857143,
+        "rescue": 14,
+        "harm": 15,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.011904761904761904,
+        "accuracy_change_ci95": [
+          -0.13095238095238096,
+          0.10714285714285714
+        ],
+        "direct_brier": 0.25286071428571416,
+        "prior_ew_brier": 0.3134799397310929,
+        "brier_change": 0.060619225445378705,
+        "brier_change_ci95": [
+          0.01913289254694743,
+          0.10350237801690017
+        ],
+        "prediction_flips": 29,
+        "flip_rate": 0.34523809523809523
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 71,
+        "direct_accuracy": 0.704225352112676,
+        "prior_ew_accuracy": 0.6338028169014085,
+        "rescue": 3,
+        "harm": 8,
+        "rescue_minus_harm": -5,
+        "accuracy_change": -0.07042253521126761,
+        "accuracy_change_ci95": [
+          -0.15492957746478872,
+          0.014084507042253521
+        ],
+        "direct_brier": 0.2120225352112676,
+        "prior_ew_brier": 0.2217090233438376,
+        "brier_change": 0.009686488132569938,
+        "brier_change_ci95": [
+          -0.02299969803469413,
+          0.044056807089998644
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.15492957746478872
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 88,
+        "direct_accuracy": 0.7386363636363636,
+        "prior_ew_accuracy": 0.7272727272727273,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.011363636363636364,
+        "accuracy_change_ci95": [
+          -0.03409090909090909,
+          0.0
+        ],
+        "direct_brier": 0.19185,
+        "prior_ew_brier": 0.19976975304438582,
+        "brier_change": 0.00791975304438576,
+        "brier_change_ci95": [
+          -0.014444794113731037,
+          0.031796578755814604
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.011363636363636364
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 95,
+        "direct_accuracy": 0.8421052631578947,
+        "prior_ew_accuracy": 0.8315789473684211,
+        "rescue": 0,
+        "harm": 1,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.010526315789473684,
+        "accuracy_change_ci95": [
+          -0.031578947368421054,
+          0.0
+        ],
+        "direct_brier": 0.13080210526315794,
+        "prior_ew_brier": 0.14288788886279882,
+        "brier_change": 0.012085783599640859,
+        "brier_change_ci95": [
+          -0.005977959951055103,
+          0.03139803916375679
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.010526315789473684
+      },
+      {
+        "dataset": "StrategyClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 162,
+        "direct_accuracy": 0.9691358024691358,
+        "prior_ew_accuracy": 0.9691358024691358,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.029733950617283927,
+        "prior_ew_brier": 0.02932878782730501,
+        "brier_change": -0.0004051627899789416,
+        "brier_change_ci95": [
+          -0.0018920056406508152,
+          0.0016227949480968871
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.5,0.6)",
+        "bin_index": 0,
+        "n": 64,
+        "direct_accuracy": 0.609375,
+        "prior_ew_accuracy": 0.59375,
+        "rescue": 9,
+        "harm": 10,
+        "rescue_minus_harm": -1,
+        "accuracy_change": -0.015625,
+        "accuracy_change_ci95": [
+          -0.15625,
+          0.125
+        ],
+        "direct_brier": 0.23817500000000003,
+        "prior_ew_brier": 0.22311296510390186,
+        "brier_change": -0.015062034896098106,
+        "brier_change_ci95": [
+          -0.05372547003088493,
+          0.026021431507610056
+        ],
+        "prediction_flips": 19,
+        "flip_rate": 0.296875
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.6,0.7)",
+        "bin_index": 1,
+        "n": 48,
+        "direct_accuracy": 0.625,
+        "prior_ew_accuracy": 0.6875,
+        "rescue": 7,
+        "harm": 4,
+        "rescue_minus_harm": 3,
+        "accuracy_change": 0.0625,
+        "accuracy_change_ci95": [
+          -0.0625,
+          0.20833333333333334
+        ],
+        "direct_brier": 0.23830624999999986,
+        "prior_ew_brier": 0.22008340248590985,
+        "brier_change": -0.01822284751409007,
+        "brier_change_ci95": [
+          -0.06888586137331475,
+          0.031922857103115036
+        ],
+        "prediction_flips": 11,
+        "flip_rate": 0.22916666666666666
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.7,0.8)",
+        "bin_index": 2,
+        "n": 100,
+        "direct_accuracy": 0.74,
+        "prior_ew_accuracy": 0.72,
+        "rescue": 1,
+        "harm": 3,
+        "rescue_minus_harm": -2,
+        "accuracy_change": -0.02,
+        "accuracy_change_ci95": [
+          -0.06,
+          0.02
+        ],
+        "direct_brier": 0.18886100000000003,
+        "prior_ew_brier": 0.2058529337730273,
+        "brier_change": 0.01699193377302738,
+        "brier_change_ci95": [
+          -0.01068447060628615,
+          0.04459662143811385
+        ],
+        "prediction_flips": 4,
+        "flip_rate": 0.04
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.8,0.9)",
+        "bin_index": 3,
+        "n": 111,
+        "direct_accuracy": 0.8378378378378378,
+        "prior_ew_accuracy": 0.8468468468468469,
+        "rescue": 1,
+        "harm": 0,
+        "rescue_minus_harm": 1,
+        "accuracy_change": 0.009009009009009009,
+        "accuracy_change_ci95": [
+          0.0,
+          0.02702702702702703
+        ],
+        "direct_brier": 0.13253873873873884,
+        "prior_ew_brier": 0.1424862688472928,
+        "brier_change": 0.009947530108554006,
+        "brier_change_ci95": [
+          -0.006692782163519206,
+          0.02565310745478487
+        ],
+        "prediction_flips": 1,
+        "flip_rate": 0.009009009009009009
+      },
+      {
+        "dataset": "MedClaim",
+        "depth": 2,
+        "confidence_bin": "[0.9,1]",
+        "bin_index": 4,
+        "n": 177,
+        "direct_accuracy": 0.9661016949152542,
+        "prior_ew_accuracy": 0.9661016949152542,
+        "rescue": 0,
+        "harm": 0,
+        "rescue_minus_harm": 0,
+        "accuracy_change": 0.0,
+        "accuracy_change_ci95": [
+          0.0,
+          0.0
+        ],
+        "direct_brier": 0.03388757062146891,
+        "prior_ew_brier": 0.03360901010883772,
+        "brier_change": -0.00027856051263120297,
+        "brier_change_ci95": [
+          -0.002503788916613206,
+          0.0024851966615857097
+        ],
+        "prediction_flips": 0,
+        "flip_rate": 0.0
+      }
+    ]
+  },
+  "run_metrics": {
+    "flash": {
+      "unique_api_calls": 30048,
+      "unique_api_cost_usd": 0.308877575999999,
+      "unique_api_cost_cny": 11.096987999999529,
+      "jev_response_models": [
+        "jev-1.13.0"
+      ],
+      "settings": {
+        "generator_model": "openai/deepseek-v4.1-flash",
+        "llm_base_url": "https://www.dmxapi.cn/v1",
+        "llm_thinking": "disabled",
+        "llm_currency": "CNY",
+        "llm_input_price_per_million": 1.9,
+        "llm_output_price_per_million": 7.6,
+        "jev_model": "jev-latest",
+        "jev_input_price_per_million": 0.042,
+        "breadth": 1,
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "max_new_tokens": 128,
+        "max_samples": null,
+        "workers": 6,
+        "cache_only": true
+      },
+      "summary": [
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.85,
+          "brier": 0.11986799999999999,
+          "ece": 0.05872000000000014,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.19541119999999917,
+          "mean_latency_seconds": 1.0993276459999997
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.09709319999999987,
+          "ece": 0.07288000000000001,
+          "api_cost_usd": 0.00680874600000001,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8681975190000008
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.786,
+          "brier": 0.15935459999999987,
+          "ece": 0.1717799999999999,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.9647649000000004,
+          "mean_latency_seconds": 4.731686555999997
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.81,
+          "brier": 0.14702625000000002,
+          "ece": 0.16372999999999996,
+          "api_cost_usd": 0.01305460800000001,
+          "api_cost_cny": 0.5419065999999998,
+          "mean_latency_seconds": 4.3709099396
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.822,
+          "brier": 0.13592715718499987,
+          "ece": 0.14365109999999998,
+          "api_cost_usd": 0.030358146000000016,
+          "api_cost_cny": 0.5419065999999998,
+          "mean_latency_seconds": 6.000170499199997
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.854,
+          "brier": 0.11004540594,
+          "ece": 0.12080500000000008,
+          "api_cost_usd": 0.019863354000000003,
+          "api_cost_cny": 0.5419065999999998,
+          "mean_latency_seconds": 5.2391074585999995
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.854,
+          "brier": 0.10413843874507608,
+          "ece": 0.11042381599999995,
+          "api_cost_usd": 0.03716689199999997,
+          "api_cost_cny": 0.5419065999999998,
+          "mean_latency_seconds": 6.868368018199998
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.85,
+          "brier": 0.11986799999999999,
+          "ece": 0.05872000000000014,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.19541119999999917,
+          "mean_latency_seconds": 1.0993276459999997
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.09709319999999987,
+          "ece": 0.07288000000000001,
+          "api_cost_usd": 0.00680874600000001,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8681975190000008
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.786,
+          "brier": 0.17131929773500015,
+          "ece": 0.16242949999999998,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 3.0459355999999986,
+          "mean_latency_seconds": 11.545085091000008
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.794,
+          "brier": 0.15368397346500012,
+          "ece": 0.15152290000000002,
+          "api_cost_usd": 0.03963082199999996,
+          "api_cost_cny": 1.7234634000000013,
+          "mean_latency_seconds": 10.908283831400013
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.806,
+          "brier": 0.14170123066195978,
+          "ece": 0.13651745284999997,
+          "api_cost_usd": 0.08671147799999995,
+          "api_cost_cny": 1.7234634000000013,
+          "mean_latency_seconds": 14.935489146600004
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.852,
+          "brier": 0.11104681768873,
+          "ece": 0.12298509400000003,
+          "api_cost_usd": 0.04643956799999998,
+          "api_cost_cny": 1.7234634000000013,
+          "mean_latency_seconds": 11.77648135040001
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.856,
+          "brier": 0.10537003977767863,
+          "ece": 0.11317965802459998,
+          "api_cost_usd": 0.09352022400000001,
+          "api_cost_cny": 1.7234634000000013,
+          "mean_latency_seconds": 15.803686665600006
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.18690579999999984,
+          "ece": 0.15782000000000013,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.19221729999999895,
+          "mean_latency_seconds": 0.9335473648000003
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.784,
+          "brier": 0.14083960000000004,
+          "ece": 0.11823999999999998,
+          "api_cost_usd": 0.006738060000000006,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8529926915999989
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.714,
+          "brier": 0.19915999999999992,
+          "ece": 0.16656,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.9489417000000007,
+          "mean_latency_seconds": 3.965696939199998
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.736,
+          "brier": 0.18706649999999994,
+          "ece": 0.13395999999999997,
+          "api_cost_usd": 0.012713609999999997,
+          "api_cost_cny": 0.5382852000000002,
+          "mean_latency_seconds": 3.855624225600001
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.738,
+          "brier": 0.17422532897000007,
+          "ece": 0.12234279999999997,
+          "api_cost_usd": 0.02988791399999997,
+          "api_cost_cny": 0.5382852000000002,
+          "mean_latency_seconds": 5.570676993599994
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.774,
+          "brier": 0.16106220882000008,
+          "ece": 0.1560946,
+          "api_cost_usd": 0.01945167000000001,
+          "api_cost_cny": 0.5382852000000002,
+          "mean_latency_seconds": 4.708616917199998
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.77,
+          "brier": 0.15357609271548003,
+          "ece": 0.14978554400000005,
+          "api_cost_usd": 0.03662597400000001,
+          "api_cost_cny": 0.5382852000000002,
+          "mean_latency_seconds": 6.423669685199993
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.18690579999999984,
+          "ece": 0.15782000000000013,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.19221729999999895,
+          "mean_latency_seconds": 0.9335473648000003
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.784,
+          "brier": 0.14083960000000004,
+          "ece": 0.11823999999999998,
+          "api_cost_usd": 0.006738060000000006,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8529926915999989
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.706,
+          "brier": 0.19816795187500008,
+          "ece": 0.1474604999999999,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 2.9803456999999973,
+          "mean_latency_seconds": 10.4829814106
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.702,
+          "brier": 0.19291133378000003,
+          "ece": 0.1183398,
+          "api_cost_usd": 0.03836964599999999,
+          "api_cost_cny": 1.6999566000000021,
+          "mean_latency_seconds": 10.167923616000001
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.718,
+          "brier": 0.18134805041273905,
+          "ece": 0.10700739564999998,
+          "api_cost_usd": 0.084792036,
+          "api_cost_cny": 1.6999566000000021,
+          "mean_latency_seconds": 14.243034347000002
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.742,
+          "brier": 0.16520468775164004,
+          "ece": 0.149077444,
+          "api_cost_usd": 0.045107706000000025,
+          "api_cost_cny": 1.6999566000000021,
+          "mean_latency_seconds": 11.020916307599997
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.756,
+          "brier": 0.1587110596833516,
+          "ece": 0.1484722882442,
+          "api_cost_usd": 0.09153009600000009,
+          "api_cost_cny": 1.6999566000000021,
+          "mean_latency_seconds": 15.0960270386
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.1942505999999997,
+          "ece": 0.15382000000000057,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.36108169999999934,
+          "mean_latency_seconds": 0.9522509945999984
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.814,
+          "brier": 0.1325558,
+          "ece": 0.08650000000000001,
+          "api_cost_usd": 0.010743474000000013,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8793273502
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.696,
+          "brier": 0.20758935,
+          "ece": 0.21383000000000016,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 1.7885517000000013,
+          "mean_latency_seconds": 4.4113020221999975
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.78,
+          "brier": 0.16504635000000015,
+          "ece": 0.15371000000000004,
+          "api_cost_usd": 0.02070847800000001,
+          "api_cost_cny": 1.0614616000000014,
+          "mean_latency_seconds": 4.2614530774
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.776,
+          "brier": 0.15415746783500006,
+          "ece": 0.1349961,
+          "api_cost_usd": 0.04712349599999997,
+          "api_cost_cny": 1.0614616000000014,
+          "mean_latency_seconds": 5.916070645000013
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.806,
+          "brier": 0.1497368536399998,
+          "ece": 0.136724,
+          "api_cost_usd": 0.03145195200000002,
+          "api_cost_cny": 1.0614616000000014,
+          "mean_latency_seconds": 5.140780427600004
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.804,
+          "brier": 0.14691708220603186,
+          "ece": 0.1323919,
+          "api_cost_usd": 0.05786696999999999,
+          "api_cost_cny": 1.0614616000000014,
+          "mean_latency_seconds": 6.795397995200013
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.1942505999999997,
+          "ece": 0.15382000000000057,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 0.36108169999999934,
+          "mean_latency_seconds": 0.9522509945999984
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.814,
+          "brier": 0.1325558,
+          "ece": 0.08650000000000001,
+          "api_cost_usd": 0.010743474000000013,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8793273502
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.7,
+          "brier": 0.20641955182000024,
+          "ece": 0.18795320000000001,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": 4.321996500000002,
+          "mean_latency_seconds": 11.698577134799983
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.752,
+          "brier": 0.17338624192499982,
+          "ece": 0.14492690000000005,
+          "api_cost_usd": 0.05206240200000006,
+          "api_cost_cny": 2.5320843999999996,
+          "mean_latency_seconds": 11.290672058799963
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.16153548537141518,
+          "ece": 0.12690589599000002,
+          "api_cost_usd": 0.11308378199999994,
+          "api_cost_cny": 2.5320843999999996,
+          "mean_latency_seconds": 15.533518582199974
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.802,
+          "brier": 0.155778520113522,
+          "ece": 0.14334766200000001,
+          "api_cost_usd": 0.06280587599999995,
+          "api_cost_cny": 2.5320843999999996,
+          "mean_latency_seconds": 12.169999408999958
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.796,
+          "brier": 0.1507259438228893,
+          "ece": 0.13189030005719993,
+          "api_cost_usd": 0.12382725600000005,
+          "api_cost_cny": 2.5320843999999996,
+          "mean_latency_seconds": 16.412845932399996
+        }
+      ],
+      "unique_api_tokens": {
+        "llm_input": 3678140,
+        "llm_output": 540595,
+        "jev_input": 7354228,
+        "jev_output": 300480
+      }
+    },
+    "pro": {
+      "unique_api_calls": 34860,
+      "unique_api_cost_usd": 0.38020613400000175,
+      "unique_api_cost_cny": null,
+      "jev_response_models": [
+        "jev-1.13.0"
+      ],
+      "settings": {
+        "generator_model": "openai/deepseek-v4-pro-0813",
+        "llm_base_url": "https://www.dmxapi.cn/v1",
+        "llm_thinking": "disabled",
+        "llm_currency": "CNY",
+        "llm_input_price_per_million": null,
+        "llm_output_price_per_million": null,
+        "jev_model": "jev-latest",
+        "jev_input_price_per_million": 0.042,
+        "breadth": 1,
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "max_new_tokens": 128,
+        "max_samples": null,
+        "workers": 16,
+        "cache_only": false
+      },
+      "summary": [
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.846,
+          "brier": 0.12954759999999996,
+          "ece": 0.0761600000000001,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.137632567
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.09709319999999987,
+          "ece": 0.07288000000000001,
+          "api_cost_usd": 0.00680874600000001,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8681975190000008
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.826,
+          "brier": 0.1426931500000001,
+          "ece": 0.13399000000000014,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 10.694382196600007
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.788,
+          "brier": 0.1558456,
+          "ece": 0.14282,
+          "api_cost_usd": 0.016441613999999983,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 8.353605710999997
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.824,
+          "brier": 0.13924575589999988,
+          "ece": 0.150748,
+          "api_cost_usd": 0.03472236599999998,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 9.927791512999999
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.0983449768,
+          "ece": 0.09361240000000004,
+          "api_cost_usd": 0.023250359999999966,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 9.221803229999999
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.09635307886423602,
+          "ece": 0.10134074399999993,
+          "api_cost_usd": 0.04153111200000001,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 10.795989031999996
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.846,
+          "brier": 0.12954759999999996,
+          "ece": 0.0761600000000001,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.137632567
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.87,
+          "brier": 0.09709319999999987,
+          "ece": 0.07288000000000001,
+          "api_cost_usd": 0.00680874600000001,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8681975190000008
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.814,
+          "brier": 0.15368248415500002,
+          "ece": 0.09572470000000002,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 31.50287079059993
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.766,
+          "brier": 0.1668191479249999,
+          "ece": 0.11757009999999997,
+          "api_cost_usd": 0.053997678000000014,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 24.692190348199983
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.802,
+          "brier": 0.14914139866767775,
+          "ece": 0.11062496349999995,
+          "api_cost_usd": 0.11168165399999991,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 28.939221170399986
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.862,
+          "brier": 0.10471240531922194,
+          "ece": 0.09195920600000003,
+          "api_cost_usd": 0.06080642399999999,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 25.560387867199985
+        },
+        {
+          "dataset": "TruthfulClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.864,
+          "brier": 0.10191831037249945,
+          "ece": 0.1022841332510001,
+          "api_cost_usd": 0.1184904000000001,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 29.8074186894
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.742,
+          "brier": 0.21911059999999963,
+          "ece": 0.19526000000000038,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.0809360730000015
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.784,
+          "brier": 0.14083960000000004,
+          "ece": 0.11823999999999998,
+          "api_cost_usd": 0.006738060000000006,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8529926915999989
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.748,
+          "brier": 0.18737465000000006,
+          "ece": 0.14999000000000012,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 10.440650666599991
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.71,
+          "brier": 0.18831210000000007,
+          "ece": 0.11744,
+          "api_cost_usd": 0.016051727999999998,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 8.065986910399994
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.728,
+          "brier": 0.174760827195,
+          "ece": 0.13260110000000003,
+          "api_cost_usd": 0.034141043999999975,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 9.546909650599996
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.782,
+          "brier": 0.15096425143999992,
+          "ece": 0.14022760000000006,
+          "api_cost_usd": 0.02278978800000002,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 8.918979601999993
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.778,
+          "brier": 0.15112510855111994,
+          "ece": 0.149181032,
+          "api_cost_usd": 0.04087910399999998,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 10.399902342199994
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.742,
+          "brier": 0.21911059999999963,
+          "ece": 0.19526000000000038,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.0809360730000015
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.784,
+          "brier": 0.14083960000000004,
+          "ece": 0.11823999999999998,
+          "api_cost_usd": 0.006738060000000006,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8529926915999989
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.762,
+          "brier": 0.1889785595300001,
+          "ece": 0.11813540000000011,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 31.173063704199993
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.692,
+          "brier": 0.1999739090049999,
+          "ece": 0.0805157,
+          "api_cost_usd": 0.05156831399999998,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 24.288758359400006
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.716,
+          "brier": 0.18514993975528474,
+          "ece": 0.11486322390000002,
+          "api_cost_usd": 0.10822547399999992,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 28.3620027142
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.754,
+          "brier": 0.15685074255374584,
+          "ece": 0.12429817400000001,
+          "api_cost_usd": 0.058306374000000015,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 25.141751050999996
+        },
+        {
+          "dataset": "StrategyClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.768,
+          "brier": 0.15595801386543898,
+          "ece": 0.14110289337500004,
+          "api_cost_usd": 0.11496353400000008,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 29.214995405800007
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.768,
+          "brier": 0.1711885999999996,
+          "ece": 0.10202000000000042,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.1019606855999995
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.814,
+          "brier": 0.1325558,
+          "ece": 0.08650000000000001,
+          "api_cost_usd": 0.010743474000000013,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8793273502
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.788,
+          "brier": 0.18115209999999995,
+          "ece": 0.14840000000000023,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 11.209817378399993
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.804,
+          "brier": 0.15833094999999991,
+          "ece": 0.12230999999999999,
+          "api_cost_usd": 0.024687725999999993,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 8.868898790000005
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.804,
+          "brier": 0.1413721470949999,
+          "ece": 0.12816449999999996,
+          "api_cost_usd": 0.05228966400000001,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 10.365499823199992
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.832,
+          "brier": 0.13118222337999993,
+          "ece": 0.10903299999999996,
+          "api_cost_usd": 0.035431200000000024,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 9.748226140199996
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 1,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.826,
+          "brier": 0.13003417718818203,
+          "ece": 0.11439830199999997,
+          "api_cost_usd": 0.06303313799999996,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 11.244827173400003
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "direct_llm",
+          "n": 500,
+          "accuracy": 0.768,
+          "brier": 0.1711885999999996,
+          "ece": 0.10202000000000042,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 2.1019606855999995
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "direct_jev",
+          "n": 500,
+          "accuracy": 0.814,
+          "brier": 0.1325558,
+          "ece": 0.08650000000000001,
+          "api_cost_usd": 0.010743474000000013,
+          "api_cost_cny": 0.0,
+          "mean_latency_seconds": 0.8793273502
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "original_qbaf",
+          "n": 500,
+          "accuracy": 0.794,
+          "brier": 0.1762514394149999,
+          "ece": 0.13505130000000004,
+          "api_cost_usd": 0.0,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 32.39464185699999
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_qbaf",
+          "n": 500,
+          "accuracy": 0.752,
+          "brier": 0.16859796793499982,
+          "ece": 0.12319589999999996,
+          "api_cost_usd": 0.06566242199999994,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 25.397440157000005
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.782,
+          "brier": 0.1503872615878138,
+          "ece": 0.12724235174000006,
+          "api_cost_usd": 0.13600872599999997,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 29.56154712339998
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_prior_qbaf",
+          "n": 500,
+          "accuracy": 0.802,
+          "brier": 0.1379164210662921,
+          "ece": 0.11519169600000001,
+          "api_cost_usd": 0.07640589600000008,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 26.27676750719997
+        },
+        {
+          "dataset": "MedClaim",
+          "depth": 2,
+          "method": "jev_prior_ew_qbaf",
+          "n": 500,
+          "accuracy": 0.816,
+          "brier": 0.13438659418917967,
+          "ece": 0.12222590169640002,
+          "api_cost_usd": 0.14675220000000017,
+          "api_cost_cny": null,
+          "mean_latency_seconds": 30.440874473600033
+        }
+      ],
+      "unique_api_tokens": {
+        "llm_input": 4621298,
+        "llm_output": 799134,
+        "jev_input": 9052527,
+        "jev_output": 348600
+      }
+    }
+  }
+}

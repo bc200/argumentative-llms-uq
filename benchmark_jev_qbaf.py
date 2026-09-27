@@ -1,4 +1,4 @@
-"""Run five confidence methods on shared, cached argument graphs."""
+"""Run seven confidence methods on shared, cached argument graphs."""
 
 import argparse
 from collections import defaultdict
@@ -620,7 +620,7 @@ def direct_prompt_fallbacks(events):
 
 
 def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
-                   parse_fallbacks=None, prior_stats=None):
+                   parse_fallbacks=None, prior_stats=None, unique_tokens=None):
     lines = [
         "# Jev 根先验与 QBAF 的七方法对比实验报告",
         "",
@@ -748,6 +748,10 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
         "共完成 %d 个数据集—深度—样本组合。逐样本概率和调用记录存于输出目录。" % len(rows),
         "",
     ]
+    if unique_tokens is not None:
+        lines.insert(-2, "去重后 token 用量：生成模型输入 {llm_input}、输出 {llm_output}；"
+                     "Jev 输入 {jev_input}、输出 {jev_output}。".format(**unique_tokens))
+        lines.insert(-2, "")
     return "\n".join(lines)
 
 
@@ -863,6 +867,15 @@ def main():
         "usd": unique_cost("usd"),
         "cny": unique_cost("cny"),
     }
+    unique_tokens = {
+        "llm_input": 0, "llm_output": 0,
+        "jev_input": 0, "jev_output": 0,
+    }
+    for event in unique_events.values():
+        usage = event.get("usage") or {}
+        source = "jev" if "payload" in event["request"] else "llm"
+        unique_tokens[source + "_input"] += usage.get("input_tokens", 0)
+        unique_tokens[source + "_output"] += usage.get("output_tokens", 0)
     jev_versions = sorted({
         event["response"]["model"] for event in unique_events.values()
         if "payload" in event["request"] and "model" in event["response"]
@@ -874,6 +887,7 @@ def main():
         "unique_api_cost_usd": total_unique_cost["usd"],
         "unique_api_cost_cny": total_unique_cost["cny"],
         "unique_api_calls": len(unique_events),
+        "unique_api_tokens": unique_tokens,
         "jev_response_models": jev_versions,
         "direct_prompt_fallbacks": parse_fallbacks,
         "settings": {
@@ -881,8 +895,14 @@ def main():
             "llm_base_url": args.llm_base_url,
             "llm_thinking": args.llm_thinking,
             "llm_currency": args.llm_currency,
+            "llm_input_price_per_million": args.llm_input_price,
+            "llm_output_price_per_million": args.llm_output_price,
             "jev_model": args.jev_model,
+            "jev_input_price_per_million": args.jev_input_price,
             "breadth": args.breadth,
+            "temperature": args.temperature,
+            "top_p": args.top_p,
+            "max_new_tokens": args.max_new_tokens,
             "max_samples": args.max_samples,
             "workers": args.workers,
             "cache_only": args.cache_only,
@@ -890,7 +910,7 @@ def main():
     })
     report = chinese_report(
         args, summary, total_unique_cost, rows, jev_versions, parse_fallbacks,
-        prior_stats,
+        prior_stats, unique_tokens,
     )
     report_path = args.output_dir / "实验报告.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)

@@ -188,7 +188,12 @@ class OpenAiLlmManager(LlmManager):
             "presence_penalty": repetition_penalty,
         }
         if self.thinking_mode is not None:
-            request["extra_body"] = {"thinking": {"type": self.thinking_mode}}
+            if self.model_name.lower().startswith("qwen"):
+                request["extra_body"] = {
+                    "enable_thinking": self.thinking_mode == "enabled"
+                }
+            else:
+                request["extra_body"] = {"thinking": {"type": self.thinking_mode}}
         completion = self.client.chat.completions.create(**request)
 
         self.last_usage = {

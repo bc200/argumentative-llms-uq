@@ -146,7 +146,7 @@ class CachedJev:
                         data = json.load(response)
                     return data, data.get("usage"), time.perf_counter() - start
                 except HTTPError as error:
-                    if error.code not in (429, 503, 529) or attempt == 3:
+                    if error.code not in (429, 503, 520, 529) or attempt == 3:
                         raise
                     time.sleep(2 ** attempt)
                 except URLError:

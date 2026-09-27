@@ -132,3 +132,23 @@ DeepSeek V4 Pro 0813 的七方法全量结果见
 [Pro 0813 分桶中文报告](reports/2026-09-27_pro0813_置信度分桶分析.md)。
 本次 DMX Pro 折后单价尚未确认，报告先保存实际 token 用量；
 人民币成本栏在确认单价前标为“未计价”。
+
+Qwen 3.8 Max 的七方法全量结果见
+[Qwen 中文实验报告](reports/2026-09-27_qwen38max_七方法全量实验.md)，
+与 Flash、Pro 0813 的逐样本配对比较见
+[三生成模型中文对比报告](reports/2026-09-27_生成模型三方对比.md)，
+按 Direct Jev 决策置信度分桶的结果见
+[Qwen 分桶中文报告](reports/2026-09-27_qwen38max_置信度分桶分析.md)。
+Qwen 使用 `qwen3.8-max`，通过 `enable_thinking=false` 关闭思考；
+三次实验各自缓存图，同一模型内七方法共用图，根节点 Direct Jev 回答完全相同。
+本轮对三个 500 条全集均发起了实验；DMX 持续拒绝 TruthfulClaim 第 442 条的原始
+论点生成提示，Qwen 最终完成 2998/3000 条样本深度结果。
+三模型配对比较在每个深度的共同 1499 条样本上进行，并在报告中标明缺失。
+Qwen 成本按 2026-09-27 DMX 公布的折后价输入 ¥9.48、输出 ¥28.44／百万 token
+估算，尚未扣除可能的输入缓存优惠。全量缓存完成后可以离线重新生成三模型对比：
+
+    python compare_three_generators.py
+
+Qwen 的 Jev 置信度分桶分析命令：
+
+    python analyze_jev_confidence_bins.py --input-dir experiment_results/qwen38_max_full/data --report reports/2026-09-27_qwen38max_置信度分桶分析.md --metrics reports/2026-09-27_qwen38max_置信度分桶指标.json --plot reports/2026-09-27_qwen38max_置信度分桶图.png

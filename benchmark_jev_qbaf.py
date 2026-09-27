@@ -620,7 +620,8 @@ def direct_prompt_fallbacks(events):
 
 
 def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
-                   parse_fallbacks=None, prior_stats=None, unique_tokens=None):
+                   parse_fallbacks=None, prior_stats=None, unique_tokens=None,
+                   rejected_samples=None):
     lines = [
         "# Jev 根先验与 QBAF 的七方法对比实验报告",
         "",
@@ -748,6 +749,19 @@ def chinese_report(args, summary, total_unique_cost, rows, jev_versions=None,
         "共完成 %d 个数据集—深度—样本组合。逐样本概率和调用记录存于输出目录。" % len(rows),
         "",
     ]
+    if rejected_samples:
+        result_heading = lines.index("## 结果")
+        lines[result_heading:result_heading] = [
+            "## 服务商拒绝的样本", "",
+            "以下样本已按原始提示请求，但生成模型服务返回 HTTP 400 内容拒绝。"
+            "保留原始数据，不替换提示、模型或论点；这些样本不参与七方法共同样本的指标。"
+            "拒绝请求没有 token 回执，未计入费用估算。",
+            *[
+                "- %s D%d 样本 %d：%s" % (
+                    item["dataset"], item["depth"], item["index"], item["reason"]
+                ) for item in rejected_samples
+            ], "",
+        ]
     if unique_tokens is not None:
         lines.insert(-2, "去重后 token 用量：生成模型输入 {llm_input}、输出 {llm_output}；"
                      "Jev 输入 {jev_input}、输出 {jev_output}。".format(**unique_tokens))
@@ -764,6 +778,8 @@ def parse_args():
     parser.add_argument("--cache-dir", type=Path, default=Path("experiment_cache"))
     parser.add_argument("--cache-only", action="store_true",
                         help="Read responses from cache without making API calls")
+    parser.add_argument("--record-provider-rejections", action="store_true",
+                        help="Record provider HTTP 400 content refusals as missing samples")
     parser.add_argument("--output-dir", type=Path, default=Path("experiment_results"))
     parser.add_argument("--breadth", type=int, default=1)
     parser.add_argument("--max-samples", type=int, default=None)
@@ -828,6 +844,7 @@ def main():
     from concurrent.futures import ThreadPoolExecutor
 
     rows = []
+    rejected_samples = []
     unique_events = {}
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         for dataset_name in DATASETS:
@@ -836,11 +853,62 @@ def main():
             for depth in (1, 2):
                 def process(item):
                     index, claim, label = item
-                    return evaluate_sample(
-                        args, dataset_name, index, claim, label, depth, delegate, jev
-                    )
+                    rejection_dir = args.cache_dir / "provider_rejections" / dataset_name
+                    marker_depths = (1, depth) if depth == 2 else (1,)
+                    if args.record_provider_rejections:
+                        for marker_depth in marker_depths:
+                            marker = rejection_dir / ("D%d" % marker_depth) / (
+                                "sample_%05d.json" % index
+                            )
+                            if marker.exists():
+                                record = read_json(marker)
+                                expected = graph_request(
+                                    args, dataset_name, index, claim, marker_depth
+                                )
+                                if record["request"] != expected:
+                                    raise ValueError("Provider refusal marker differs: " + str(marker))
+                                return {
+                                    "_provider_rejection": True,
+                                    "dataset": dataset_name, "depth": depth,
+                                    "index": index, "reason": record["reason"],
+                                }
+                    try:
+                        return evaluate_sample(
+                            args, dataset_name, index, claim, label, depth, delegate, jev
+                        )
+                    except Exception as error:
+                        rejected = (
+                            args.record_provider_rejections
+                            and error.__class__.__name__ == "BadRequestError"
+                            and getattr(error, "status_code", None) == 400
+                            and "Input text data may contain inappropriate content"
+                            in str(error)
+                        )
+                        if not rejected:
+                            raise
+                        reason = "Qwen/DMX 输入内容拒绝 (HTTP 400)"
+                        marker = rejection_dir / ("D%d" % depth) / (
+                            "sample_%05d.json" % index
+                        )
+                        write_json(marker, {
+                            "request": graph_request(
+                                args, dataset_name, index, claim, depth
+                            ),
+                            "reason": reason,
+                        })
+                        return {
+                            "_provider_rejection": True,
+                            "dataset": dataset_name, "depth": depth,
+                            "index": index, "reason": reason,
+                        }
 
                 for count, row in enumerate(pool.map(process, dataset), start=1):
+                    if row.pop("_provider_rejection", False):
+                        rejected_samples.append(row)
+                        print("%s D%d 样本 %d：服务商内容拒绝，已记录" % (
+                            row["dataset"], row["depth"], row["index"]
+                        ), flush=True)
+                        continue
                     for event_list in row.pop("_events").values():
                         for event in event_list:
                             unique_events[event["_cache_path"]] = event
@@ -890,6 +958,8 @@ def main():
         "unique_api_tokens": unique_tokens,
         "jev_response_models": jev_versions,
         "direct_prompt_fallbacks": parse_fallbacks,
+        "rejected_samples": rejected_samples,
+        "sample_depth_rows": len(rows),
         "settings": {
             "generator_model": args.generator_model,
             "llm_base_url": args.llm_base_url,
@@ -906,11 +976,12 @@ def main():
             "max_samples": args.max_samples,
             "workers": args.workers,
             "cache_only": args.cache_only,
+            "record_provider_rejections": args.record_provider_rejections,
         },
     })
     report = chinese_report(
         args, summary, total_unique_cost, rows, jev_versions, parse_fallbacks,
-        prior_stats, unique_tokens,
+        prior_stats, unique_tokens, rejected_samples,
     )
     report_path = args.output_dir / "实验报告.md"
     report_path.parent.mkdir(parents=True, exist_ok=True)

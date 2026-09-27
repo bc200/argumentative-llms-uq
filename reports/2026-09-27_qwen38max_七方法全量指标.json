@@ -1,0 +1,1577 @@
+{
+  "summary": [
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 499,
+      "accuracy": 0.8897795591182365,
+      "brier": 0.09163326653306617,
+      "ece": 0.05262525050100191,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.0448382000000012,
+      "mean_latency_seconds": 1.5247059046092157
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 499,
+      "accuracy": 0.8697394789579158,
+      "brier": 0.09725891783567121,
+      "ece": 0.07278557114228457,
+      "api_cost_usd": 0.00679513800000001,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8682738737474958
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 499,
+      "accuracy": 0.8537074148296593,
+      "brier": 0.10436938877755515,
+      "ece": 0.1262024048096192,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 5.1197498400000025,
+      "mean_latency_seconds": 6.381027776953909
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 499,
+      "accuracy": 0.8196392785571143,
+      "brier": 0.12926603206412823,
+      "ece": 0.15531062124248501,
+      "api_cost_usd": 0.013296486000000001,
+      "api_cost_cny": 2.8096729200000023,
+      "mean_latency_seconds": 5.931426893587169
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 499,
+      "accuracy": 0.8276553106212425,
+      "brier": 0.1263828126052105,
+      "ece": 0.16285851703406815,
+      "api_cost_usd": 0.031240188000000016,
+      "api_cost_cny": 2.8096729200000023,
+      "mean_latency_seconds": 7.5086974294589215
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 499,
+      "accuracy": 0.8637274549098196,
+      "brier": 0.10331613861723447,
+      "ece": 0.11886192384769532,
+      "api_cost_usd": 0.02009162400000001,
+      "api_cost_cny": 2.8096729200000023,
+      "mean_latency_seconds": 6.799700767334672
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 499,
+      "accuracy": 0.8637274549098196,
+      "brier": 0.10226813399942884,
+      "ece": 0.11446460320641283,
+      "api_cost_usd": 0.03803532600000001,
+      "api_cost_cny": 2.8096729200000023,
+      "mean_latency_seconds": 8.376971303206412
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 499,
+      "accuracy": 0.8897795591182365,
+      "brier": 0.09163326653306617,
+      "ece": 0.05262525050100191,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.0448382000000012,
+      "mean_latency_seconds": 1.5247059046092157
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 499,
+      "accuracy": 0.8697394789579158,
+      "brier": 0.09725891783567121,
+      "ece": 0.07278557114228457,
+      "api_cost_usd": 0.00679513800000001,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8682738737474958
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 499,
+      "accuracy": 0.8597194388777555,
+      "brier": 0.10906133710921839,
+      "ece": 0.11315120240480958,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 16.85668188,
+      "mean_latency_seconds": 18.117608062925836
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 499,
+      "accuracy": 0.811623246492986,
+      "brier": 0.13461127486973945,
+      "ece": 0.14781863727454908,
+      "api_cost_usd": 0.043040759999999956,
+      "api_cost_cny": 9.17727516,
+      "mean_latency_seconds": 16.999771776753484
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 499,
+      "accuracy": 0.8276553106212425,
+      "brier": 0.1268102040982723,
+      "ece": 0.13383373217434869,
+      "api_cost_usd": 0.09302903400000007,
+      "api_cost_cny": 9.17727516,
+      "mean_latency_seconds": 20.68545905971945
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 499,
+      "accuracy": 0.8476953907815631,
+      "brier": 0.10915686427829242,
+      "ece": 0.12216979559118242,
+      "api_cost_usd": 0.04983589800000003,
+      "api_cost_cny": 9.17727516,
+      "mean_latency_seconds": 17.86804565050101
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 499,
+      "accuracy": 0.8557114228456913,
+      "brier": 0.10378244880305228,
+      "ece": 0.11277452273326644,
+      "api_cost_usd": 0.09982417200000004,
+      "api_cost_cny": 9.17727516,
+      "mean_latency_seconds": 21.55373293346693
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 500,
+      "accuracy": 0.85,
+      "brier": 0.13514240000000005,
+      "ece": 0.11631999999999967,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.0299546000000015,
+      "mean_latency_seconds": 0.8406952867999992
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 500,
+      "accuracy": 0.784,
+      "brier": 0.14083960000000004,
+      "ece": 0.11823999999999998,
+      "api_cost_usd": 0.006738060000000006,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8529926915999989
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 500,
+      "accuracy": 0.762,
+      "brier": 0.15908474999999994,
+      "ece": 0.15797,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 5.073866640000002,
+      "mean_latency_seconds": 6.023526717800007
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 500,
+      "accuracy": 0.732,
+      "brier": 0.17565170000000002,
+      "ece": 0.17303999999999997,
+      "api_cost_usd": 0.013366331999999995,
+      "api_cost_cny": 2.760272640000001,
+      "mean_latency_seconds": 5.714188895200005
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.722,
+      "brier": 0.17348498700000006,
+      "ece": 0.16035819999999995,
+      "api_cost_usd": 0.03119436599999999,
+      "api_cost_cny": 2.760272640000001,
+      "mean_latency_seconds": 7.207801051399998
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "accuracy": 0.77,
+      "brier": 0.16111925128000007,
+      "ece": 0.17086079999999998,
+      "api_cost_usd": 0.020104392000000006,
+      "api_cost_cny": 2.760272640000001,
+      "mean_latency_seconds": 6.567181586799995
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.766,
+      "brier": 0.15950904920935793,
+      "ece": 0.16454639400000004,
+      "api_cost_usd": 0.03793242600000003,
+      "api_cost_cny": 2.760272640000001,
+      "mean_latency_seconds": 8.060793742999996
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 500,
+      "accuracy": 0.85,
+      "brier": 0.13514240000000005,
+      "ece": 0.11631999999999967,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.0299546000000015,
+      "mean_latency_seconds": 0.8406952867999992
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 500,
+      "accuracy": 0.784,
+      "brier": 0.14083960000000004,
+      "ece": 0.11823999999999998,
+      "api_cost_usd": 0.006738060000000006,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8529926915999989
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 500,
+      "accuracy": 0.746,
+      "brier": 0.17492063835500007,
+      "ece": 0.14811489999999997,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 16.46041787999999,
+      "mean_latency_seconds": 16.887450881800007
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 500,
+      "accuracy": 0.698,
+      "brier": 0.19620358484999972,
+      "ece": 0.16228920000000002,
+      "api_cost_usd": 0.04198643399999998,
+      "api_cost_cny": 8.989059239999998,
+      "mean_latency_seconds": 16.184453866799988
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.71,
+      "brier": 0.1868901207177806,
+      "ece": 0.13332946191999998,
+      "api_cost_usd": 0.0919321620000001,
+      "api_cost_cny": 8.989059239999998,
+      "mean_latency_seconds": 19.8610327174
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "accuracy": 0.738,
+      "brier": 0.17655387646017218,
+      "ece": 0.175743644,
+      "api_cost_usd": 0.04872449399999998,
+      "api_cost_cny": 8.989059239999998,
+      "mean_latency_seconds": 17.03744655840001
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.744,
+      "brier": 0.16762001301583346,
+      "ece": 0.1613505469148,
+      "api_cost_usd": 0.09867022199999996,
+      "api_cost_cny": 8.989059239999998,
+      "mean_latency_seconds": 20.714025408999984
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "direct_llm",
+      "n": 500,
+      "accuracy": 0.86,
+      "brier": 0.11935199999999975,
+      "ece": 0.07884000000000006,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.9112817600000003,
+      "mean_latency_seconds": 1.0134579497999998
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "direct_jev",
+      "n": 500,
+      "accuracy": 0.814,
+      "brier": 0.1325558,
+      "ece": 0.08650000000000001,
+      "api_cost_usd": 0.010743474000000013,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8793273502
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "original_qbaf",
+      "n": 500,
+      "accuracy": 0.85,
+      "brier": 0.10198819999999985,
+      "ece": 0.07845999999999964,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 9.579540000000007,
+      "mean_latency_seconds": 7.235161717200007
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_qbaf",
+      "n": 500,
+      "accuracy": 0.798,
+      "brier": 0.14506654999999996,
+      "ece": 0.16395,
+      "api_cost_usd": 0.021995063999999998,
+      "api_cost_cny": 5.433888599999996,
+      "mean_latency_seconds": 7.0226267789999985
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.806,
+      "brier": 0.14064022352999997,
+      "ece": 0.1446322,
+      "api_cost_usd": 0.049300356000000004,
+      "api_cost_cny": 5.433888599999996,
+      "mean_latency_seconds": 8.63978473360001
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "accuracy": 0.832,
+      "brier": 0.13098054360000008,
+      "ece": 0.1348884,
+      "api_cost_usd": 0.03273853799999998,
+      "api_cost_cny": 5.433888599999996,
+      "mean_latency_seconds": 7.901954129199993
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.824,
+      "brier": 0.13192939063736203,
+      "ece": 0.13022634999999994,
+      "api_cost_usd": 0.06004383000000005,
+      "api_cost_cny": 5.433888599999996,
+      "mean_latency_seconds": 9.519112083800001
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "direct_llm",
+      "n": 500,
+      "accuracy": 0.86,
+      "brier": 0.11935199999999975,
+      "ece": 0.07884000000000006,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 1.9112817600000003,
+      "mean_latency_seconds": 1.0134579497999998
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "direct_jev",
+      "n": 500,
+      "accuracy": 0.814,
+      "brier": 0.1325558,
+      "ece": 0.08650000000000001,
+      "api_cost_usd": 0.010743474000000013,
+      "api_cost_cny": 0.0,
+      "mean_latency_seconds": 0.8793273502
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "original_qbaf",
+      "n": 500,
+      "accuracy": 0.852,
+      "brier": 0.11581439647000001,
+      "ece": 0.08583300000000002,
+      "api_cost_usd": 0.0,
+      "api_cost_cny": 24.3535038,
+      "mean_latency_seconds": 20.938423302999997
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_qbaf",
+      "n": 500,
+      "accuracy": 0.778,
+      "brier": 0.15426232394500008,
+      "ece": 0.15938610000000003,
+      "api_cost_usd": 0.05873133000000004,
+      "api_cost_cny": 13.504648679999994,
+      "mean_latency_seconds": 19.994465351200024
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.788,
+      "brier": 0.14661003923989133,
+      "ece": 0.13628530168000005,
+      "api_cost_usd": 0.12475129800000008,
+      "api_cost_cny": 13.504648679999994,
+      "mean_latency_seconds": 24.03677404440003
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "accuracy": 0.818,
+      "brier": 0.13376943355205193,
+      "ece": 0.1399662319999999,
+      "api_cost_usd": 0.06947480400000006,
+      "api_cost_cny": 13.504648679999994,
+      "mean_latency_seconds": 20.87379270140003
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "accuracy": 0.822,
+      "brier": 0.13316842070795942,
+      "ece": 0.12773903896179997,
+      "api_cost_usd": 0.1354947720000001,
+      "api_cost_cny": 13.504648679999994,
+      "mean_latency_seconds": 24.916101394600034
+    }
+  ],
+  "prior_comparisons": [
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 499,
+      "prior_accuracy": 0.8697394789579158,
+      "posterior_accuracy": 0.8637274549098196,
+      "accuracy_change": -0.006012024048096198,
+      "accuracy_change_ci95": [
+        -0.026052104208416832,
+        0.014028056112224449
+      ],
+      "prior_brier": 0.09725891783567121,
+      "posterior_brier": 0.10331613861723447,
+      "brier_change": 0.006057220781563261,
+      "brier_change_ci95": [
+        -0.0027851649498998017,
+        0.01622417320641283
+      ],
+      "prior_ece": 0.07278557114228457,
+      "posterior_ece": 0.11886192384769532,
+      "changed_probability": 497,
+      "mean_absolute_revision": 0.08099659318637262,
+      "decision_flips": 25,
+      "corrected": 11,
+      "spoiled": 14
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 499,
+      "prior_accuracy": 0.8697394789579158,
+      "posterior_accuracy": 0.8637274549098196,
+      "accuracy_change": -0.006012024048096198,
+      "accuracy_change_ci95": [
+        -0.026052104208416832,
+        0.014028056112224449
+      ],
+      "prior_brier": 0.09725891783567121,
+      "posterior_brier": 0.10226813399942884,
+      "brier_change": 0.005009216163757629,
+      "brier_change_ci95": [
+        -0.0032496237327374706,
+        0.014019165096969944
+      ],
+      "prior_ece": 0.07278557114228457,
+      "posterior_ece": 0.11446460320641283,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.08011775350701408,
+      "decision_flips": 27,
+      "corrected": 12,
+      "spoiled": 15
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 204,
+      "prior_accuracy": 0.8137254901960784,
+      "posterior_accuracy": 0.803921568627451,
+      "accuracy_change": -0.009803921568627416,
+      "accuracy_change_ci95": [
+        -0.04411764705882353,
+        0.029411764705882353
+      ],
+      "prior_brier": 0.13664607843137255,
+      "posterior_brier": 0.13973078759803922,
+      "brier_change": 0.0030847091666666715,
+      "brier_change_ci95": [
+        -0.006361199656862746,
+        0.01231304995098039
+      ],
+      "prior_ece": 0.1991176470588234,
+      "posterior_ece": 0.19738970588235294,
+      "changed_probability": 202,
+      "mean_absolute_revision": 0.059345588235294136,
+      "decision_flips": 16,
+      "corrected": 7,
+      "spoiled": 9
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 204,
+      "prior_accuracy": 0.8137254901960784,
+      "posterior_accuracy": 0.803921568627451,
+      "accuracy_change": -0.009803921568627416,
+      "accuracy_change_ci95": [
+        -0.049019607843137254,
+        0.029411764705882353
+      ],
+      "prior_brier": 0.13664607843137255,
+      "posterior_brier": 0.14332299271115198,
+      "brier_change": 0.006676914279779428,
+      "brier_change_ci95": [
+        -0.004906602378627449,
+        0.018210727664127457
+      ],
+      "prior_ece": 0.1991176470588234,
+      "posterior_ece": 0.1998513578431373,
+      "changed_probability": 204,
+      "mean_absolute_revision": 0.07257069117647068,
+      "decision_flips": 18,
+      "corrected": 8,
+      "spoiled": 10
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 53,
+      "prior_accuracy": 0.7169811320754716,
+      "posterior_accuracy": 0.660377358490566,
+      "accuracy_change": -0.05660377358490565,
+      "accuracy_change_ci95": [
+        -0.24528301886792453,
+        0.1320754716981132
+      ],
+      "prior_brier": 0.189454716981132,
+      "posterior_brier": 0.21860665943396226,
+      "brier_change": 0.02915194245283026,
+      "brier_change_ci95": [
+        -0.031215764905660377,
+        0.09245907188679243
+      ],
+      "prior_ece": 0.17,
+      "posterior_ece": 0.3151830188679246,
+      "changed_probability": 53,
+      "mean_absolute_revision": 0.17245849056603776,
+      "decision_flips": 25,
+      "corrected": 11,
+      "spoiled": 14
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 53,
+      "prior_accuracy": 0.7169811320754716,
+      "posterior_accuracy": 0.6792452830188679,
+      "accuracy_change": -0.037735849056603765,
+      "accuracy_change_ci95": [
+        -0.22641509433962265,
+        0.1509433962264151
+      ],
+      "prior_brier": 0.189454716981132,
+      "posterior_brier": 0.21594006729358495,
+      "brier_change": 0.026485350312452943,
+      "brier_change_ci95": [
+        -0.03097937970637736,
+        0.0840616213400566
+      ],
+      "prior_ece": 0.17,
+      "posterior_ece": 0.32052883018867917,
+      "changed_probability": 53,
+      "mean_absolute_revision": 0.17808301886792446,
+      "decision_flips": 26,
+      "corrected": 12,
+      "spoiled": 14
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 499,
+      "prior_accuracy": 0.8697394789579158,
+      "posterior_accuracy": 0.8476953907815631,
+      "accuracy_change": -0.022044088176352727,
+      "accuracy_change_ci95": [
+        -0.04609218436873747,
+        0.0
+      ],
+      "prior_brier": 0.09725891783567121,
+      "posterior_brier": 0.10915686427829242,
+      "brier_change": 0.01189794644262121,
+      "brier_change_ci95": [
+        0.000706978351138272,
+        0.023595242821755485
+      ],
+      "prior_ece": 0.07278557114228457,
+      "posterior_ece": 0.12216979559118242,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.09183395190380758,
+      "decision_flips": 37,
+      "corrected": 13,
+      "spoiled": 24
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 499,
+      "prior_accuracy": 0.8697394789579158,
+      "posterior_accuracy": 0.8557114228456913,
+      "accuracy_change": -0.014028056112224463,
+      "accuracy_change_ci95": [
+        -0.03807615230460922,
+        0.008016032064128256
+      ],
+      "prior_brier": 0.09725891783567121,
+      "posterior_brier": 0.10378244880305228,
+      "brier_change": 0.006523530967381064,
+      "brier_change_ci95": [
+        -0.0030013839488066984,
+        0.016610198801610937
+      ],
+      "prior_ece": 0.07278557114228457,
+      "posterior_ece": 0.11277452273326644,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.08487092167715433,
+      "decision_flips": 35,
+      "corrected": 14,
+      "spoiled": 21
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 204,
+      "prior_accuracy": 0.8137254901960784,
+      "posterior_accuracy": 0.7647058823529411,
+      "accuracy_change": -0.0490196078431373,
+      "accuracy_change_ci95": [
+        -0.09803921568627451,
+        0.0
+      ],
+      "prior_brier": 0.13664607843137255,
+      "posterior_brier": 0.15697708832608825,
+      "brier_change": 0.0203310098947157,
+      "brier_change_ci95": [
+        0.0030574615909607764,
+        0.038284432624102915
+      ],
+      "prior_ece": 0.1991176470588234,
+      "posterior_ece": 0.21054245098039231,
+      "changed_probability": 204,
+      "mean_absolute_revision": 0.0913446078431373,
+      "decision_flips": 28,
+      "corrected": 9,
+      "spoiled": 19
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 204,
+      "prior_accuracy": 0.8137254901960784,
+      "posterior_accuracy": 0.7794117647058824,
+      "accuracy_change": -0.03431372549019607,
+      "accuracy_change_ci95": [
+        -0.08333333333333333,
+        0.014705882352941176
+      ],
+      "prior_brier": 0.13664607843137255,
+      "posterior_brier": 0.14949252340628186,
+      "brier_change": 0.012846444974909305,
+      "brier_change_ci95": [
+        -0.0028754057255554488,
+        0.029210962196644045
+      ],
+      "prior_ece": 0.1991176470588234,
+      "posterior_ece": 0.20161218294558833,
+      "changed_probability": 204,
+      "mean_absolute_revision": 0.0902441683230392,
+      "decision_flips": 27,
+      "corrected": 10,
+      "spoiled": 17
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 67,
+      "prior_accuracy": 0.7164179104477612,
+      "posterior_accuracy": 0.5522388059701493,
+      "accuracy_change": -0.16417910447761186,
+      "accuracy_change_ci95": [
+        -0.34328358208955223,
+        0.0
+      ],
+      "prior_brier": 0.19145671641791046,
+      "posterior_brier": 0.26057801512005974,
+      "brier_change": 0.06912129870214928,
+      "brier_change_ci95": [
+        0.005985693334179074,
+        0.13454485091491042
+      ],
+      "prior_ece": 0.1776119402985075,
+      "posterior_ece": 0.3338643582089552,
+      "changed_probability": 67,
+      "mean_absolute_revision": 0.20793698507462693,
+      "decision_flips": 37,
+      "corrected": 13,
+      "spoiled": 24
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 67,
+      "prior_accuracy": 0.7164179104477612,
+      "posterior_accuracy": 0.6119402985074627,
+      "accuracy_change": -0.10447761194029848,
+      "accuracy_change_ci95": [
+        -0.2835820895522388,
+        0.05970149253731343
+      ],
+      "prior_brier": 0.19145671641791046,
+      "posterior_brier": 0.23152473739885535,
+      "brier_change": 0.04006802098094489,
+      "brier_change_ci95": [
+        -0.01565708958642728,
+        0.09533254226204206
+      ],
+      "prior_ece": 0.1776119402985075,
+      "posterior_ece": 0.30440416255671643,
+      "changed_probability": 67,
+      "mean_absolute_revision": 0.17902866417462693,
+      "decision_flips": 35,
+      "corrected": 14,
+      "spoiled": 21
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.784,
+      "posterior_accuracy": 0.77,
+      "accuracy_change": -0.014000000000000012,
+      "accuracy_change_ci95": [
+        -0.04,
+        0.012
+      ],
+      "prior_brier": 0.14083960000000004,
+      "posterior_brier": 0.16111925128000007,
+      "brier_change": 0.020279651280000033,
+      "brier_change_ci95": [
+        0.007845150319999987,
+        0.03358877922000004
+      ],
+      "prior_ece": 0.11823999999999998,
+      "posterior_ece": 0.17086079999999998,
+      "changed_probability": 498,
+      "mean_absolute_revision": 0.10599240000000006,
+      "decision_flips": 47,
+      "corrected": 20,
+      "spoiled": 27
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.784,
+      "posterior_accuracy": 0.766,
+      "accuracy_change": -0.018000000000000016,
+      "accuracy_change_ci95": [
+        -0.046,
+        0.01
+      ],
+      "prior_brier": 0.14083960000000004,
+      "posterior_brier": 0.15950904920935793,
+      "brier_change": 0.018669449209357897,
+      "brier_change_ci95": [
+        0.007322560692929995,
+        0.030816489950222056
+      ],
+      "prior_ece": 0.11823999999999998,
+      "posterior_ece": 0.16454639400000004,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.10060473000000009,
+      "decision_flips": 49,
+      "corrected": 20,
+      "spoiled": 29
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 216,
+      "prior_accuracy": 0.7222222222222222,
+      "posterior_accuracy": 0.7037037037037037,
+      "accuracy_change": -0.01851851851851849,
+      "accuracy_change_ci95": [
+        -0.06481481481481481,
+        0.027777777777777776
+      ],
+      "prior_brier": 0.17739583333333342,
+      "posterior_brier": 0.18645215722222228,
+      "brier_change": 0.009056323888888856,
+      "brier_change_ci95": [
+        -0.0052118909722222275,
+        0.023249579722222195
+      ],
+      "prior_ece": 0.2402314814814815,
+      "posterior_ece": 0.23086481481481477,
+      "changed_probability": 215,
+      "mean_absolute_revision": 0.08080370370370368,
+      "decision_flips": 28,
+      "corrected": 12,
+      "spoiled": 16
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 216,
+      "prior_accuracy": 0.7222222222222222,
+      "posterior_accuracy": 0.6851851851851852,
+      "accuracy_change": -0.03703703703703698,
+      "accuracy_change_ci95": [
+        -0.08796296296296297,
+        0.018518518518518517
+      ],
+      "prior_brier": 0.17739583333333342,
+      "posterior_brier": 0.19500087586150475,
+      "brier_change": 0.017605042528171327,
+      "brier_change_ci95": [
+        0.001372211809814808,
+        0.03335071080717131
+      ],
+      "prior_ece": 0.2402314814814815,
+      "posterior_ece": 0.23875706018518525,
+      "changed_probability": 216,
+      "mean_absolute_revision": 0.09356041203703708,
+      "decision_flips": 32,
+      "corrected": 12,
+      "spoiled": 20
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 84,
+      "prior_accuracy": 0.6547619047619048,
+      "posterior_accuracy": 0.5714285714285714,
+      "accuracy_change": -0.08333333333333337,
+      "accuracy_change_ci95": [
+        -0.25,
+        0.07142857142857142
+      ],
+      "prior_brier": 0.2184095238095238,
+      "posterior_brier": 0.26324889857142847,
+      "brier_change": 0.044839374761904666,
+      "brier_change_ci95": [
+        -0.006136073452380965,
+        0.09904636904761897
+      ],
+      "prior_ece": 0.25261904761904763,
+      "posterior_ece": 0.36365,
+      "changed_probability": 84,
+      "mean_absolute_revision": 0.18422142857142856,
+      "decision_flips": 45,
+      "corrected": 19,
+      "spoiled": 26
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 84,
+      "prior_accuracy": 0.6547619047619048,
+      "posterior_accuracy": 0.5476190476190477,
+      "accuracy_change": -0.1071428571428571,
+      "accuracy_change_ci95": [
+        -0.2619047619047619,
+        0.047619047619047616
+      ],
+      "prior_brier": 0.2184095238095238,
+      "posterior_brier": 0.2682773289244999,
+      "brier_change": 0.0498678051149761,
+      "brier_change_ci95": [
+        0.003300074217059507,
+        0.09680975531439284
+      ],
+      "prior_ece": 0.25261904761904763,
+      "posterior_ece": 0.3594483809523809,
+      "changed_probability": 84,
+      "mean_absolute_revision": 0.1767616428571428,
+      "decision_flips": 45,
+      "corrected": 18,
+      "spoiled": 27
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.784,
+      "posterior_accuracy": 0.738,
+      "accuracy_change": -0.04600000000000004,
+      "accuracy_change_ci95": [
+        -0.076,
+        -0.018
+      ],
+      "prior_brier": 0.14083960000000004,
+      "posterior_brier": 0.17655387646017218,
+      "brier_change": 0.03571427646017214,
+      "brier_change_ci95": [
+        0.021716080876958,
+        0.05050591557125401
+      ],
+      "prior_ece": 0.11823999999999998,
+      "posterior_ece": 0.175743644,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.11411155999999996,
+      "decision_flips": 55,
+      "corrected": 16,
+      "spoiled": 39
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.784,
+      "posterior_accuracy": 0.744,
+      "accuracy_change": -0.040000000000000036,
+      "accuracy_change_ci95": [
+        -0.07,
+        -0.014
+      ],
+      "prior_brier": 0.14083960000000004,
+      "posterior_brier": 0.16762001301583346,
+      "brier_change": 0.02678041301583342,
+      "brier_change_ci95": [
+        0.015364070361214469,
+        0.03907175329281433
+      ],
+      "prior_ece": 0.11823999999999998,
+      "posterior_ece": 0.1613505469148,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.10053928328879994,
+      "decision_flips": 52,
+      "corrected": 16,
+      "spoiled": 36
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 216,
+      "prior_accuracy": 0.7222222222222222,
+      "posterior_accuracy": 0.625,
+      "accuracy_change": -0.09722222222222221,
+      "accuracy_change_ci95": [
+        -0.1527777777777778,
+        -0.037037037037037035
+      ],
+      "prior_brier": 0.17739583333333342,
+      "posterior_brier": 0.22250877837779623,
+      "brier_change": 0.04511294504446281,
+      "brier_change_ci95": [
+        0.02451400992698149,
+        0.06609161639287037
+      ],
+      "prior_ece": 0.2402314814814815,
+      "posterior_ece": 0.26386359259259257,
+      "changed_probability": 216,
+      "mean_absolute_revision": 0.12651487962962962,
+      "decision_flips": 41,
+      "corrected": 10,
+      "spoiled": 31
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 216,
+      "prior_accuracy": 0.7222222222222222,
+      "posterior_accuracy": 0.6388888888888888,
+      "accuracy_change": -0.08333333333333337,
+      "accuracy_change_ci95": [
+        -0.1388888888888889,
+        -0.027777777777777776
+      ],
+      "prior_brier": 0.17739583333333342,
+      "posterior_brier": 0.21320568569269122,
+      "brier_change": 0.0358098523593578,
+      "brier_change_ci95": [
+        0.01699386589633836,
+        0.05440594963247822
+      ],
+      "prior_ece": 0.2402314814814815,
+      "posterior_ece": 0.2530469629726852,
+      "changed_probability": 216,
+      "mean_absolute_revision": 0.11581714105787035,
+      "decision_flips": 38,
+      "corrected": 10,
+      "spoiled": 28
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 93,
+      "prior_accuracy": 0.7311827956989247,
+      "posterior_accuracy": 0.4838709677419355,
+      "accuracy_change": -0.24731182795698925,
+      "accuracy_change_ci95": [
+        -0.3870967741935484,
+        -0.0967741935483871
+      ],
+      "prior_brier": 0.18801827956989245,
+      "posterior_brier": 0.2879309407079892,
+      "brier_change": 0.09991266113809674,
+      "brier_change_ci95": [
+        0.05203100055744087,
+        0.1489956605874409
+      ],
+      "prior_ece": 0.22612903225806447,
+      "posterior_ece": 0.3553348494623656,
+      "changed_probability": 93,
+      "mean_absolute_revision": 0.20262383870967746,
+      "decision_flips": 53,
+      "corrected": 15,
+      "spoiled": 38
+    },
+    {
+      "dataset": "StrategyClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 93,
+      "prior_accuracy": 0.7311827956989247,
+      "posterior_accuracy": 0.5053763440860215,
+      "accuracy_change": -0.22580645161290325,
+      "accuracy_change_ci95": [
+        -0.3548387096774194,
+        -0.08602150537634409
+      ],
+      "prior_brier": 0.18801827956989245,
+      "posterior_brier": 0.2660009581864512,
+      "brier_change": 0.07798267861655875,
+      "brier_change_ci95": [
+        0.036995793597373317,
+        0.11851587703676662
+      ],
+      "prior_ece": 0.22612903225806447,
+      "posterior_ece": 0.33276461045806455,
+      "changed_probability": 93,
+      "mean_absolute_revision": 0.17206834024086018,
+      "decision_flips": 49,
+      "corrected": 14,
+      "spoiled": 35
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.814,
+      "posterior_accuracy": 0.832,
+      "accuracy_change": 0.018000000000000016,
+      "accuracy_change_ci95": [
+        -0.004,
+        0.042
+      ],
+      "prior_brier": 0.1325558,
+      "posterior_brier": 0.13098054360000008,
+      "brier_change": -0.0015752563999999192,
+      "brier_change_ci95": [
+        -0.010470058519999988,
+        0.007730837679999999
+      ],
+      "prior_ece": 0.08650000000000001,
+      "posterior_ece": 0.1348884,
+      "changed_probability": 498,
+      "mean_absolute_revision": 0.08960239999999996,
+      "decision_flips": 33,
+      "corrected": 21,
+      "spoiled": 12
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.814,
+      "posterior_accuracy": 0.824,
+      "accuracy_change": 0.010000000000000009,
+      "accuracy_change_ci95": [
+        -0.014,
+        0.036
+      ],
+      "prior_brier": 0.1325558,
+      "posterior_brier": 0.13192939063736203,
+      "brier_change": -0.0006264093626379696,
+      "brier_change_ci95": [
+        -0.010221827711934008,
+        0.008833297020174016
+      ],
+      "prior_ece": 0.08650000000000001,
+      "posterior_ece": 0.13022634999999994,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.09507421400000009,
+      "decision_flips": 37,
+      "corrected": 21,
+      "spoiled": 16
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 278,
+      "prior_accuracy": 0.7446043165467626,
+      "posterior_accuracy": 0.7805755395683454,
+      "accuracy_change": 0.03597122302158273,
+      "accuracy_change_ci95": [
+        0.0035971223021582736,
+        0.07194244604316546
+      ],
+      "prior_brier": 0.1708241007194244,
+      "posterior_brier": 0.16549495517985632,
+      "brier_change": -0.005329145539568064,
+      "brier_change_ci95": [
+        -0.016470240755395688,
+        0.005002933309352521
+      ],
+      "prior_ece": 0.18140287769784164,
+      "posterior_ece": 0.18498920863309343,
+      "changed_probability": 277,
+      "mean_absolute_revision": 0.07484820143884902,
+      "decision_flips": 26,
+      "corrected": 18,
+      "spoiled": 8
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 278,
+      "prior_accuracy": 0.7446043165467626,
+      "posterior_accuracy": 0.7661870503597122,
+      "accuracy_change": 0.021582733812949617,
+      "accuracy_change_ci95": [
+        -0.014388489208633094,
+        0.06115107913669065
+      ],
+      "prior_brier": 0.1708241007194244,
+      "posterior_brier": 0.16958802490892075,
+      "brier_change": -0.0012360758105036396,
+      "brier_change_ci95": [
+        -0.014836461157902875,
+        0.011451431290776986
+      ],
+      "prior_ece": 0.18140287769784164,
+      "posterior_ece": 0.18667823741007172,
+      "changed_probability": 278,
+      "mean_absolute_revision": 0.09484218705035972,
+      "decision_flips": 30,
+      "corrected": 18,
+      "spoiled": 12
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 69,
+      "prior_accuracy": 0.5652173913043478,
+      "posterior_accuracy": 0.6811594202898551,
+      "accuracy_change": 0.11594202898550732,
+      "accuracy_change_ci95": [
+        -0.043478260869565216,
+        0.2753623188405797
+      ],
+      "prior_brier": 0.2416405797101449,
+      "posterior_brier": 0.22929654898550728,
+      "brier_change": -0.012344030724637634,
+      "brier_change_ci95": [
+        -0.056645346521739116,
+        0.03354496971014492
+      ],
+      "prior_ece": 0.20811594202898556,
+      "posterior_ece": 0.2672173913043479,
+      "changed_probability": 69,
+      "mean_absolute_revision": 0.13604347826086954,
+      "decision_flips": 32,
+      "corrected": 20,
+      "spoiled": 12
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 1,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 69,
+      "prior_accuracy": 0.5652173913043478,
+      "posterior_accuracy": 0.6231884057971014,
+      "accuracy_change": 0.05797101449275366,
+      "accuracy_change_ci95": [
+        -0.11594202898550725,
+        0.2318840579710145
+      ],
+      "prior_brier": 0.2416405797101449,
+      "posterior_brier": 0.23243696172639128,
+      "brier_change": -0.009203617983753631,
+      "brier_change_ci95": [
+        -0.05673369263153624,
+        0.03966473271434785
+      ],
+      "prior_ece": 0.20811594202898556,
+      "posterior_ece": 0.26857007246376813,
+      "changed_probability": 69,
+      "mean_absolute_revision": 0.14918213043478254,
+      "decision_flips": 36,
+      "corrected": 20,
+      "spoiled": 16
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.814,
+      "posterior_accuracy": 0.818,
+      "accuracy_change": 0.0040000000000000036,
+      "accuracy_change_ci95": [
+        -0.022,
+        0.03
+      ],
+      "prior_brier": 0.1325558,
+      "posterior_brier": 0.13376943355205193,
+      "brier_change": 0.0012136335520519237,
+      "brier_change_ci95": [
+        -0.009627252057208014,
+        0.011679064787721996
+      ],
+      "prior_ece": 0.08650000000000001,
+      "posterior_ece": 0.1399662319999999,
+      "changed_probability": 498,
+      "mean_absolute_revision": 0.10552571199999987,
+      "decision_flips": 46,
+      "corrected": 24,
+      "spoiled": 22
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "全部",
+      "method": "jev_prior_ew_qbaf",
+      "n": 500,
+      "prior_accuracy": 0.814,
+      "posterior_accuracy": 0.822,
+      "accuracy_change": 0.008000000000000007,
+      "accuracy_change_ci95": [
+        -0.018,
+        0.034
+      ],
+      "prior_brier": 0.1325558,
+      "posterior_brier": 0.13316842070795942,
+      "brier_change": 0.0006126207079594215,
+      "brier_change_ci95": [
+        -0.009785776800865922,
+        0.010417039294703672
+      ],
+      "prior_ece": 0.08650000000000001,
+      "posterior_ece": 0.12773903896179997,
+      "changed_probability": 499,
+      "mean_absolute_revision": 0.10097957819740001,
+      "decision_flips": 44,
+      "corrected": 24,
+      "spoiled": 20
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_qbaf",
+      "n": 278,
+      "prior_accuracy": 0.7446043165467626,
+      "posterior_accuracy": 0.7482014388489209,
+      "accuracy_change": 0.003597122302158251,
+      "accuracy_change_ci95": [
+        -0.039568345323741004,
+        0.046762589928057555
+      ],
+      "prior_brier": 0.1708241007194244,
+      "posterior_brier": 0.1733410966392194,
+      "brier_change": 0.002516995919795012,
+      "brier_change_ci95": [
+        -0.012965599890845333,
+        0.017725350915730208
+      ],
+      "prior_ece": 0.18140287769784164,
+      "posterior_ece": 0.20015706834532374,
+      "changed_probability": 277,
+      "mean_absolute_revision": 0.10959082374100718,
+      "decision_flips": 39,
+      "corrected": 20,
+      "spoiled": 19
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "根节点双向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 278,
+      "prior_accuracy": 0.7446043165467626,
+      "posterior_accuracy": 0.7589928057553957,
+      "accuracy_change": 0.014388489208633115,
+      "accuracy_change_ci95": [
+        -0.02877697841726619,
+        0.05755395683453238
+      ],
+      "prior_brier": 0.1708241007194244,
+      "posterior_brier": 0.17353907403329702,
+      "brier_change": 0.0027149733138726317,
+      "brier_change_ci95": [
+        -0.012943031434698236,
+        0.01785114290070378
+      ],
+      "prior_ece": 0.18140287769784164,
+      "posterior_ece": 0.1901892400248201,
+      "changed_probability": 278,
+      "mean_absolute_revision": 0.11348365301043171,
+      "decision_flips": 38,
+      "corrected": 21,
+      "spoiled": 17
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_qbaf",
+      "n": 86,
+      "prior_accuracy": 0.6046511627906976,
+      "posterior_accuracy": 0.6162790697674418,
+      "accuracy_change": 0.011627906976744207,
+      "accuracy_change_ci95": [
+        -0.13953488372093023,
+        0.16279069767441862
+      ],
+      "prior_brier": 0.22427558139534876,
+      "posterior_brier": 0.22714901959986042,
+      "brier_change": 0.0028734382045116635,
+      "brier_change_ci95": [
+        -0.0434269378995,
+        0.04778466373416277
+      ],
+      "prior_ece": 0.17290697674418606,
+      "posterior_ece": 0.27822720930232564,
+      "changed_probability": 86,
+      "mean_absolute_revision": 0.18038281395348835,
+      "decision_flips": 45,
+      "corrected": 23,
+      "spoiled": 22
+    },
+    {
+      "dataset": "MedClaim",
+      "depth": 2,
+      "subset": "先验反向证据",
+      "method": "jev_prior_ew_qbaf",
+      "n": 86,
+      "prior_accuracy": 0.6046511627906976,
+      "posterior_accuracy": 0.6395348837209303,
+      "accuracy_change": 0.03488372093023262,
+      "accuracy_change_ci95": [
+        -0.11627906976744186,
+        0.18604651162790697
+      ],
+      "prior_brier": 0.22427558139534876,
+      "posterior_brier": 0.2244159539467798,
+      "brier_change": 0.00014037255143103944,
+      "brier_change_ci95": [
+        -0.04124676001874949,
+        0.04092530942038653
+      ],
+      "prior_ece": 0.17290697674418606,
+      "posterior_ece": 0.2513012928069768,
+      "changed_probability": 86,
+      "mean_absolute_revision": 0.15926574711395347,
+      "decision_flips": 43,
+      "corrected": 23,
+      "spoiled": 20
+    }
+  ],
+  "unique_api_cost_usd": 0.3339891660000069,
+  "unique_api_cost_cny": 61.6566781199977,
+  "unique_api_calls": 30184,
+  "unique_api_tokens": {
+    "llm_input": 4358431,
+    "llm_output": 715146,
+    "jev_input": 7952123,
+    "jev_output": 301840
+  },
+  "jev_response_models": [
+    "jev-1.13.0"
+  ],
+  "direct_prompt_fallbacks": {
+    "TruthfulClaim": {
+      "direct_llm": 0,
+      "original_qbaf": 0
+    },
+    "StrategyClaim": {
+      "direct_llm": 0,
+      "original_qbaf": 0
+    },
+    "MedClaim": {
+      "direct_llm": 0,
+      "original_qbaf": 0
+    }
+  },
+  "rejected_samples": [
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 1,
+      "index": 442,
+      "reason": "Qwen/DMX 输入内容拒绝 (HTTP 400)"
+    },
+    {
+      "dataset": "TruthfulClaim",
+      "depth": 2,
+      "index": 442,
+      "reason": "Qwen/DMX 输入内容拒绝 (HTTP 400)"
+    }
+  ],
+  "sample_depth_rows": 2998,
+  "settings": {
+    "generator_model": "openai/qwen3.8-max",
+    "llm_base_url": "https://www.dmxapi.cn/v1",
+    "llm_thinking": "disabled",
+    "llm_currency": "CNY",
+    "llm_input_price_per_million": 9.48,
+    "llm_output_price_per_million": 28.44,
+    "jev_model": "jev-latest",
+    "jev_input_price_per_million": 0.042,
+    "breadth": 1,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_new_tokens": 128,
+    "max_samples": null,
+    "workers": 16,
+    "cache_only": false,
+    "record_provider_rejections": true
+  }
+}

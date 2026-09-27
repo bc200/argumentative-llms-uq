@@ -63,22 +63,23 @@ class JevCacheTests(unittest.TestCase):
             self.assertEqual(call.call_count, 2)
             pause.assert_called_once_with(1)
 
-    def test_service_unavailable_is_retried(self):
-        with tempfile.TemporaryDirectory() as directory:
-            client = CachedJev(Path(directory))
-            temporary_error = HTTPError("https://api.typesafe.ai/v1/systemone",
-                                        503, "Service Unavailable", {}, None)
-            with patch.dict(os.environ, {"TYPESAFE_API_KEY": "test-only"}):
-                with patch("experiment_io.urlopen", side_effect=[
-                    temporary_error, FakeHttpResponse()
-                ]) as call, patch("experiment_io.time.sleep") as pause:
-                    probability, _ = client.ask(
-                        "sample/retry503.json", {"claim": "example"},
-                        "Is the claim true?"
-                    )
-            self.assertEqual(probability, 0.73)
-            self.assertEqual(call.call_count, 2)
-            pause.assert_called_once_with(1)
+    def test_transient_http_errors_are_retried(self):
+        for status in (503, 520):
+            with self.subTest(status=status), tempfile.TemporaryDirectory() as directory:
+                client = CachedJev(Path(directory))
+                temporary_error = HTTPError("https://api.typesafe.ai/v1/systemone",
+                                            status, "Temporary error", {}, None)
+                with patch.dict(os.environ, {"TYPESAFE_API_KEY": "test-only"}):
+                    with patch("experiment_io.urlopen", side_effect=[
+                        temporary_error, FakeHttpResponse()
+                    ]) as call, patch("experiment_io.time.sleep") as pause:
+                        probability, _ = client.ask(
+                            "sample/retry.json", {"claim": "example"},
+                            "Is the claim true?"
+                        )
+                self.assertEqual(probability, 0.73)
+                self.assertEqual(call.call_count, 2)
+                pause.assert_called_once_with(1)
 
     def test_cache_only_rejects_a_miss_without_network(self):
         with tempfile.TemporaryDirectory() as directory:
